@@ -1,0 +1,51 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<project name = "FCA API" default = "bundle" basedir = ".">
+	
+    <!-- location of common libraries and distribution directories -->
+    <property name = "build.dir" location="./build"/>
+    <property name = "dist.dir" location = "${build.dir}/dist"/>
+	<property name = "src.dir"  location = "./src"/>
+	<property name = "lib.dir"  location = "./lib"/>
+
+    <property name = "fcaapi.name" value = "fcaapi"/>
+    <property name = "fcaapi.classes" value = "${build.dir}/classes/${fcaapi.name}"/>
+    <property name = "fcaapi.jar" location="${dist.dir}/${fcaapi.name}.jar"/>
+
+	<property name = "debug" value = "on"/>
+	<property name = "source" value = "1.5"/>
+	<property name = "includeAntRuntime" value = "no"/>
+	
+	<path id = "fcaapi.classpath">
+	    <fileset dir="${lib.dir}">
+	      <include name="*.jar"/>
+	    </fileset>
+	</path>
+	
+    <target name = "init" depends = "clean">
+        <echo message="---------------Building FCA API -------------"/>
+        <tstamp/>
+        <mkdir dir = "${fcaapi.classes}"/>
+        <mkdir dir = "${dist.dir}"/>
+    </target>
+	
+    <target name = "compile" depends = "init">
+        <javac srcdir = "${src.dir}"
+               destdir = "${fcaapi.classes}"
+               debug="${debug}"
+               source = "${source}"
+               includeAntRuntime = "${includeAntRuntime}">
+            <classpath refid = "fcaapi.classpath"/>
+        </javac>
+    </target>
+
+    <target name = "bundle" depends = "compile">
+        <jar basedir = "${fcaapi.classes}"
+             destfile = "${fcaapi.jar}"
+             manifest="./META-INF/MANIFEST.MF"/>
+    </target>
+
+    <target name = "clean">
+        <delete dir="${build.dir}"/>
+    </target>
+
+</project>
