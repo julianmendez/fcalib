@@ -42,7 +42,7 @@ public class TestFormalContext {
 	
 	
 	public TestFormalContext() throws IllegalObjectException, IllegalExpertException, IllegalContextException {
-		FormalContext<String> context = new FormalContext<String>();
+		FormalContext<String,String> context = new FormalContext<String,String>();
 		NoExpertFull<String> expert = new NoExpertFull<String>(context);
 		
 		context.addAttribute("a");
@@ -57,8 +57,8 @@ public class TestFormalContext {
 		expert.addExpertActionListener(context);
 		context.setExpert(expert);
 		
-		StartExplorationAction<String,FullObject<String>> action = 
-			new StartExplorationAction<String,FullObject<String>>();
+		StartExplorationAction<String,String,FullObject<String,String>> action = 
+			new StartExplorationAction<String,String,FullObject<String,String>>();
 		action.setContext(context);
 		expert.fireExpertAction(action);
 		

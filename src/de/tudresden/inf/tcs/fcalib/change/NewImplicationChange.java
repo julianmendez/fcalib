@@ -28,9 +28,9 @@ import de.tudresden.inf.tcs.fcaapi.FCAImplication;
 public class NewImplicationChange<A> implements ContextChange<FCAImplication<A>> {
 
 	private FCAImplication<A> implication;
-	private Context<A,?> context;
+	private Context<A,?,?> context;
 	
-	public NewImplicationChange(Context<A,?> c, FCAImplication<A> i) {
+	public NewImplicationChange(Context<A,?,?> c, FCAImplication<A> i) {
 		implication = i;
 		context = c;
 	}

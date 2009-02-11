@@ -38,7 +38,7 @@ import de.tudresden.inf.tcs.fcalib.action.CounterExampleProvidedAction;
  * along with FCAlib.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class NoExpertFull<A> extends AbstractExpert<A,FullObject<A>> {
+public class NoExpertFull<A> extends AbstractExpert<A,String,FullObject<A,String>> {
 	
 	/**
 	 * To be used as name for default counterexamples.
@@ -55,9 +55,9 @@ public class NoExpertFull<A> extends AbstractExpert<A,FullObject<A>> {
 	 *
 	 */
 	
-	FormalContext<A> theContext;
+	FormalContext<A,String> theContext;
 	
-	public NoExpertFull(FormalContext<A> context) {
+	public NoExpertFull(FormalContext<A,String> context) {
 		super();
 		theContext = context;
 	}
@@ -70,11 +70,11 @@ public class NoExpertFull<A> extends AbstractExpert<A,FullObject<A>> {
 	 */
 	@Override
 	public synchronized void requestCounterExample(FCAImplication<A> question) {
-		FullObject<A> counterExample = new FullObject<A>(name + "",question.getPremise());
+		FullObject<A,String> counterExample = new FullObject<A,String>(name + "",question.getPremise());
 		++name;
 
-		ExpertAction<A,FullObject<A>> action = 
-			new CounterExampleProvidedAction<A,FullObject<A>>(theContext,question,counterExample);
+		ExpertAction action = 
+			new CounterExampleProvidedAction<A,String,FullObject<A,String>>(theContext,question,counterExample);
 		fireExpertAction(action);
 	}
 	
@@ -85,8 +85,8 @@ public class NoExpertFull<A> extends AbstractExpert<A,FullObject<A>> {
 	 */
 	@Override
 	public synchronized void askQuestion(FCAImplication<A> question) {
-		 QuestionRejectedAction<A,FullObject<A>> action = 
-			new QuestionRejectedAction<A,FullObject<A>>();
+		 QuestionRejectedAction<A,String,FullObject<A,String>> action = 
+			new QuestionRejectedAction<A,String,FullObject<A,String>>();
 		 action.setContext(theContext);
 		 action.setQuestion(question);
 		 fireExpertAction(action);
@@ -106,7 +106,7 @@ public class NoExpertFull<A> extends AbstractExpert<A,FullObject<A>> {
 	// }
 	
 	@Override
-	public void counterExampleInvalid(FullObject<A> counterExample, int reason) {
+	public void counterExampleInvalid(FullObject<A,String> counterExample, int reason) {
 		switch (reason) {
 		case Expert.COUNTEREXAMPLE_EXISTS:
 			logger.error("An object with name " + counterExample.getName() + " already exists");
@@ -129,4 +129,10 @@ public class NoExpertFull<A> extends AbstractExpert<A,FullObject<A>> {
 		logger.info("=== End of exploration ===");
 	}
 	
+	/**
+	 * Not necessary for formal contexts.
+	 * @deprecated
+	 */
+	public void forceToCounterExample(FCAImplication<A> implication) {
+	}
 }

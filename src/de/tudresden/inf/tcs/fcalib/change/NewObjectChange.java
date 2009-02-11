@@ -26,12 +26,12 @@ import de.tudresden.inf.tcs.fcaapi.FCAObject;
  * along with FCAlib.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class NewObjectChange<A> implements ContextChange<FCAObject<A>> {
+public class NewObjectChange<A> implements ContextChange<FCAObject<A,?>> {
 
-	private Context<A,FCAObject<A>> context;
-	private FCAObject<A> object;
+	private Context<A,?,FCAObject<A,?>> context;
+	private FCAObject<A,?> object;
 	
-	public NewObjectChange(Context<A,FCAObject<A>> c, FCAObject<A> o) {
+	public NewObjectChange(Context<A,?,FCAObject<A,?>> c, FCAObject<A,?> o) {
 		context = c;
 		object = o;		
 	}
@@ -46,7 +46,7 @@ public class NewObjectChange<A> implements ContextChange<FCAObject<A>> {
 		}
 	}
 	
-	public FCAObject<A> getObject() {
+	public FCAObject<A,?> getObject() {
 		return object;
 	}
 	

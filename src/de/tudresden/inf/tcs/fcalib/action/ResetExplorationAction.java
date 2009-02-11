@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 
 import org.apache.log4j.Logger;
 
+import de.tudresden.inf.tcs.fcaapi.FCAObject;
 import de.tudresden.inf.tcs.fcalib.AbstractContext;
 import de.tudresden.inf.tcs.fcalib.action.AbstractExpertAction;
 
@@ -36,7 +37,7 @@ import de.tudresden.inf.tcs.fcalib.action.AbstractExpertAction;
  * sertkaya@tcs.inf.tu-dresden.de
  */
 
-public class ResetExplorationAction<A,O> extends AbstractExpertAction<A,O> {
+public class ResetExplorationAction<A,I,O extends FCAObject<A,I>> extends AbstractExpertAction<A,I,O> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -45,7 +46,7 @@ public class ResetExplorationAction<A,O> extends AbstractExpertAction<A,O> {
 	 */
 	private static final Logger logger = Logger.getLogger(ResetExplorationAction.class);
 	
-	public ResetExplorationAction(AbstractContext<A,O> c) {
+	public ResetExplorationAction(AbstractContext<A,I,O> c) {
 		// super(c);
 		setContext(c);
 	}

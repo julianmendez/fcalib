@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 
 import de.tudresden.inf.tcs.fcaapi.FCAImplication;
 import de.tudresden.inf.tcs.fcaapi.Expert;
+import de.tudresden.inf.tcs.fcaapi.FCAObject;
 import de.tudresden.inf.tcs.fcaapi.exception.IllegalObjectException;
 import de.tudresden.inf.tcs.fcalib.AbstractContext;
 import de.tudresden.inf.tcs.fcalib.action.AbstractExpertAction;
@@ -38,7 +39,7 @@ import de.tudresden.inf.tcs.fcalib.action.AbstractExpertAction;
  * sertkaya@tcs.inf.tu-dresden.de
  */
 
-public class CounterExampleProvidedAction<A,O> extends AbstractExpertAction<A,O> {
+public class CounterExampleProvidedAction<A,I,O extends FCAObject<A,I>> extends AbstractExpertAction<A,I,O> {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -51,7 +52,7 @@ public class CounterExampleProvidedAction<A,O> extends AbstractExpertAction<A,O>
 	 */
 	private static final Logger logger = Logger.getLogger(CounterExampleProvidedAction.class);
 	
-	public CounterExampleProvidedAction(AbstractContext<A,O> c,FCAImplication<A> q,O ce) {
+	public CounterExampleProvidedAction(AbstractContext<A,I,O> c,FCAImplication<A> q,O ce) {
 		// super(c);
 		setContext(c);
 		question = q;

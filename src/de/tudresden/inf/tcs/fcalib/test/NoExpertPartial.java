@@ -40,7 +40,7 @@ import de.tudresden.inf.tcs.fcalib.action.QuestionRejectedAction;
  * along with FCAlib.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class NoExpertPartial<A> extends AbstractExpert<A,PartialObject<A>> {
+public class NoExpertPartial<A> extends AbstractExpert<A,String,PartialObject<A,String>> {
 	
 	/**
 	 * To be used as name for default counterexamples.
@@ -52,12 +52,12 @@ public class NoExpertPartial<A> extends AbstractExpert<A,PartialObject<A>> {
 	 */
 	private static final Logger logger = Logger.getLogger(NoExpertPartial.class);
 	
-	private PartialContext<A> theContext;
+	private PartialContext<A,String,PartialObject<A,String>> theContext;
 	/**
 	 * Creates an instance of NoExpertPartial.
 	 *
 	 */
-	public NoExpertPartial(PartialContext<A> context) {
+	public NoExpertPartial(PartialContext<A,String,PartialObject<A,String>> context) {
 		super();
 		theContext = context;
 	}
@@ -70,17 +70,17 @@ public class NoExpertPartial<A> extends AbstractExpert<A,PartialObject<A>> {
 	 */
 	@Override
 	public synchronized void requestCounterExample(FCAImplication<A> question) {
-		PartialObject<A> counterExample = new PartialObject<A>(name + "",question.getPremise());
+		PartialObject<A,String> counterExample = new PartialObject<A,String>(name + "",question.getPremise());
 		++name;
 		Iterator<A> it = question.getConclusion().iterator();
 
 		// add the first attribute in the conclusion of the question as a negated attribute to the
 		// description of counterExample
 		counterExample.getDescription().addNegatedAttribute(it.next());
-		ExpertAction<A,PartialObject<A>> action = 
+		ExpertAction action = 
 			// new ExpertAction<A,PartialObject<A>>(this,Expert.PROVIDED_COUNTEREXAMPLE, question,
 			// 		counterExample);
-			new CounterExampleProvidedAction<A,PartialObject<A>>(theContext,question,counterExample);
+			new CounterExampleProvidedAction<A,String,PartialObject<A,String>>(theContext,question,counterExample);
 		fireExpertAction(action);
 	}
 	
@@ -91,9 +91,9 @@ public class NoExpertPartial<A> extends AbstractExpert<A,PartialObject<A>> {
 	 */
 	@Override
 	public synchronized void askQuestion(FCAImplication<A> question) {
-		 QuestionRejectedAction<A,PartialObject<A>> action = 
+		 QuestionRejectedAction<A,String,PartialObject<A,String>> action = 
 			// new ExpertAction<A,PartialObject<A>>(this,Expert.REJECTED_QUESTION, question);
-			 new QuestionRejectedAction<A,PartialObject<A>>();
+			 new QuestionRejectedAction<A,String,PartialObject<A,String>>();
 		 action.setContext(theContext);
 		 action.setQuestion(question);
 		 fireExpertAction(action);
@@ -117,7 +117,7 @@ public class NoExpertPartial<A> extends AbstractExpert<A,PartialObject<A>> {
 	// }
 	
 	@Override
-	public void counterExampleInvalid(PartialObject<A> counterExample, int reason) {
+	public void counterExampleInvalid(PartialObject<A,String> counterExample, int reason) {
 		switch (reason) {
 		case Expert.COUNTEREXAMPLE_EXISTS:
 			// System.err.print("An object with the same name already exists\n");
@@ -142,4 +142,11 @@ public class NoExpertPartial<A> extends AbstractExpert<A,PartialObject<A>> {
 		logger.info("=== End of exploration ===");
 	}
 	
+	/**
+	 * Not necessary for partial contexts.
+	 * @deprecated
+	 */
+	public void forceToCounterExample(FCAImplication<A> implication) {
+		
+	}
 }

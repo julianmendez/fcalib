@@ -4,6 +4,9 @@ package de.tudresden.inf.tcs.fcalib;
 import java.util.Set;
 import java.util.HashSet;
 
+// import org.apache.log4j.Logger;
+
+import de.tudresden.inf.tcs.fcaapi.Expert;
 import de.tudresden.inf.tcs.fcaapi.FCAImplication;
 import de.tudresden.inf.tcs.fcaapi.exception.IllegalObjectException;
 import de.tudresden.inf.tcs.fcaapi.exception.IllegalAttributeException;
@@ -39,18 +42,28 @@ import de.tudresden.inf.tcs.fcalib.utils.ListSet;
  */
 
 
-public class PartialContext<A> extends AbstractContext<A,PartialObject<A>> {
+public class PartialContext<A,I,O extends PartialObject<A,I>> extends AbstractContext<A,I,O> {
 
 	/**
 	 * The objects of this partial context.
 	 */
-	protected ListSet<PartialObject<A>> objects;
+	protected ListSet<O> objects;
+	
+	/**
+	 * The expert for this formal context.
+	 */
+	protected Expert<A,I,O> expert = null;
+	
+	// /**
+	//  * The logger.
+	//  */
+	// private static final Logger logger = Logger.getLogger(PartialContext.class);
 	
 	/**
 	 * Creates a partial context with empty set of objects and attributes.
 	 */
 	public PartialContext() {
-		objects = new ListSet<PartialObject<A>>();
+		objects = new ListSet<O>();
 	}
 	
 	/**
@@ -58,19 +71,19 @@ public class PartialContext<A> extends AbstractContext<A,PartialObject<A>> {
 	 * @return the set of objects of this partial context
 	 */
 	@Override
-	public IndexedSet<PartialObject<A>> getObjects() {
+	public IndexedSet<O> getObjects() {
 		return objects;
 	}
 	
 	/**
 	 * Returns the object whose name is given.
-	 * @param name the given name
+	 * @param id the given identifier
 	 * @return the object with name <code>name</code>, <code>null</code> if such an object
 	 * does not exist
 	 */
-	public PartialObject<A> getObject(String name) {
-		for (PartialObject<A> object : getObjects()) {
-			if (object.getName().equals(name)) {
+	public O getObject(I id) {
+		for (O object : getObjects()) {
+			if (object.getIdentifier().equals(id)) {
 				return object;
 			}
 		}
@@ -82,7 +95,7 @@ public class PartialContext<A> extends AbstractContext<A,PartialObject<A>> {
 	 * @param index index of the requested object
 	 * @return the object at index <code>index</code>
 	 */
-	public PartialObject<A> getObjectAtIndex(int index) {
+	public O getObjectAtIndex(int index) {
 		return objects.getElementAt(index);
 	}
 	
@@ -97,16 +110,16 @@ public class PartialContext<A> extends AbstractContext<A,PartialObject<A>> {
 	
 	/**
 	 * Removes a given object from the set of objects of this context.
-	 * @param object the object to be removed
-	 * @return <code>true</code> if <code>object</code> is successfully removed, <code>false</code>
+	 * @param id identifier of the object to be removed
+	 * @return <code>true</code> if the object with identifier <code>id</code> is successfully removed, <code>false</code>
 	 * otherwise
 	 * @throws IllegalObjectException if <code>object</code> does not exist
 	 */
 	@Override
-	public boolean removeObject(String name) throws IllegalObjectException {
-		boolean removed = getObjects().remove(getObject(name));
+	public boolean removeObject(I id) throws IllegalObjectException {
+		boolean removed = getObjects().remove(getObject(id));
 		if (!removed) {
-			throw new IllegalObjectException("Object" + name + "not successfully removed");
+			throw new IllegalObjectException("Object" + id + "not successfully removed");
 		}
 		return true;
 	}
@@ -119,10 +132,10 @@ public class PartialContext<A> extends AbstractContext<A,PartialObject<A>> {
 	 * @throws IllegalObjectException if the object <code>object</code> does not exist
 	 */
 	@Override
-	public boolean removeObject(PartialObject<A> object) throws IllegalObjectException {
+	public boolean removeObject(O object) throws IllegalObjectException {
 		boolean removed = getObjects().remove(object);
 		if (!removed) {
-			throw new IllegalObjectException("Object" + object + "not successfully removed");
+			throw new IllegalObjectException("Object" + object.getIdentifier() + "not successfully removed");
 		}
 		return true;
 	}
@@ -136,8 +149,8 @@ public class PartialContext<A> extends AbstractContext<A,PartialObject<A>> {
 	 */
 	@Override
 	public boolean refutes(FCAImplication<A> imp) {
-		for (PartialObject<A> object: getObjects()) {
-			if (!object.respects(imp)) {
+		for (O object: getObjects()) {
+			if (object.refutes(imp)) {
 				return true;
 			}
 		}
@@ -153,7 +166,7 @@ public class PartialContext<A> extends AbstractContext<A,PartialObject<A>> {
 	 * <code>imp</code>, <code>false</code> otherwise
 	 */
 	@Override
-	public boolean isCounterExampleValid(PartialObject<A> counterExample, FCAImplication<A> imp) {
+	public boolean isCounterExampleValid(O counterExample, FCAImplication<A> imp) {
 		if (counterExample.respects(imp)) {
 			return false;
 		}
@@ -168,11 +181,18 @@ public class PartialContext<A> extends AbstractContext<A,PartialObject<A>> {
 	 * @return <code>true</code> 
 	 */
 	@Override
-	public boolean addObject(PartialObject<A> o) throws IllegalObjectException {
-		for (PartialObject<A> object : getObjects()) {
-			if (object.getName().equals(o.getName())) {
-				throw new IllegalObjectException("An object with name " + object.getName() + " already exists");
-			}
+	// public boolean addObject(O o) throws IllegalObjectException {
+	// 	for (O object : getObjects()) {
+	// 		if (object.getIdentifier().equals(o.getIdentifier())) {
+	// 			throw new IllegalObjectException("An object with identifier " + object.getIdentifier() + " already exists");
+	// 		}
+	// 	}
+	// 	getObjects().add(o);
+	// 	return true;
+	// }
+	public boolean addObject(O o) {
+		if (containsObject(o.getIdentifier())) {
+			return false;
 		}
 		getObjects().add(o);
 		return true;
@@ -186,60 +206,66 @@ public class PartialContext<A> extends AbstractContext<A,PartialObject<A>> {
 	/**
 	 * Adds a given attribute to the attributes of the given object. 
 	 * @param attribute the attribute to be added
-	 * @param name name of the object where <code>attribute</code> is to be added
+	 * @param id identifier of the object where <code>attribute</code> is to be added
 	 * @return <code>true</code> if of the <code>attribute</code> is successfully added, 
 	 * <code>false</code> otherwise
 	 * @throws IllegalAttributeException if the object <code>name</code> already has the attribute
-	 * @throws IllegalObjectException if an object with name <code>name</code> does not exist in this 
+	 * @throws IllegalObjectException if an object with identifier <code>id</code> does not exist in this 
 	 * context
 	 */
-	public boolean addAttributeToObject(A attribute, String name) throws IllegalAttributeException,
+	public boolean addAttributeToObject(A attribute, I id) throws IllegalAttributeException,
 	IllegalObjectException {
 		if (!getAttributes().contains(attribute)) {
 			throw new IllegalAttributeException("Attribute " + attribute + "does not exist");
 		}
-		if (!containsObject(name)) {
-			throw new IllegalObjectException("Object " + name + "does not exist");
+		if (!containsObject(id)) {
+			throw new IllegalObjectException("Object " + id + "does not exist");
 		}
-		if (getObject(name).getDescription().containsAttribute(attribute)) {
+		if (getObject(id).getDescription().containsAttribute(attribute)) {
 			throw new IllegalAttributeException("Object already has attribute " + attribute); 
 		}
-		return getObject(name).getDescription().addAttribute(attribute);
+		return getObject(id).getDescription().addAttribute(attribute);
 	}
 	
 	/**
 	 * Removes a given attribute from the attributes of the given object. 
 	 * @param attribute the attribute to be removed
-	 * @param name the name of the object from which  <code>attribute</code> is to be removed
+	 * @param id the identifier of the object from which  <code>attribute</code> is to be removed
 	 * @return <code>true</code> if of the <code>attribute</code> is successfully removed, 
 	 * <code>false</code> otherwise
 	 * @throws IllegalAttributeException if the object <code>name</code>  does not have the attribute
-	 * @throws IllegalObjectException if the an object with name <code>name</code> does not exist 
+	 * @throws IllegalObjectException if the an object with idenditifier <code>id</code> does not exist 
 	 * in this context
 	 */
-	public boolean removeAttributeFromObject(A attribute, String name) throws IllegalAttributeException,
+	public boolean removeAttributeFromObject(A attribute, I id) throws IllegalAttributeException,
 	IllegalObjectException {
 		if (!getAttributes().contains(attribute)) {
 			throw new IllegalAttributeException("Attribute " + attribute + "does not exist");
 		}
-		if (!containsObject(name)) {
-			throw new IllegalObjectException("Object " + name + "does not exist");
+		if (!containsObject(id)) {
+			throw new IllegalObjectException("Object " + id + "does not exist");
 		}
-		if (!getObject(name).getDescription().containsAttribute(attribute)) {
+		if (!getObject(id).getDescription().containsAttribute(attribute)) {
 			throw new IllegalAttributeException("Object does not have attribute " + attribute); 
 		}
-		return getObject(name).getDescription().removeAttribute(attribute);
+		return getObject(id).getDescription().removeAttribute(attribute);
 	}
 	
 	/**
 	 * Checks whether a specified object has the specified attribute.
-	 * @param object the object given for check
+	 * @param id identifier of the object given for check
 	 * @param attribute the attribute given for check
 	 * @return <code>true</code> if the <code>object</code> has the <code>attribute</code>
 	 * <code>false</code> otherwise
 	 */
-	public boolean objectHasAttribute(PartialObject<A> object, A attribute) {
-		return object.getDescription().containsAttribute(attribute);
+	// public boolean objectHasAttribute(I id, A attribute) {
+	public boolean objectHasAttribute(O obj, A attribute) {
+		// return getObject(id).getDescription().containsAttribute(attribute);
+		return obj.getDescription().containsAttribute(attribute);
+	}
+	
+	public boolean objectHasNegatedAttribute(O obj, A attribute) {
+		return obj.getDescription().containsNegatedAttribute(attribute);
 	}
 	
 	// /**
@@ -266,7 +292,7 @@ public class PartialContext<A> extends AbstractContext<A,PartialObject<A>> {
 	public Set<A> doublePrime(Set<A> x) {
 		Set<A> tmp = new HashSet<A>(getAttributes());
 		
-		for (PartialObject<A> object : getObjects()) {
+		for (O object : getObjects()) {
 			if (object.getDescription().containsAttributes(x)) {
 				tmp.removeAll(object.getDescription().getNegatedAttributes());
 			}
@@ -298,6 +324,22 @@ public class PartialContext<A> extends AbstractContext<A,PartialObject<A>> {
 	public Set<FCAImplication<A>> getDuquenneGuiguesBase() {
 		// TODO: 
 		return null;
+	}
+	
+	/**
+	 * Sets the expert for this context to the given expert
+	 * @param e the given expert
+	 */
+	public void setExpert(Expert<A,I,O> e) {
+		expert = e;
+	}
+	
+	/**
+	 * Returns the expert of this context.
+	 * @return the expert of this context
+	 */
+	public Expert<A,I,O> getExpert() {
+		return expert;
 	}
 	
 }

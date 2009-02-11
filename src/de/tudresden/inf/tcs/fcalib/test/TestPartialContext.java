@@ -42,7 +42,7 @@ public class TestPartialContext {
 	
 	
 	public TestPartialContext() throws IllegalObjectException, IllegalExpertException, IllegalContextException {
-		PartialContext<String> context = new PartialContext<String>();
+		PartialContext<String,String,PartialObject<String,String>> context = new PartialContext<String,String,PartialObject<String,String>>();
 		NoExpertPartial<String> expert = new NoExpertPartial<String>(context);
 		
 		context.addAttribute("a");
@@ -57,8 +57,8 @@ public class TestPartialContext {
 		expert.addExpertActionListener(context);
 		context.setExpert(expert);
 		
-		StartExplorationAction<String,PartialObject<String>> action = 
-			new StartExplorationAction<String,PartialObject<String>>();
+		StartExplorationAction<String,String,PartialObject<String,String>> action = 
+			new StartExplorationAction<String,String,PartialObject<String,String>>();
 		action.setContext(context);
 		expert.fireExpertAction(action);
 	}

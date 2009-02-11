@@ -26,10 +26,10 @@ import de.tudresden.inf.tcs.fcaapi.change.ContextChange;
 
 public class ObjectHasAttributeChange<A> implements ContextChange<A> {
 
-	private FCAObject<A> object;
+	private FCAObject<A,?> object;
 	private A attribute;
 	
-	public ObjectHasAttributeChange(FCAObject<A> o, A a) {
+	public ObjectHasAttributeChange(FCAObject<A,?> o, A a) {
 		object = o;
 		attribute = a;
 	}
@@ -37,7 +37,7 @@ public class ObjectHasAttributeChange<A> implements ContextChange<A> {
 		object.getDescription().removeAttribute(attribute);
 	}
 	
-	public FCAObject<A> getObject() {
+	public FCAObject<A,?> getObject() {
 		return object;
 	}
 	

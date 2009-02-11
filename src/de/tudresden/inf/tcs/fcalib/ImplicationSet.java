@@ -36,32 +36,32 @@ import de.tudresden.inf.tcs.fcaapi.ClosureOperator;
  * along with FCAlib.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class ImplicationSet<T> extends LinkedHashSet<FCAImplication<T>> implements ClosureOperator<T> {
+public class ImplicationSet<A> extends LinkedHashSet<FCAImplication<A>> implements ClosureOperator<A> {
 	
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * The base context of this implication set.
 	 */
-	// final private GenericContext<T,? extends FCAObject<T>> theContext;
-	// final private GenericContext<T> theContext;
-	final private AbstractContext<T,?> theContext;
+	// final private GenericContext<A,? extends FCAObject<A>> theContext;
+	// final private GenericContext<A> theContext;
+	final private AbstractContext<A,?,?> theContext;
 	
 	/**
 	 * To keeps track of in which premises an attribute occurs.
 	 */
-	private Hashtable<T,Set<FCAImplication<T>>> occursInPremises;
+	private Hashtable<A,Set<FCAImplication<A>>> occursInPremises;
 	
 	/** 
 	 * Creates an empty implication set.
 	 */
-	// public ImplicationSet(GenericContext<T,? extends FCAObject<T>> context) {
-	public ImplicationSet(AbstractContext<T,?> context) {
+	// public ImplicationSet(GenericContext<A,? extends FCAObject<A>> context) {
+	public ImplicationSet(AbstractContext<A,?,?> context) {
 		super();
 		theContext = context;
-		occursInPremises = new Hashtable<T,Set<FCAImplication<T>>>();
-		for (T attr : context.getAttributes()) {
-			occursInPremises.put(attr, new HashSet<FCAImplication<T>>());
+		occursInPremises = new Hashtable<A,Set<FCAImplication<A>>>();
+		for (A attr : context.getAttributes()) {
+			occursInPremises.put(attr, new HashSet<FCAImplication<A>>());
 		}
 	}
 	
@@ -69,8 +69,8 @@ public class ImplicationSet<T> extends LinkedHashSet<FCAImplication<T>> implemen
 	 * Returns the base context of this implication set.
 	 * @return the base context
 	 */
-	// public GenericContext<T,? extends FCAObject<T>> getContext() {
-	public AbstractContext<T,?> getContext() {
+	// public GenericContext<A,? extends FCAObject<A>> getContext() {
+	public AbstractContext<A,?,?> getContext() {
 		return theContext;
 	}
 
@@ -80,9 +80,9 @@ public class ImplicationSet<T> extends LinkedHashSet<FCAImplication<T>> implemen
 	 * @return <code>true</code> if the implication is added, <code>false</code> if it already 
 	 * exists
 	 */
-	public boolean add(FCAImplication<T> imp) {
-		Set<FCAImplication<T>> tmp;
-		for (T attr : imp.getPremise()) {
+	public boolean add(FCAImplication<A> imp) {
+		Set<FCAImplication<A>> tmp;
+		for (A attr : imp.getPremise()) {
 			tmp = occursInPremises.get(attr);
 			tmp.add(imp);
 			occursInPremises.put(attr, tmp);
@@ -96,15 +96,15 @@ public class ImplicationSet<T> extends LinkedHashSet<FCAImplication<T>> implemen
 	 * @param x the attribute set to be closed
 	 * @return the closure of <code>x</code> under this implication set
 	 */
-	public Set<T> closure(Set<T> x) {
-		Set<T> update = new HashSet<T>(x);
-		Set<T> newDep = new LinkedHashSet<T>(x);
-		Hashtable<FCAImplication<T>,Integer> premiseSizes = new Hashtable<FCAImplication<T>, Integer>();
+	public Set<A> closure(Set<A> x) {
+		Set<A> update = new HashSet<A>(x);
+		Set<A> newDep = new LinkedHashSet<A>(x);
+		Hashtable<FCAImplication<A>,Integer> premiseSizes = new Hashtable<FCAImplication<A>, Integer>();
 		
 		// update.addAll(x);
 		// newDep.addAll(x);
 		
-		for (FCAImplication<T> imp : this) {
+		for (FCAImplication<A> imp : this) {
 			premiseSizes.put(imp, imp.getPremise().size());
 			if (imp.getPremise().isEmpty()) {
 				newDep.addAll(imp.getConclusion());
@@ -112,15 +112,15 @@ public class ImplicationSet<T> extends LinkedHashSet<FCAImplication<T>> implemen
 			}
 		}
 		// int impId, attrId;
-		T attr;
+		A attr;
 		while (!update.isEmpty()) {
 			// attrId = update.firstElement();
-			Iterator<T> it = update.iterator();
+			Iterator<A> it = update.iterator();
 			attr = it.next();
 			// update.removeIndex(attrId);
 			update.remove(attr);
 			// for (int i = 0; i < elementOfPremises[attrId].size(); i++) {
-			for (FCAImplication<T> imp : occursInPremises.get(attr)) {
+			for (FCAImplication<A> imp : occursInPremises.get(attr)) {
 				// impId =  elementOfPremises[attrId].get(i);
 				// tmpPremiseSizes.set(impId, tmpPremiseSizes.get(impId) - 1);
 				int tmp = premiseSizes.get(imp);
@@ -144,7 +144,7 @@ public class ImplicationSet<T> extends LinkedHashSet<FCAImplication<T>> implemen
 	 * @param x the attribute set to be checked
 	 * @return <code>true</code> if <code>x</code> is closed, <code>false</code> otherwise
 	 */
-	public boolean isClosed(Set<T> x) {
+	public boolean isClosed(Set<A> x) {
 		return x.equals(closure(x));
 	}
 	
@@ -154,7 +154,7 @@ public class ImplicationSet<T> extends LinkedHashSet<FCAImplication<T>> implemen
 	 * @param s the set to be converted to bit vector representation
 	 * @return the bit vector representation of <code>s</code>
 	 */
-	private BitSet setToBitVector(Set<T> s) {
+	private BitSet setToBitVector(Set<A> s) {
 		BitSet b = new BitSet(theContext.getAttributeCount());
 		
 		for (int i = 0; i < theContext.getAttributeCount(); ++i) {
@@ -170,8 +170,8 @@ public class ImplicationSet<T> extends LinkedHashSet<FCAImplication<T>> implemen
 	 * @param b the bit vector to be converted to set representation
 	 * @return the set representation of <code>b</code>
 	 */
-	public Set<T> bitVectorToSet(BitSet b) {
-		Set<T> s = new LinkedHashSet<T>();
+	public Set<A> bitVectorToSet(BitSet b) {
+		Set<A> s = new LinkedHashSet<A>();
 
 		for (int i = 0; i < theContext.getAttributeCount(); ++i) {
 			if (b.get(i)) {
@@ -187,8 +187,8 @@ public class ImplicationSet<T> extends LinkedHashSet<FCAImplication<T>> implemen
 	 * @param x attribut set
 	 * @return the closed set coming after <code>x</code>
 	 */
-	public Set<T> nextClosure(Set<T> x) {
-		// AttributeSet<T> tmp =  x.clone();
+	public Set<A> nextClosure(Set<A> x) {
+		// AttributeSet<A> tmp =  x.clone();
 		BitSet tmp = setToBitVector(x);
 		
 		// if (x.cardinality() == theContext.getAttributeCount()) {
@@ -232,9 +232,9 @@ public class ImplicationSet<T> extends LinkedHashSet<FCAImplication<T>> implemen
 	 * @param x the starting attribute set 
 	 * @return set of closed sets that are lectically bigger than <code>x</code>
 	 */
-	public Set<Set<T>> closuresStartingFrom(Set<T> x) {
-		Set<T> tmp;
-		Set<Set<T>> result = new LinkedHashSet<Set<T>>();
+	public Set<Set<A>> closuresStartingFrom(Set<A> x) {
+		Set<A> tmp;
+		Set<Set<A>> result = new LinkedHashSet<Set<A>>();
 		
 		tmp = closure(x);
 		result.add(tmp);
@@ -250,8 +250,8 @@ public class ImplicationSet<T> extends LinkedHashSet<FCAImplication<T>> implemen
 	 * Returns the set of all closed sets of this implication set.
 	 * @return the set of all closed sets of this implication set
 	 */
-	public Set<Set<T>> allClosures() {
-		return closuresStartingFrom(new HashSet<T>());
+	public Set<Set<A>> allClosures() {
+		return closuresStartingFrom(new HashSet<A>());
 	}
 	
 }

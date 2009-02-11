@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 
 import org.apache.log4j.Logger;
 
+import de.tudresden.inf.tcs.fcaapi.FCAObject;
 import de.tudresden.inf.tcs.fcaapi.FCAImplication;
 import de.tudresden.inf.tcs.fcalib.action.AbstractExpertAction;
 
@@ -35,7 +36,7 @@ import de.tudresden.inf.tcs.fcalib.action.AbstractExpertAction;
  * sertkaya@tcs.inf.tu-dresden.de
  */
 
-public class QuestionRejectedAction<A,O> extends AbstractExpertAction<A, O> {
+public class QuestionRejectedAction<A,I,O extends FCAObject<A,I>> extends AbstractExpertAction<A,I,O> {
 
 	private static final long serialVersionUID = 1L;
 	

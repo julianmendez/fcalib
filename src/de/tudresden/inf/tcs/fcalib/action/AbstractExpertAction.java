@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 
+import de.tudresden.inf.tcs.fcaapi.FCAObject;
 import de.tudresden.inf.tcs.fcaapi.action.ExpertAction;
 import de.tudresden.inf.tcs.fcalib.AbstractContext;
 
@@ -35,23 +36,23 @@ import de.tudresden.inf.tcs.fcalib.AbstractContext;
  * sertkaya@tcs.inf.tu-dresden.de
  */
 
-public abstract class AbstractExpertAction<A,O> extends AbstractAction implements ExpertAction<A,O> {
+public abstract class AbstractExpertAction<A,I,O extends FCAObject<A,I>> extends AbstractAction implements ExpertAction {
 
 	private static final long serialVersionUID = 1L;
 
-	protected AbstractContext<A,O> context;
+	protected AbstractContext<A,I,O> context;
 	
 	// public AbstractExpertAction(AbstractContext<A,O> c) {
 	// 	context = c;
 	// }
 	
-	public void setContext(AbstractContext<A,O> c) {
+	public void setContext(AbstractContext<A,I,O> c) {
 		context = c;
 	}
 	
 	public abstract void actionPerformed(ActionEvent e);
 	
-	public AbstractContext<A,O> getContext() {
+	public AbstractContext<A,I,O> getContext() {
 		return context;
 	}
 

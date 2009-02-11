@@ -32,8 +32,13 @@ import de.tudresden.inf.tcs.fcaapi.FCAImplication;
  * along with FCAlib.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class FullObject<T> implements FCAObject<T> {
+public class FullObject<A,I> implements FCAObject<A,I> {
 
+	/**
+	 * The identifier of this object.
+	 */
+	private I identifier;
+	
 	/**
 	 * Name of this full object.
 	 */
@@ -42,26 +47,38 @@ public class FullObject<T> implements FCAObject<T> {
 	/**
 	 * Description of this object.
 	 */
-	private FullObjectDescription<T> description;
+	private FullObjectDescription<A> description;
 		
 	/**
-	 * Creates a new full object with empty name and description.
+	 * Creates a new full object with the given identifier, and empty name and description.
+	 * @param id the identifier
 	 */
-	public FullObject(String n) {
-			name = n;
-			description = new FullObjectDescription<T>();
+	public FullObject(I id) {
+		identifier = id;
+		name = "";
+		description = new FullObjectDescription<A>();
 	}
 	
-	public FullObject(String n, Set<T> attrs) {
+	/**
+	 * Creates a new full object with the given identifier and description.
+	 * @param id the identifier
+	 * @param attrs the description
+	 */
+	public FullObject(I id, Set<A> attrs) {
+		identifier = id;
+		name = "";
+		description = new FullObjectDescription<A>(attrs);
+	}
+	
+	public void setName(String n) {
 		name = n;
-		description = new FullObjectDescription<T>(attrs);
 	}
 	
-	// public boolean addAttribute(T attr) {
+	// public boolean addAttribute(A attr) {
 	// 	return description.addAttribute(attr);
 	// }
 	
-	// public boolean addAttributes(Set<T> attrs) {
+	// public boolean addAttributes(Set<A> attrs) {
 	// 	return description.addAttributes(attrs);
 	// }
 	
@@ -71,7 +88,7 @@ public class FullObject<T> implements FCAObject<T> {
 	//  * @return <code>true</code> if this full object has the attribute <code>a</code>, 
 	//  * <code>false</code> otherwise
 	//  */
-	// public boolean hasAttribute(T a) {
+	// public boolean hasAttribute(A a) {
 	// 	return description.containsAttribute(a);
 	// }
 	
@@ -81,39 +98,52 @@ public class FullObject<T> implements FCAObject<T> {
 	//  * @return <code>true</code> if this full object has the attributes in <code>a</code>, 
 	//  * <code>false</code> otherwise
 	//  */
-	// public boolean hasAttributes(Set<T> attrs) {
+	// public boolean hasAttributes(Set<A> attrs) {
 	// 	return description.containsAttributes(attrs);
 	// }
 
-	public boolean respects(FCAImplication<T> imp) {
+	public boolean respects(FCAImplication<A> imp) {
 		return !description.containsAttributes(imp.getPremise()) ||
 			description.containsAttributes(imp.getConclusion());
 	}
 	
-	public boolean refutes(FCAImplication<T> imp) {
+	public boolean refutes(FCAImplication<A> imp) {
 		return !respects(imp);
 	}
 
-	// public Set<T> getAttributes() {
+	// public Set<A> getAttributes() {
 	// 	return description.getAttributes();
 	// }
 	
 	/**
 	 * Returns the description of this object.
+	 * @return description of this object
 	 */
-	public FullObjectDescription<T> getDescription() {
+	public FullObjectDescription<A> getDescription() {
 		return description;
 	}
 	
+	/**
+	 * Returns the identifier of this object.
+	 * @return identifier of this object
+	 */
+	public I getIdentifier() {
+		return identifier;
+	}
+	
+	/**
+	 * Returns the name of this object.
+	 * @return name of this object
+	 */
 	public String getName() {
 		return name;
 	}
 	
 	/**
-	 * Returns the name of this object, not a copy!
+	 * Returns a string representation of this full object.
 	 */
 	public String toString() {
-		return "{name: " + getName() + " attributes: " + description.getAttributes() + "}";
+		return "{id: " + getIdentifier() + " attributes: " + description.getAttributes() + "}";
 	}
 
 }

@@ -7,6 +7,7 @@ import de.tudresden.inf.tcs.fcaapi.utils.IndexedSet;
 import de.tudresden.inf.tcs.fcaapi.FCAImplication;
 import de.tudresden.inf.tcs.fcaapi.ClosureOperator;
 import de.tudresden.inf.tcs.fcaapi.Concept;
+import de.tudresden.inf.tcs.fcaapi.Expert;
 import de.tudresden.inf.tcs.fcaapi.exception.IllegalObjectException;
 import de.tudresden.inf.tcs.fcaapi.exception.IllegalAttributeException;
 import de.tudresden.inf.tcs.fcalib.utils.ListSet;
@@ -39,18 +40,23 @@ import de.tudresden.inf.tcs.fcalib.utils.ListSet;
  * sertkaya@tcs.inf.tu-dresden.de
 */
 
-public class FormalContext<A> extends AbstractContext<A,FullObject<A>> implements ClosureOperator<A> {
+public class FormalContext<A,I> extends AbstractContext<A,I,FullObject<A,I>> implements ClosureOperator<A> {
 
 	/**
 	 * The objects of this formal context.
 	 */
-	protected IndexedSet<FullObject<A>> objects;
+	protected IndexedSet<FullObject<A,I>> objects;
+	
+	/**
+	 * The expert for this formal context.
+	 */
+	protected Expert<A,I,FullObject<A,I>> expert = null;
 	
 	/**
 	 * Creates a formal context with empty set of attributes and objects.
 	 */
 	public FormalContext() {
-		objects = new ListSet<FullObject<A>>();
+		objects = new ListSet<FullObject<A,I>>();
 	}
 	
 	/** 
@@ -61,9 +67,9 @@ public class FormalContext<A> extends AbstractContext<A,FullObject<A>> implement
 	 * @return <code>true</code> 
 	 */
 	@Override
-	public boolean addObject(FullObject<A> o) throws IllegalObjectException {
-		for (FullObject<A> object : objects) {
-			if (object.getName().equals(o.getName())) {
+	public boolean addObject(FullObject<A,I> o) throws IllegalObjectException {
+		for (FullObject<A,I> object : objects) {
+			if (object.getIdentifier().equals(o.getIdentifier())) {
 				throw new IllegalObjectException("An object with name " + object.getName() + " already exists");
 			}
 		}
@@ -74,7 +80,7 @@ public class FormalContext<A> extends AbstractContext<A,FullObject<A>> implement
 	 * Returns the set of objects of this context.
 	 * @return the set of objects
 	 */
-	public IndexedSet<FullObject<A>> getObjects() {
+	public IndexedSet<FullObject<A,I>> getObjects() {
 		return objects;
 	}
 	
@@ -83,7 +89,7 @@ public class FormalContext<A> extends AbstractContext<A,FullObject<A>> implement
 	 * @param index index of the object that is required
 	 * @return the object at index <code>index</code>
 	 */
-	public FullObject<A> getObjectAtIndex(int index) {
+	public FullObject<A,I> getObjectAtIndex(int index) {
 		return objects.getElementAt(index);
 	}
 	
@@ -102,14 +108,14 @@ public class FormalContext<A> extends AbstractContext<A,FullObject<A>> implement
 	// }
 	
 	/**
-	 * Returns the object whose name is given.
-	 * @param name the given name
-	 * @return the object with name <code>name</code>, <code>null</code> if such an object
+	 * Returns the object whose identifier is given.
+	 * @param id the given identifier
+	 * @return the object with identifier <code>id</code>, <code>null</code> if such an object
 	 * does not exist
 	 */
-	public FullObject<A> getObject(String name) {
-		for (FullObject<A> object : getObjects()) {
-			if (object.getName().equals(name)) {
+	public FullObject<A,I> getObject(I id) {
+		for (FullObject<A,I> object : getObjects()) {
+			if (object.getIdentifier().equals(id)) {
 				return object;
 			}
 		}
@@ -117,17 +123,17 @@ public class FormalContext<A> extends AbstractContext<A,FullObject<A>> implement
 	}
 	
 	/**
-	 * Removes the object from the set of objects of this context whose name is given.
-	 * @param name name of the object to be removed
-	 * @return <code>true</code> if the object with name <code>name</code> is successfully removed, 
+	 * Removes the object from the set of objects of this context whose identifer is given.
+	 * @param id identifer of the object to be removed
+	 * @return <code>true</code> if the object with identifer <code>id</code> is successfully removed, 
 	 * <code>false</code>  otherwise
-	 * @throws IllegalObjectException if an object with name <code>name</code> does not exist
+	 * @throws IllegalObjectException if an object with identifer <code>id</code> does not exist
 	 */
 	@Override
-	public boolean removeObject(String name) throws IllegalObjectException {
-		boolean removed = getObjects().remove(getObject(name));
+	public boolean removeObject(I id) throws IllegalObjectException {
+		boolean removed = getObjects().remove(getObject(id));
 		if (!removed) {
-			throw new IllegalObjectException("Object" + name + "not successfully removed");
+			throw new IllegalObjectException("Object" + id + "not successfully removed");
 		}
 		return true;
 	}
@@ -140,10 +146,10 @@ public class FormalContext<A> extends AbstractContext<A,FullObject<A>> implement
 	 * @throws IllegalObjectException if the object <code>object</code> does not exist
 	 */
 	@Override
-	public boolean removeObject(FullObject<A> object) throws IllegalObjectException {
+	public boolean removeObject(FullObject<A,I> object) throws IllegalObjectException {
 		boolean removed = getObjects().remove(object);
 		if (!removed) {
-			throw new IllegalObjectException("Object" + object + "not successfully removed");
+			throw new IllegalObjectException("Object" + object.getIdentifier() + "not successfully removed");
 		}
 		return true;
 	}
@@ -159,59 +165,60 @@ public class FormalContext<A> extends AbstractContext<A,FullObject<A>> implement
 	/**
 	 * Adds a given attribute to the attributes of the given object. 
 	 * @param attribute the attribute to be added
-	 * @param object the object where <code>attribute</code> is to be added
+	 * @param id the identifer of the object where <code>attribute</code> is to be added
 	 * @return <code>true</code> if of the <code>attribute</code> is successfully added, 
 	 * <code>false</code> otherwise
 	 * @throws IllegalAttributeException if <code>object</code> already has the attribute
-	 * @throws IllegalObjectException if the <code>object</code> does not exist in this 
+	 * @throws IllegalObjectException if the object with identifier <code>id</code> does not exist in this 
 	 * context
 	 */
-	public boolean addAttributeToObject(A attribute, String name) throws IllegalAttributeException,
+	@Override
+	public boolean addAttributeToObject(A attribute, I id) throws IllegalAttributeException,
 	IllegalObjectException {
 		if (!getAttributes().contains(attribute)) {
 			throw new IllegalAttributeException("Attribute " + attribute + "does not exist");
 		}
-		if (!containsObject(name)) {
-			throw new IllegalObjectException("Object " + name + "does not exist");
+		if (!containsObject(id)) {
+			throw new IllegalObjectException("Object " + id + "does not exist");
 		}
-		if (getObject(name).getDescription().containsAttribute(attribute)) {
+		if (getObject(id).getDescription().containsAttribute(attribute)) {
 			throw new IllegalAttributeException("Object already has attribute " + attribute); 
 		}
-		return getObject(name).getDescription().addAttribute(attribute);
+		return getObject(id).getDescription().addAttribute(attribute);
 	}
-		/**
-	 * Adds a given attribute to the attributes of the given object. 
+	/**
+	 * Removes a given attribute from the attributes of the given object. 
 	 * @param attribute the attribute to be added
-	 * @param object the object where <code>attribute</code> is to be added
+	 * @param id identifier of the object where <code>attribute</code> is to be removed from
 	 * @return <code>true</code> if of the <code>attribute</code> is successfully added, 
 	 * <code>false</code> otherwise
 	 * @throws IllegalAttributeException if <code>object</code> already has the attribute
-	 * @throws IllegalObjectException if the <code>object</code> does not exist in this 
+	 * @throws IllegalObjectException if the object with identifier <code>id</code> does not exist in this 
 	 * context
 	 */
-	public boolean removeAttributeFromObject(A attribute, String name) throws IllegalAttributeException,
+	public boolean removeAttributeFromObject(A attribute, I id) throws IllegalAttributeException,
 	IllegalObjectException {
 		if (!getAttributes().contains(attribute)) {
 			throw new IllegalAttributeException("Attribute " + attribute + "does not exist");
 		}
-		if (!containsObject(name)) {
-			throw new IllegalObjectException("Object " + name + "does not exist");
+		if (!containsObject(id)) {
+			throw new IllegalObjectException("Object " + id + "does not exist");
 		}
-		if (!getObject(name).getDescription().containsAttribute(attribute)) {
+		if (!getObject(id).getDescription().containsAttribute(attribute)) {
 			throw new IllegalAttributeException("Object does not have attribute " + attribute); 
 		}
-		return getObject(name).getDescription().removeAttribute(attribute);
+		return getObject(id).getDescription().removeAttribute(attribute);
 	}
 	
 	/**
 	 * Checks whether a specified object has the specified attribute.
 	 * @param object the object given for check
 	 * @param attribute the attribute given for check
-	 * @return <code>true</code> if the <code>object</code> has the <code>attribute</code>
+	 * @return <code>true</code> if the object with identifier <code>id</code> has the <code>attribute</code>
 	 * <code>false</code> otherwise
 	 */
-	public boolean objectHasAttribute(FullObject<A> object, A attribute) {
-		return object.getDescription().containsAttribute(attribute);
+	public boolean objectHasAttribute(FullObject<A,I> obj, A attribute) {
+		return obj.getDescription().containsAttribute(attribute);
 	}
 	
 	/**
@@ -223,7 +230,7 @@ public class FormalContext<A> extends AbstractContext<A,FullObject<A>> implement
 	public Set<A> doublePrime(Set<A> x) {
 		Set<A> tmp = new HashSet<A>(getAttributes());
 		
-		for (FullObject<A> object : getObjects()) {
+		for (FullObject<A,I> object : getObjects()) {
 			if (object.getDescription().containsAttributes(x)) {
 				tmp.retainAll(object.getDescription().getAttributes());
 			}
@@ -291,7 +298,7 @@ public class FormalContext<A> extends AbstractContext<A,FullObject<A>> implement
 	 * Returns the set of extents of this context.
 	 * @return the set of extents
 	 */
-	public Set<FullObject<A>> getExtents() {
+	public Set<FullObject<A,I>> getExtents() {
 		return null;
 	}
 
@@ -299,7 +306,7 @@ public class FormalContext<A> extends AbstractContext<A,FullObject<A>> implement
 	 * Returns the set of formal concepts of this context.
 	 * @return the set of formal concepts
 	 */
-	public Set<Concept<A,FullObject<A>>> getConcepts() {
+	public Set<Concept<A,FullObject<A,I>>> getConcepts() {
 		return null;
 	}
 	
@@ -307,7 +314,7 @@ public class FormalContext<A> extends AbstractContext<A,FullObject<A>> implement
 	 * Returns the set of formal concepts of this context.
 	 * @return the set of formal concepts
 	 */
-	public Set<Concept<A,FullObject<A>>> getConceptLattice() {
+	public Set<Concept<A,FullObject<A,I>>> getConceptLattice() {
 		return null;
 	}
 
@@ -320,7 +327,7 @@ public class FormalContext<A> extends AbstractContext<A,FullObject<A>> implement
 	 */
 	@Override
 	public boolean refutes(FCAImplication<A> imp) {
-		for (FullObject<A> object: objects) {
+		for (FullObject<A,I> object: objects) {
 			if (!object.respects(imp)) {
 				return true;
 			}
@@ -337,7 +344,7 @@ public class FormalContext<A> extends AbstractContext<A,FullObject<A>> implement
 	 * <code>imp</code>, <code>false</code> otherwise
 	 */
 	@Override
-	public boolean isCounterExampleValid(FullObject<A> counterExample, FCAImplication<A> imp) {
+	public boolean isCounterExampleValid(FullObject<A,I> counterExample, FCAImplication<A> imp) {
 		if (counterExample.respects(imp)) {
 			return false;
 		}
@@ -348,5 +355,21 @@ public class FormalContext<A> extends AbstractContext<A,FullObject<A>> implement
 	public boolean followsFromBackgroundKnowledge(FCAImplication<A> implication) {
 		// TODO:
 		return false;
+	}
+	
+	/**
+	 * Sets the expert for this context to the given expert
+	 * @param e the given expert
+	 */
+	public void setExpert(Expert<A,I,FullObject<A,I>> e) {
+		expert = e;
+	}
+	
+	/**
+	 * Returns the expert of this context.
+	 * @return the expert of this context
+	 */
+	public Expert<A,I,FullObject<A,I>> getExpert() {
+		return expert;
 	}
 }

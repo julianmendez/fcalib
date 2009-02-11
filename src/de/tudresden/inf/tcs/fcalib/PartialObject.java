@@ -7,6 +7,8 @@ package de.tudresden.inf.tcs.fcalib;
 import java.util.Set;
 import java.util.HashSet;
 
+// import org.apache.log4j.Logger;
+
 import de.tudresden.inf.tcs.fcaapi.FCAObject;
 import de.tudresden.inf.tcs.fcaapi.FCAImplication;
 
@@ -31,8 +33,13 @@ import de.tudresden.inf.tcs.fcaapi.FCAImplication;
  * along with FCAlib.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class PartialObject<T> implements FCAObject<T> {
+public class PartialObject<A,I> implements FCAObject<A,I> {
 
+	/**
+	 * The identifier of this object.
+	 */
+	private I identifier;
+	
 	/**
 	 * Name of this partial object.
 	 */
@@ -41,14 +48,20 @@ public class PartialObject<T> implements FCAObject<T> {
 	/**
 	 * Description of this partial object.
 	 */
-	private PartialObjectDescription<T> description;
+	private PartialObjectDescription<A> description;
+	
+	/**
+	 * The logger.
+	 */
+	// private static final Logger logger = Logger.getLogger(PartialObject.class);
 	
 	/**
 	 * Creates a new partial object with empty name and description.
 	 */
-	public PartialObject() {
+	public PartialObject(I id) {
+		identifier = id;
 		name = "";
-		description = new PartialObjectDescription<T>();
+		description = new PartialObjectDescription<A>();
 	}
 	
 	/**
@@ -56,9 +69,10 @@ public class PartialObject<T> implements FCAObject<T> {
 	 * @param n the name
 	 * @param attrs the initial set of positive attributes
 	 */
-	public PartialObject(String n, Set<T> attrs) {
-		name = n;
-		description = new PartialObjectDescription<T>(attrs);
+	public PartialObject(I id, Set<A> attrs) {
+		identifier = id;
+		name = "";
+		description = new PartialObjectDescription<A>(attrs);
 	}
 	
 	/**
@@ -68,31 +82,32 @@ public class PartialObject<T> implements FCAObject<T> {
 	 * @param attrs the initial set of attributes
 	 * @param negatedAttrs the initial set of negated attributes
 	 */
-	public PartialObject(String n, Set<T> attrs, Set<T> negatedAttrs) {
-		name = n;
-		description = new PartialObjectDescription<T>(attrs,negatedAttrs);
+	public PartialObject(I id, Set<A> attrs, Set<A> negatedAttrs) {
+		identifier = id;
+		name = "";
+		description = new PartialObjectDescription<A>(attrs,negatedAttrs);
 	}
 	
-	// public boolean addNegatedAttribute(T attr) {
+	// public boolean addNegatedAttribute(A attr) {
 	// 	return description.addNegatedAttribute(attr);
 	// }
 	
-	// public Set<T> getNegatedAttributes() {
+	// public Set<A> getNegatedAttributes() {
 	// 	return description.getNegatedAttributes();
 	// }
 	
-	// public Set<T> getAttributes() {
+	// public Set<A> getAttributes() {
 	// 	return description.getAttributes();
 	// }
 	
-	public boolean respects(FCAImplication<T> imp) {
-		Set<T> tmp = new HashSet<T>(imp.getConclusion());
-		tmp.retainAll(description.getNegatedAttributes());
+	public boolean respects(FCAImplication<A> imp) {
+		Set<A> tmp = new HashSet<A>(imp.getConclusion());
+		tmp.retainAll(getDescription().getNegatedAttributes());
 		// return description.containsAttributes(imp.getPremise()) && tmp.isEmpty();
-		return description.containsAttributes(imp.getPremise()) && tmp.isEmpty();
+		return !getDescription().containsAttributes(imp.getPremise()) || tmp.isEmpty();
 	}
 	
-	public boolean refutes(FCAImplication<T> imp) {
+	public boolean refutes(FCAImplication<A> imp) {
 		return !respects(imp);
 	}
 	
@@ -102,11 +117,11 @@ public class PartialObject<T> implements FCAObject<T> {
 	//  * @param attr the given attribute
 	//  * @return <code>true</code> if this partial object has the negation of <code>attr</code>
 	//  */
-	// public boolean hasNegatedAttribute(T attr) {
+	// public boolean hasNegatedAttribute(A attr) {
 	// 	return description.containsNegatedAttribute(attr);
 	// }
 	
-	public PartialObjectDescription<T> getDescription() {
+	public PartialObjectDescription<A> getDescription() {
 		return description;
 	}
 
@@ -117,9 +132,17 @@ public class PartialObject<T> implements FCAObject<T> {
 	public String getName() {
 		return name;
 	}
+	
+	/**
+	 * Returns the identifier of this object.
+	 * @return identifier of this object
+	 */
+	public I getIdentifier() {
+		return identifier;
+	}
 
 	public String toString() {
 		// return "{name: " + getName() + " plus: " + description.getAttributes() + " minus: " + description.getNegatedAttributes() + "}";
-		return "{name=" + getName() + " " + getDescription() + "}";
+		return "{id=" + getIdentifier() + " " + getDescription() + "}";
 	}
 }

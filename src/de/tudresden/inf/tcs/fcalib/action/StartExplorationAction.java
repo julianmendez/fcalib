@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 
 import org.apache.log4j.Logger;
 
+import de.tudresden.inf.tcs.fcaapi.FCAObject;
 
 /*
  * FCAlib: An open-source extensible library for Formal Concept Analysis 
@@ -35,7 +36,7 @@ import org.apache.log4j.Logger;
  * sertkaya@tcs.inf.tu-dresden.de
  */
 
-public class StartExplorationAction<A,O> extends AbstractExpertAction<A,O> {
+public class StartExplorationAction<A,I,O extends FCAObject<A,I>> extends AbstractExpertAction<A,I,O> {
 
 	/**
 	 * The logger.

@@ -6,9 +6,10 @@ import org.apache.log4j.Logger;
 
 import de.tudresden.inf.tcs.fcaapi.utils.IndexedSet;
 import de.tudresden.inf.tcs.fcaapi.Context;
+import de.tudresden.inf.tcs.fcaapi.FCAObject;
 import de.tudresden.inf.tcs.fcaapi.exception.IllegalAttributeException;
 import de.tudresden.inf.tcs.fcaapi.exception.IllegalObjectException;
-import de.tudresden.inf.tcs.fcaapi.Expert;
+// import de.tudresden.inf.tcs.fcaapi.Expert;
 import de.tudresden.inf.tcs.fcaapi.action.ExpertAction;
 
 
@@ -43,7 +44,7 @@ import de.tudresden.inf.tcs.fcalib.utils.ListSet;
  * sertkaya@tcs.inf.tu-dresden.de
 */
 
-public abstract class AbstractContext<A,O> implements Context<A,O> {
+public abstract class AbstractContext<A,I,O extends FCAObject<A,I>> implements Context<A,I,O> {
 	
 	/**
 	 * Attributes of this abstract context.
@@ -55,10 +56,10 @@ public abstract class AbstractContext<A,O> implements Context<A,O> {
 	 */
 	private ImplicationSet<A> implications;
 	
-	/**
-	 * The expert for this context.
-	 */
-	private Expert<A,O> expert = null;
+	// /**
+	//  * The expert for this context.
+	//  */
+	// private Expert<A,I,O> expert = null;
 	
 	/**
 	 * The last question asked to the expert.
@@ -153,13 +154,13 @@ public abstract class AbstractContext<A,O> implements Context<A,O> {
 
 	/**
 	 * Removes an object given with its name from the set of objects of this context.
-	 * @param name name of the object to be removed
+	 * @param id identifier of the object to be removed
 	 * @return <code>true</code> if the object named <code>name</code> is successfully removed, 
 	 * <code>false</code> otherwise
 	 * @throws IllegalObjectException if an object named <code>name</code> does not exist
 	 * in this context
 	 */
-	public abstract boolean removeObject(String name) throws IllegalObjectException;
+	public abstract boolean removeObject(I id) throws IllegalObjectException;
 	
 	/**
 	 * Removes a given  object from the set of objects of this context.
@@ -172,12 +173,12 @@ public abstract class AbstractContext<A,O> implements Context<A,O> {
 	
 	/**
 	 * Checks if this context contains an object that has a given name.
-	 * @param name name of the object to be searched
+	 * @param id identifier of the object to be searched
 	 * @return <code>true</code> the an object with name <code>name</code> is found, 
 	 * <code>false</code> otherwise
 	 */
-	public boolean containsObject(String name) {
-		if (getObject(name) == null) {
+	public boolean containsObject(I id) {
+		if (getObject(id) == null) {
 			return false;
 		}
 		else {
@@ -207,18 +208,18 @@ public abstract class AbstractContext<A,O> implements Context<A,O> {
 		getObjects().clear();
 	}
 	
-	// /**
-	//  * Adds a given attribute to the attributes of the given object. 
-	//  * @param attribute the attribute to be added
-	//  * @param object the object where <code>attribute</code> is to be added
-	//  * @return <code>true</code> if of the <code>attribute</code> is successfully added, 
-	//  * <code>false</code> otherwise
-	//  * @throws IllegalAttributeException if <code>object</code> already has the attribute
-	//  * @throws IllegalObjectException if the <code>object</code> does not exist in this 
-	//  * context
-	//  */
-	// public abstract boolean addAttributeToObject(A attribute, O object) throws 
-	// 	IllegalAttributeException, IllegalObjectException;
+	/**
+	 * Adds a given attribute to the attributes of the given object. 
+	 * @param attribute the attribute to be added
+	 * @param id identifier of the object where <code>attribute</code> is to be added
+	 * @return <code>true</code> if of the <code>attribute</code> is successfully added, 
+	 * <code>false</code> otherwise
+	 * @throws IllegalAttributeException if <code>object</code> already has the attribute
+	 * @throws IllegalObjectException if the <code>object</code> does not exist in this 
+	 * context
+	 */
+	public abstract boolean addAttributeToObject(A attribute, I id) throws 
+	 	IllegalAttributeException, IllegalObjectException;
 	
 	/**
 	 * Returns the current set of implications of this context.
@@ -297,27 +298,27 @@ public abstract class AbstractContext<A,O> implements Context<A,O> {
 		return getExpert() != null;
 	}
 	
-	/**
-	 * Sets the expert for this context to the given expert
-	 * @param e the given expert
-	 */
-	public void setExpert(Expert<A,O> e) {
-		expert = e;
-	}
+	// /**
+	//  * Sets the expert for this context to the given expert
+	//  * @param e the given expert
+	//  */
+	// public void setExpert(Expert<A,I,O> e) {
+	// 	expert = e;
+	// }
 	
-	/**
-	 * Returns the expert of this context.
-	 * @return the expert of this context
-	 */
-	public Expert<A,O> getExpert() {
-		return expert;
-	}
+	// /**
+	//  * Returns the expert of this context.
+	//  * @return the expert of this context
+	//  */
+	// public <E extends Expert<A,I,O>> E getExpert() {
+	// 	return expert;
+	// }
 	
 	/**
 	 * Calls the #{@link de.tudresden.inf.tcs.fcaapi.action.ExpertAction.actionPerformed} method
 	 * of the caught action.
 	 */
-	public void expertPerformedAction(ExpertAction<A,O> action) {
+	public void expertPerformedAction(ExpertAction action) {
 		action.actionPerformed(null);
 	}
 	
@@ -511,7 +512,7 @@ public abstract class AbstractContext<A,O> implements Context<A,O> {
 				else {
 					// if the implication does not follow from the background knowledge
 					// ask the expert
-					expert.askQuestion(implication);
+					getExpert().askQuestion(implication);
 				}
 			}
 			else {
