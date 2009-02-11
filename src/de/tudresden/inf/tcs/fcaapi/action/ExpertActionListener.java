@@ -6,7 +6,6 @@ package de.tudresden.inf.tcs.fcaapi.action;
 
 import java.util.EventListener;
 
-
 /*
  * FCAAPI: An API for Formal Concept Analysis tools
  * Copyright (C) 2009  Baris Sertkaya
@@ -27,7 +26,7 @@ import java.util.EventListener;
  */
 
 
-public interface ExpertActionListener<A,O> extends EventListener {
+public interface ExpertActionListener<A,I> extends EventListener {
 
 	/**
 	 * Invoked when an expert action occurs. Should check the type of the action and react
@@ -38,7 +37,8 @@ public interface ExpertActionListener<A,O> extends EventListener {
 	 * For each of these action types it should call one ofthe appropriate methods.
 	 * @param action the action performed by the expert
 	 */
-	public void expertPerformedAction(ExpertAction<A,O> action);
+	// public void expertPerformedAction(ExpertAction<A,I> action);
+	public void expertPerformedAction(ExpertAction action);
 	
 	// /**
 	//  * Called by {@link #expertPerformedAction(ExpertAction)} in order to take necessary actions

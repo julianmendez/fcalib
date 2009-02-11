@@ -3,6 +3,7 @@ package de.tudresden.inf.tcs.fcaapi.action;
 import java.awt.event.ActionEvent;
 
 import de.tudresden.inf.tcs.fcaapi.Context;
+// import de.tudresden.inf.tcs.fcaapi.FCAObject;
 
 
 /*
@@ -32,10 +33,13 @@ import de.tudresden.inf.tcs.fcaapi.Context;
  * sertkaya@tcs.inf.tu-dresden.de
  */
 
-public interface ExpertAction<A,O> {
+// public interface ExpertAction<A,I> {
+public interface ExpertAction {
 
 	public void actionPerformed(ActionEvent e);
 	
-	public <C extends Context<A,O>> C getContext();
+	// public <C extends Context<A,I,FCAObject<A,I>>> C getContext();
+	// public <C extends Context<?,?,?>> C getContext();
+	public  Context<?,?,?> getContext();
 
 }
