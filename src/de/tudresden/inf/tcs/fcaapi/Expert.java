@@ -27,7 +27,7 @@ import de.tudresden.inf.tcs.fcaapi.action.ExpertActionListener;
  */
 
 
-public interface Expert<T,O> {
+public interface Expert<A,I,O extends FCAObject<A,I>> {
 
 	// // Action Types
 	// /**
@@ -88,20 +88,20 @@ public interface Expert<T,O> {
 	 * {@link #REJECTED_QUESTION} and notifies listeners.
 	 * @param question the given implication question
 	 */
-	public void askQuestion(FCAImplication<T> question);
+	public void askQuestion(FCAImplication<A> question);
 
 	/**
 	 * Gets a counterexample, fires an expert action of type {@link #PROVIDED_COUNTEREXAMPLE}
 	 * @param question the given implication question
 	 */
-	public void requestCounterExample(FCAImplication<T> question);
+	public void requestCounterExample(FCAImplication<A> question);
 	
 	/**
 	 * Adds a given ExperActionListener to the list of action listeners of this expert.
 	 */
-	public void addExpertActionListener(ExpertActionListener<T,O> listener);
+	public void addExpertActionListener(ExpertActionListener<A,I> listener);
 	
-	// public void removeExpertActionListener(ExpertActionListener<T,O> listener);
+	// public void removeExpertActionListener(ExpertActionListener<A,O> listener);
 	public void removeExpertActionListeners();
 	
 	/**
@@ -127,5 +127,15 @@ public interface Expert<T,O> {
 	//  * context being explored.
 	//  * @return the desription of the last counterexample given
 	//  */
-	// public <D extends ObjectDescription<T>> D getCounterExampleDescription();
+	// public <D extends ObjectDescription<A>> D getCounterExampleDescription();
+	
+	/**
+	 * Requests a counterexample from the expert. Called in the case where accepting an implication
+	 * would cause problems. In this case we do not ask the expert whether the
+	 * implication holds, but tell him that accepting this implication will cause problems
+	 * and request a counterexample directly using this method. Note that this can
+	 * for instance occur while exploring DL ontologies due to anonymous ABox individuals. In a usual 
+	 * formal/partial context exploration, this case can not occur. 
+	 */
+	public void forceToCounterExample(FCAImplication<A> implication);
 }
