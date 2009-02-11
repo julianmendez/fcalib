@@ -26,8 +26,14 @@ package de.tudresden.inf.tcs.fcaapi;
  */
 
 
-public interface FCAObject<A> {
+public interface FCAObject<A,I> {
 
+	/**
+	 * Returns the identifier of this object. Identifiers are unique in a context.
+	 * @return the identifier of this object
+	 */
+	public I getIdentifier();
+	
 	/**
 	 * Returns the name of this object.
 	 * @return name of this object
