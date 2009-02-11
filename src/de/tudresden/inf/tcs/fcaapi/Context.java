@@ -34,7 +34,7 @@ import de.tudresden.inf.tcs.fcaapi.exception.IllegalObjectException;
  */
 
 
-public interface Context<A,O> extends ExpertActionListener<A,O> {
+public interface Context<A,I,O extends FCAObject<A,I>> extends ExpertActionListener<A,I> {
 
 	/**
 	 * Adds a given attribute to the set of attributes of this context.
@@ -92,12 +92,12 @@ public interface Context<A,O> extends ExpertActionListener<A,O> {
 	
 	/**
 	 * Removes the object from the set of objects of this context whose name is given.
-	 * @param name name of the object to be removed
+	 * @param id identifier of the object to be removed
 	 * @return <code>true</code> if the object with name <code>name</code> is successfully removed, 
 	 * <code>false</code>  otherwise
 	 * @throws IllegalObjectException if an object with name <code>name</code> does not exist
 	 */
-	public boolean removeObject(String name) throws IllegalObjectException;
+	public boolean removeObject(I id) throws IllegalObjectException;
 	
 	/**
 	 * Removes a given  object from the set of objects of this context.
@@ -123,20 +123,20 @@ public interface Context<A,O> extends ExpertActionListener<A,O> {
 	public void clearObjects();
 	
 	/**
-	 * Returns the object whose name is given.
-	 * @param name the given name
-	 * @return the object with name <code>name</code>, <code>null</code> if such an object
+	 * Returns the object whose identifier is given.
+	 * @param id the given identifier
+	 * @return the object with identifier <code>id</code>, <code>null</code> if such an object
 	 * does not exist
 	 */
-	public O getObject(String name);
+	public O getObject(I id);
 	
 	/**
-	 * Checks if this context contains an object with the given name.
-	 * @param name name of the object to be searched
-	 * @return <code>true</code> if an object with name <code>name</code> is found, 
+	 * Checks if this context contains an object with the given identifier.
+	 * @param id identifier of the object to be searched
+	 * @return <code>true</code> if an object with identifier <code>id</code> is found, 
 	 * <code>false</code> otherwise
 	 */
-	public boolean containsObject(String name);
+	public boolean containsObject(I id);
 	
 	/**
 	 * Returns the set of objects of this context.
@@ -149,20 +149,20 @@ public interface Context<A,O> extends ExpertActionListener<A,O> {
 	 * @param index index of the object that is required
 	 * @return the object at index <code>index</code>
 	 */
-	public O getObjectAtIndex(int index);
+	public O  getObjectAtIndex(int index);
 	
 	/**
 	 * Adds a given attribute to the attributes of the given object. 
 	 * @param attribute the attribute to be added
-	 * @param name name of the object to which <code>attribute</code> is to be added
+	 * @param id identifier of the object to which <code>attribute</code> is to be added
 	 * @return <code>true</code> if of the <code>attribute</code> is successfully added, 
 	 * <code>false</code> otherwise
-	 * @throws IllegalAttributeException if the object with name <code>name</code> already has 
+	 * @throws IllegalAttributeException if the object with identifier <code>id</code> already has 
 	 * the attribute
-	 * @throws IllegalObjectException if an object with name <code>name</code> does not exist in 
+	 * @throws IllegalObjectException if an object with identifier <code>id</code> does not exist in 
 	 * this  context
 	 */
-	public boolean addAttributeToObject(A attribute, String name) throws IllegalAttributeException,
+	public boolean addAttributeToObject(A attribute, I id) throws IllegalAttributeException,
 		IllegalObjectException;
 	
 	/**
@@ -239,13 +239,13 @@ public interface Context<A,O> extends ExpertActionListener<A,O> {
 	 * Returns the expert for attribute exploration.
 	 * @return the expert
 	 */
-	public Expert<A,O> getExpert();
+	public Expert<A,I,O> getExpert();
 	
 	/**
 	 * Sets the expert for attribute exploration.
 	 * @param e the given expert
 	 */
-	public void setExpert(Expert<A,O> e);
+	public void setExpert(Expert<A,I,O> e);
 	
 	// /**
 	//  * Performs necessary operations upon confirmation of a question by the expert.
