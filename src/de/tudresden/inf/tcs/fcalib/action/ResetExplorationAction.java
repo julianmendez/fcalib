@@ -56,6 +56,8 @@ public class ResetExplorationAction<A,I,O extends FCAObject<A,I>> extends Abstra
 		logger.info("=== Expert reset exploration ===");
 		getContext().getAttributes().clear();
 		getContext().clearObjects();
-		getContext().getImplications().clear();
+		if (getContext().getImplications() != null) {
+			getContext().getImplications().clear();
+		}
 	}
 }
