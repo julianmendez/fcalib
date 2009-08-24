@@ -274,6 +274,18 @@ public class ListSet<T> implements IndexedSet<T> {
 	public T getElementAt(int i) throws IndexOutOfBoundsException {
 		return elements.get(i);
 	}
+	
+	/**
+	 * Changes the order of elements by shifting them right.
+	 */
+	public void changeOrder() {
+		T tmp = getElementAt(0);
+		
+		for (int i = 0; i < size() - 1; ++i) {
+			elements.set(i,getElementAt(i+1));
+		}
+		elements.set(size()-1,tmp);
+	}
 
 	/**
 	 *  Returns a string representation of this ordered set.
