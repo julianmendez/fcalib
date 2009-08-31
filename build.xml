@@ -6,6 +6,7 @@
     <property name = "dist.dir" location = "${build.dir}/dist"/>
 	<property name = "src.dir"  location = "./src"/>
 	<property name = "lib.dir"  location = "./lib"/>
+	<property name = "doc.dir"  location = "./doc"/>
 
     <property name = "fcaapi.name" value = "fcaapi"/>
     <property name = "fcaapi.classes" value = "${build.dir}/classes/${fcaapi.name}"/>
