@@ -47,4 +47,10 @@ public interface IndexedSet<T> extends Set<T> {
 	 * @throws IndexOutOfBoundsException if the index is out of range (index < 0 || index >= size())
 	 */
 	public T getElementAt(int index) throws IndexOutOfBoundsException;
+	
+	/**
+	 * Changes the order of the elements in this indexed set.
+	 * Required for skipping questions in attribute exploration.
+	 */
+	public void changeOrder();
 }
