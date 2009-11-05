@@ -24,8 +24,8 @@ public interface ContextChange<A> {
 	static final int OBJECT_HAS_ATTRIBUTE_MODIFICATION = 0;
 	static final int NEW_IMPLICATION_MODIFICATION = 1;
 	static final int NEW_OBJECT_MODIFICATION = 2;
-	// static final int AUTOMATICALLY_ACCEPTED_IMPLICATION = 3;
-	// static final int AUTOMATICALLY_REJECTED_IMPLICATION = 4;
+	static final int AUTOMATICALLY_ACCEPTED_IMPLICATION = 3;
+	static final int AUTOMATICALLY_REJECTED_IMPLICATION = 4;
 	
 	/**
 	 * Undoes this context modification.
