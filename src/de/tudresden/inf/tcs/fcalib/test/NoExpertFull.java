@@ -135,4 +135,11 @@ public class NoExpertFull<A> extends AbstractExpert<A,String,FullObject<A,String
 	 */
 	public void forceToCounterExample(FCAImplication<A> implication) {
 	}
+	
+	/**
+	 * @deprecated
+	 */
+	public void implicationFollowsFromBackgroundKnowledge(FCAImplication<A> imp) {
+		
+	}
 }
