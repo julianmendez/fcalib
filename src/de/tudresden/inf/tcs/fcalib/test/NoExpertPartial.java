@@ -149,4 +149,11 @@ public class NoExpertPartial<A> extends AbstractExpert<A,String,PartialObject<A,
 	public void forceToCounterExample(FCAImplication<A> implication) {
 		
 	}
+	
+	/**
+	 * @deprecated
+	 */
+	public void implicationFollowsFromBackgroundKnowledge(FCAImplication<A> imp) {
+		
+	}
 }
