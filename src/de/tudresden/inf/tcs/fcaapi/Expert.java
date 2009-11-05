@@ -138,4 +138,10 @@ public interface Expert<A,I,O extends FCAObject<A,I>> {
 	 * formal/partial context exploration, this case can not occur. 
 	 */
 	public void forceToCounterExample(FCAImplication<A> implication);
+	
+	/**
+	 * Called to notify the expert that the implication follows from the background knowledge
+	 * @param implication the implication that follows from the background knowledge
+	 */
+	public void implicationFollowsFromBackgroundKnowledge(FCAImplication<A> implication);
 }
