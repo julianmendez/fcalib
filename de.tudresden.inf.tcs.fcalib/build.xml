@@ -1,6 +1,8 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <project name = "FCAlib" default = "bundle" basedir = ".">
 	
+    <property file="version.properties"/>
+	
     <!-- location of common libraries and distribution directories -->
     <property name = "build.dir" location="./build"/>
     <property name = "dist.dir" location = "${build.dir}/dist"/>
@@ -9,16 +11,14 @@
 
     <property name = "fcalib.name" value = "fcalib"/>
     <property name = "fcalib.classes" value = "${build.dir}/classes/${fcalib.name}"/>
-    <property name = "fcalib.jar" location="${dist.dir}/${fcalib.name}.jar"/>
+    <property name = "fcalib.jar" location="${dist.dir}/${fcalib.name}-${version}.jar"/>
 
 	<property name = "debug" value = "on"/>
 	<property name = "source" value = "1.5"/>
 	<property name = "includeAntRuntime" value = "no"/>
 	
 	<path id = "fcalib.classpath">
-	    <fileset dir="${lib.dir}">
-	      <include name="*.jar"/>
-	    </fileset>
+	    <fileset dir="${basedir}" includes="${requiredjars}"/>
 	</path>
 	
     <target name = "init" depends = "clean">
