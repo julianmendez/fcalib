@@ -2,7 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="lib/de.tudresden.inf.tcs.fcaapi/jars/fcaapi-0.9.1.jar"/>
-	<classpathentry kind="lib" path="lib/log4j/jars/log4j-1.2.15.jar"/>
+	<classpathentry kind="lib" path="lib/de.tudresden.inf.tcs.fcaapi/jars/fcaapi-0.10.0.jar"/>
+	<classpathentry kind="lib" path="lib/log4j/jars/log4j-1.2.16.jar"/>
 	<classpathentry kind="output" path="build/bin"/>
 </classpath>
