@@ -7,7 +7,7 @@ Bundle-DocURL: http://lat.inf.tu-dresden.de/systems/ocp
 Bundle-Description: An FCA library
 Bundle-Vendor: Baris Sertkaya
 Import-Package: org.apache.log4j
-Bundle-Version: 0.10.0
+Bundle-Version: 0.10.2
 Export-Package: de.tudresden.inf.tcs.fcaapi,
  de.tudresden.inf.tcs.fcalib;uses:="de.tudresden.inf.tcs.utils,de.tudresden.inf.tcs.fcaapi",
  de.tudresden.inf.tcs.fcalib.utils,
