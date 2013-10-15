@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: FCA API
+Bundle-SymbolicName: de.tudresden.inf.tcs.fcaapi;singleton:=true
+Bundle-ContactAddress: sertkaya@tcs.inf.tu-dresden.de
+Bundle-DocURL: http://lat.inf.tu-dresden.de/systems/ocp
+Bundle-Description: An FCA library
+Bundle-Vendor: Baris Sertkaya
+Bundle-Version: 0.10.0
+Export-Package: de.tudresden.inf.tcs.fcaapi
+
