@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: FCA library
+Bundle-SymbolicName: de.tudresden.inf.tcs.fcalib;singleton:=true
+Bundle-ContactAddress: sertkaya@tcs.inf.tu-dresden.de
+Bundle-DocURL: http://lat.inf.tu-dresden.de/systems/ocp
+Bundle-Description: An FCA library
+Bundle-Vendor: Baris Sertkaya
+Import-Package: org.apache.log4j
+Bundle-Version: 0.10.2
+Export-Package: de.tudresden.inf.tcs.fcaapi,
+ de.tudresden.inf.tcs.fcalib;uses:="de.tudresden.inf.tcs.utils,de.tudresden.inf.tcs.fcaapi",
+ de.tudresden.inf.tcs.fcalib.utils,
+ org.apache.log4j
+
