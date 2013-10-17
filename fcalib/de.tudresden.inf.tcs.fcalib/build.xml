@@ -1,5 +1,5 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
-<project name="FCAlib" default="bundle" basedir=".">
+<project name="fcalib" default="bundle" basedir=".">
 
 	<property file="version.properties" />
 
@@ -22,7 +22,7 @@
 	</path>
 
 	<target name="init" depends="clean">
-		<echo message="---------------Building FCAlib -------------" />
+		<echo message="---------------Building fcalib -------------" />
 		<tstamp />
 		<mkdir dir="${fcalib.classes}" />
 		<mkdir dir="${dist.dir}" />
