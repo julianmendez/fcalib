@@ -35,7 +35,7 @@
 	<property name="_src.javadoc.directory" value="${src.directory}/main/javadoc" />
 	<property name="project.build.sourceDirectory" value="${src.directory}/main/java" />
 	<property name="project.build.testSourceDirectory" value="${src.directory}/test/java" />
-	<property name="_root.directory" value="${basedir}" />
+	<property name="_root.directory" value="${basedir}/.." />
 	<property name="_javadoc.directory" value="${project.build.directory}/site/apidocs" />
 	<property name="project.build.outputDirectory" value="${project.build.directory}/classes" />
 	<property name="project.build.testOutputDirectory" value="${project.build.directory}/test-classes" />
