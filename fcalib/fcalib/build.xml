@@ -24,9 +24,10 @@
  *
 -->
 
-	<property name="project.groupId" value="fcalib" />
-	<property name="project.artifactId" value="fcalib" />
+	<!-- Imports project.groupId, project.artifactId, and project.version properties. -->
+	<xmlproperty file="pom.xml" />
 
+	<!-- Imports dependencies. -->
 	<property file="version.properties" />
 
 	<property name="project.build.directory" value="${basedir}/target" />
@@ -118,8 +119,13 @@
 		<javadoc packagenames="*" sourcepath="${_src.javadoc.directory}:${project.build.sourceDirectory}" destdir="${_javadoc.directory}" version="true" use="true" windowtitle="${project.artifactId}" overview="${_src.javadoc.directory}/overview.html" access="package" />
 	</target>
 
+	<!-- Gets the dependencies. -->
+	<target name="getdependencies">
+		<ant antfile="getdependencies.xml" />
+	</target>
+
 	<!-- Executes all the tasks. -->
-	<target name="dist" depends="clean, source, compile, checktestsources, compiletests, test, jar, javadoc" />
+	<target name="dist" depends="getdependencies, clean, source, compile, checktestsources, compiletests, test, jar, javadoc" />
 
 </project>
 
