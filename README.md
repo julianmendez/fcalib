@@ -19,10 +19,10 @@ exploration:
 ```java
   // Create a formal context whose attributes are of type String, and whose objects have
   // identifiers of type String
-  FormalContext&gt;String,String&lt; context = new FormalContext&gt;String,String&lt;();
+  FormalContext<String,String> context = new FormalContext<String,String>();
   
   // Create an expert for this context
-  MyExpertClass&gt;String&lt; expert = new MyExpertClass&gt;String&lt;(context);
+  MyExpertClass<String> expert = new MyExpertClass<String>(context);
         
   // Add attributes to this context
   context.addAttribute("a");
@@ -35,8 +35,8 @@ exploration:
   expert.addExpertActionListener(context);
         
   // Create an expert action for starting attribute exploration           
-  StartExplorationAction&gt;String,String,FullObject&gt;String,String&lt;&lt; action = 
-          new StartExplorationAction&gt;String,String,FullObject&gt;String,String&lt;&lt;();
+  StartExplorationAction<String,String,FullObject<String,String>> action = 
+          new StartExplorationAction<String,String,FullObject<String,String>>();
   action.setContext(context);
   // Fire the action, exploration starts...
   expert.fireExpertAction(action);
@@ -47,10 +47,10 @@ above context, add implications to it, and compute next-closure:
 
 ```java
   // Create a set of implications for the above context. Attributes are of type String
-  ImplicationSet&gt;String&lt; = new ImplicationSet&gt;String&lt;(context);
+  ImplicationSet<String> = new ImplicationSet<String>(context);
           
   // Create a new implication with empty premise and conclusion
-  Implication&gt;String&lt; imp = new Implication&gt;String&lt;();
+  Implication<String> imp = new Implication<String>();
           
   // Add attribute "a" to the premise
   imp.getPremise().add("a");
