@@ -27,7 +27,7 @@
 	<property name="project.groupId" value="fcalib" />
 	<property name="project.artifactId" value="fcalib-jars" />
 
-	<property name="project.dependency.directory" value="${basedir}/../${project.groupId}-jars/lib" />
+	<property name="project.dependency.directory" value="${basedir}/../jars/lib" />
 	<property name="maven.repository" value="http://repo.maven.apache.org/maven2" />
 
 	<!-- Cleans the repository of downloaded files. -->

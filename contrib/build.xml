@@ -3,7 +3,7 @@
 
 	<!--
  *
- * Copyright (C) 2009, 2012 Julian Mendez
+ * Copyright (C) 2009, 2012-2013 Julian Mendez
  *
  *
  * This file is part of fcalib ( http://github.com/julianmendez/fcalib ).
@@ -24,14 +24,14 @@
  *
 -->
 
-	<!-- Imports project.groupId, project.artifactId, and project.version properties. -->
-	<xmlproperty file="pom.xml" />
+	<!-- Imports 'project.groupId', 'project.artifactId', and 'project.version' properties. -->
+	<xmlproperty file="${basedir}/../pom.xml" />
 
-	<!-- Imports dependencies. -->
+	<!-- Imports 'dependencies' property. -->
 	<property file="version.properties" />
 
-	<property name="project.build.directory" value="${basedir}/target" />
-	<property name="src.directory" value="src" />
+	<property name="project.build.directory" value="${basedir}/../target" />
+	<property name="src.directory" value="${basedir}/../src" />
 
 	<property name="_src.javadoc.directory" value="${src.directory}/main/javadoc" />
 	<property name="project.build.sourceDirectory" value="${src.directory}/main/java" />
@@ -44,7 +44,7 @@
 	<property name="_debuglevel" value="lines,vars,source" />
 
 	<path id="libs.directory">
-		<fileset dir="${_root.directory}" includes="${dependencies}" />
+		<fileset dir="${_root.directory}/jars/lib" includes="${dependencies}" />
 	</path>
 
 	<patternset id="testclasses.patternset">
