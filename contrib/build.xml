@@ -24,11 +24,8 @@
  *
 -->
 
-	<!-- Imports 'project.groupId', 'project.artifactId', and 'project.version' properties. -->
+	<!-- Imports 'project.groupId', 'project.artifactId', 'project.version', and 'project.properties.ant.dependencies' properties. -->
 	<xmlproperty file="${basedir}/../pom.xml" />
-
-	<!-- Imports 'dependencies' property. -->
-	<property file="version.properties" />
 
 	<property name="project.build.directory" value="${basedir}/../target" />
 	<property name="src.directory" value="${basedir}/../src" />
@@ -44,7 +41,7 @@
 	<property name="_debuglevel" value="lines,vars,source" />
 
 	<path id="libs.directory">
-		<fileset dir="${_root.directory}/jars/lib" includes="${dependencies}" />
+		<fileset dir="${_root.directory}/jars/lib" includes="${project.properties.ant.dependencies}" />
 	</path>
 
 	<patternset id="testclasses.patternset">

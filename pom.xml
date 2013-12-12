@@ -53,6 +53,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- <application.javaVersion>1.7</application.javaVersion> -->
+		<ant.dependencies>log4j/log4j/1.2.16/log4j-1.2.16.jar</ant.dependencies>
 	</properties>
 
 	<scm>
