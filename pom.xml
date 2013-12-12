@@ -52,7 +52,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<application.javaVersion>1.7</application.javaVersion>
+		<!-- <application.javaVersion>1.7</application.javaVersion> -->
 	</properties>
 
 	<scm>
@@ -130,7 +130,7 @@
 								<linksource>true</linksource>
 							</configuration>
 							<goals>
-<!-- 								<goal>javadoc</goal> -->
+								<!-- <goal>javadoc</goal> -->
 								<goal>jar</goal>
 							</goals>
 						</execution>
