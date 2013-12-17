@@ -41,6 +41,8 @@
 		<mkdir dir="${project.dependency.directory}/${dependency.path}" />
 		<get src="${maven.repository}/${dependency.path}/${dependency.file}.pom" dest="${project.dependency.directory}/${dependency.path}/${dependency.file}.pom" />
 		<get src="${maven.repository}/${dependency.path}/${dependency.file}.jar" dest="${project.dependency.directory}/${dependency.path}/${dependency.file}.jar" />
+		<get src="${maven.repository}/${dependency.path}/${dependency.file}-sources.jar" dest="${project.dependency.directory}/${dependency.path}/${dependency.file}-sources.jar" />
+		<get src="${maven.repository}/${dependency.path}/${dependency.file}-javadoc.jar" dest="${project.dependency.directory}/${dependency.path}/${dependency.file}-javadoc.jar" />
 	</target>
 
 	<!-- Gets the specified dependency. -->
@@ -56,7 +58,7 @@
 		<antcall target="getdependency">
 			<param name="dependency.groupId" value="junit" />
 			<param name="dependency.artifactId" value="junit" />
-			<param name="dependency.version" value="4.10" />
+			<param name="dependency.version" value="4.11" />
 		</antcall>
 
 		<antcall target="getdependency">
