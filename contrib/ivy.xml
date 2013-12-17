@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0">
+
+	<info organisation="de.tudresden.inf.lat" module="fcalib" />
+
+	<configurations defaultconfmapping="compile->default">
+		<conf name="compile" />
+		<conf name="runtime" extends="compile" />
+		<conf name="test" extends="runtime" />
+	</configurations>
+
+	<dependencies>
+		<dependency org="junit" name="junit" rev="4.11" />
+		<dependency org="log4j" name="log4j" rev="1.2.16" />
+	</dependencies>
+
+</ivy-module>

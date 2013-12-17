@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivysettings>
+	<settings defaultResolver="central" />
+	<resolvers>
+		<ibiblio name="central" m2compatible="true" />
+		<filesystem name="local">
+			<artifact pattern="${ivy.settings.dir}/../jars/lib/[organisation]/[module]/[revision]/[artifact]-[revision].[ext]" />
+		</filesystem>
+	</resolvers>
+</ivysettings>
