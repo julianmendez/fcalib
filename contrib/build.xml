@@ -75,7 +75,9 @@
 
 	<!-- Retrieves dependencies with ivy -->
 	<target name="retrieve">
-		<ivy:retrieve pattern="${ivy.settings.dir}/../jars/lib/[organisation]/[module]/[revision]/[artifact]-[revision].[ext]" />
+		<ivy:retrieve pattern="${ivy.settings.dir}/../jars/lib/[organisation]/[module]/[revision]/[artifact]-[revision].[ext]" type="jar" />
+		<ivy:retrieve pattern="${ivy.settings.dir}/../jars/lib/[organisation]/[module]/[revision]/[artifact]-[revision].[ext]" type="bundle" />
+		<ivy:retrieve pattern="${ivy.settings.dir}/../jars/lib/[organisation]/[module]/[revision]/[artifact]-[revision]-[type].[ext]" type="javadoc,source" />
 	</target>
 
 	<!-- Cleans the generated documents and compiled code. -->
