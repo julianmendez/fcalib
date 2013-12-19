@@ -315,7 +315,7 @@ public abstract class AbstractContext<A,I,O extends FCAObject<A,I>> implements C
 	// }
 	
 	/**
-	 * Calls the #{@link de.tudresden.inf.tcs.fcaapi.action.ExpertAction.actionPerformed} method
+	 * Calls the {@link de.tudresden.inf.tcs.fcaapi.action.ExpertAction#actionPerformed} method
 	 * of the caught action.
 	 */
 	public void expertPerformedAction(ExpertAction action) {

@@ -34,12 +34,11 @@ import de.tudresden.inf.tcs.fcalib.utils.ListSet;
  */
 
 /**
- * Formal context implementation extending {@link #de.tudresden.inf.tcs.fcalib.AbstractContext}
+ * Formal context implementation extending {@link de.tudresden.inf.tcs.fcalib.AbstractContext}
  * @author Baris Sertkaya
  * Technische Universtaet Dresden
  * sertkaya@tcs.inf.tu-dresden.de
 */
-
 public class FormalContext<A,I> extends AbstractContext<A,I,FullObject<A,I>> implements ClosureOperator<A> {
 
 	/**
@@ -212,7 +211,7 @@ public class FormalContext<A,I> extends AbstractContext<A,I,FullObject<A,I>> imp
 	
 	/**
 	 * Checks whether a specified object has the specified attribute.
-	 * @param object the object given for check
+	 * @param obj the object given for check
 	 * @param attribute the attribute given for check
 	 * @return <code>true</code> if the object with identifier <code>id</code> has the <code>attribute</code>
 	 * <code>false</code> otherwise

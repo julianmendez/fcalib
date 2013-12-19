@@ -66,7 +66,7 @@ public class PartialObject<A,I> implements FCAObject<A,I> {
 	
 	/**
 	 * Creates a new partial object with a given name and a given set of attributes
-	 * @param n the name
+	 * @param id the name
 	 * @param attrs the initial set of positive attributes
 	 */
 	public PartialObject(I id, Set<A> attrs) {
@@ -78,7 +78,7 @@ public class PartialObject<A,I> implements FCAObject<A,I> {
 	/**
 	 * Creates a new partial object with a given name and a given set of attributes, and a given
 	 * set of negated attributes
-	 * @param n the name
+	 * @param id the name
 	 * @param attrs the initial set of attributes
 	 * @param negatedAttrs the initial set of negated attributes
 	 */

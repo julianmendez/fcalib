@@ -31,7 +31,6 @@ public class ExpertAction<T,O extends Object> extends EventObject {
 	 * Creates a new expert action event. 
 	 * @param source source of this event
 	 * @param t type of this event
-	 * @param q the question that resulted in this event
 	 */
 	public ExpertAction(Object source, int t) {
 		super(source);

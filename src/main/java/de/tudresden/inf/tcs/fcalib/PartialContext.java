@@ -253,7 +253,7 @@ public class PartialContext<A,I,O extends PartialObject<A,I>> extends AbstractCo
 	
 	/**
 	 * Checks whether a specified object has the specified attribute.
-	 * @param id identifier of the object given for check
+	 * @param obj object given for check
 	 * @param attribute the attribute given for check
 	 * @return <code>true</code> if the <code>object</code> has the <code>attribute</code>
 	 * <code>false</code> otherwise
