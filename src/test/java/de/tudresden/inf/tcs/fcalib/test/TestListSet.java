@@ -1,5 +1,8 @@
 package de.tudresden.inf.tcs.fcalib.test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import junit.framework.TestCase;
 import de.tudresden.inf.tcs.fcalib.utils.ListSet;
 
@@ -28,25 +31,58 @@ public class TestListSet extends TestCase {
 	public TestListSet() {
 	}
 
+	private void assertEq(ListSet<String> ls, List<String> list) {
+		assertTrue(ls.equals(list));
+		assertEquals(ls.size(), list.size());
+		assertTrue(ls.containsAll(list));
+		assertTrue(list.containsAll(ls));
+		for (int i = 0; i < ls.size(); i++) {
+			assertTrue(ls.getElementAt(i).equals(list.get(i)));
+		}
+	}
+
 	public void testListSet() {
 		ListSet<String> ls = new ListSet<String>();
-
 		ls.add("a");
 		ls.add("b");
 		ls.add("c");
 		ls.add("d");
 
-		System.out.println("ls:" + ls);
+		List<String> list0 = new ArrayList<String>();
+		list0.add("a");
+		list0.add("b");
+		list0.add("c");
+		list0.add("d");
+
+		List<String> list1 = new ArrayList<String>();
+		list1.add("b");
+		list1.add("c");
+		list1.add("d");
+		list1.add("a");
+
+		List<String> list2 = new ArrayList<String>();
+		list2.add("c");
+		list2.add("d");
+		list2.add("a");
+		list2.add("b");
+
+		List<String> list3 = new ArrayList<String>();
+		list3.add("d");
+		list3.add("a");
+		list3.add("b");
+		list3.add("c");
+
+		assertEq(ls, list0);
 		ls.changeOrder();
-		System.out.println("ls:" + ls);
+		assertEq(ls, list1);
 		ls.changeOrder();
-		System.out.println("ls:" + ls);
+		assertEq(ls, list2);
 		ls.changeOrder();
-		System.out.println("ls:" + ls);
+		assertEq(ls, list3);
 		ls.changeOrder();
-		System.out.println("ls:" + ls);
+		assertEq(ls, list0);
 		ls.changeOrder();
-		System.out.println("ls:" + ls);
+		assertEq(ls, list1);
 	}
 
 }
