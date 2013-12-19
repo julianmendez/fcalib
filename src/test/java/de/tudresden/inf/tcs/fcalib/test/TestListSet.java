@@ -1,5 +1,6 @@
 package de.tudresden.inf.tcs.fcalib.test;
 
+import junit.framework.TestCase;
 import de.tudresden.inf.tcs.fcalib.utils.ListSet;
 
 /*
@@ -22,16 +23,19 @@ import de.tudresden.inf.tcs.fcalib.utils.ListSet;
  * along with FCAlib.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class TestListSet {
+public class TestListSet extends TestCase {
 
 	public TestListSet() {
+	}
+
+	public void testListSet() {
 		ListSet<String> ls = new ListSet<String>();
-		
+
 		ls.add("a");
 		ls.add("b");
 		ls.add("c");
 		ls.add("d");
-		
+
 		System.out.println("ls:" + ls);
 		ls.changeOrder();
 		System.out.println("ls:" + ls);
@@ -43,13 +47,6 @@ public class TestListSet {
 		System.out.println("ls:" + ls);
 		ls.changeOrder();
 		System.out.println("ls:" + ls);
-	}
-	
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		new TestListSet();
 	}
 
 }

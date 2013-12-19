@@ -4,15 +4,16 @@
  */
 package de.tudresden.inf.tcs.fcalib.test;
 
+import junit.framework.TestCase;
+
 import org.apache.log4j.BasicConfigurator;
 
+import de.tudresden.inf.tcs.fcaapi.exception.IllegalContextException;
 import de.tudresden.inf.tcs.fcaapi.exception.IllegalExpertException;
 import de.tudresden.inf.tcs.fcaapi.exception.IllegalObjectException;
-import de.tudresden.inf.tcs.fcaapi.exception.IllegalContextException;
 import de.tudresden.inf.tcs.fcalib.PartialContext;
 import de.tudresden.inf.tcs.fcalib.PartialObject;
 import de.tudresden.inf.tcs.fcalib.action.StartExplorationAction;
-
 
 /*
  * FCAlib: An open-source extensible library for Formal Concept Analysis 
@@ -34,17 +35,18 @@ import de.tudresden.inf.tcs.fcalib.action.StartExplorationAction;
  * along with FCAlib.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class TestPartialContext {
+public class TestPartialContext extends TestCase {
 
-	/**
-	 * @param args
-	 */
-	
-	
-	public TestPartialContext() throws IllegalObjectException, IllegalExpertException, IllegalContextException {
-		PartialContext<String,String,PartialObject<String,String>> context = new PartialContext<String,String,PartialObject<String,String>>();
+	public TestPartialContext() {
+	}
+
+	public void testPartialContext() throws IllegalObjectException,
+			IllegalExpertException, IllegalContextException {
+		BasicConfigurator.configure();
+
+		PartialContext<String, String, PartialObject<String, String>> context = new PartialContext<String, String, PartialObject<String, String>>();
 		NoExpertPartial<String> expert = new NoExpertPartial<String>(context);
-		
+
 		context.addAttribute("a");
 		context.addAttribute("b");
 		context.addAttribute("c");
@@ -53,24 +55,13 @@ public class TestPartialContext {
 		// context.addAttribute("f");
 		// context.addAttribute("g");
 		System.out.println("Attributes: " + context.getAttributes());
-		
+
 		expert.addExpertActionListener(context);
 		context.setExpert(expert);
-		
-		StartExplorationAction<String,String,PartialObject<String,String>> action = 
-			new StartExplorationAction<String,String,PartialObject<String,String>>();
+
+		StartExplorationAction<String, String, PartialObject<String, String>> action = new StartExplorationAction<String, String, PartialObject<String, String>>();
 		action.setContext(context);
 		expert.fireExpertAction(action);
 	}
-	
-	public static void main(String[] args) {
-		BasicConfigurator.configure();
-		try {
-			new TestPartialContext();
-		}
-		 catch (Exception e) {
-				e.printStackTrace();
-				System.exit(0);
-		 }
-	}
+
 }
