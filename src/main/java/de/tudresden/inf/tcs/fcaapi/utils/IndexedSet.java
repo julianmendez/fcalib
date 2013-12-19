@@ -1,4 +1,3 @@
-
 package de.tudresden.inf.tcs.fcaapi.utils;
 
 import java.util.Set;
@@ -23,34 +22,40 @@ import java.util.Set;
  */
 
 /**
- * Interface describing set that keeps elements in the insertion order and whose elements can be
- * reached with indices.
- * @author Baris Sertkaya
- * Technische Universtaet Dresden
- * sertkaya@tcs.inf.tu-dresden.de
+ * Interface describing set that keeps elements in the insertion order and whose
+ * elements can be reached with indices.
+ * 
+ * @author Baris Sertkaya Technische Universtaet Dresden
+ *         sertkaya@tcs.inf.tu-dresden.de
  */
 
 public interface IndexedSet<T> extends Set<T> {
 
 	/**
 	 * Returns the index of a given element in this ordered set.
-	 * @param e the given element
-	 * @return the index of <code>e</code>, or -1 if <code>e</code> is not contained in this 
-	 * ordered set
+	 * 
+	 * @param e
+	 *            the given element
+	 * @return the index of <code>e</code>, or -1 if <code>e</code> is not
+	 *         contained in this ordered set
 	 */
-	public int getIndexOf(T e);
-	
+	int getIndexOf(T e);
+
 	/**
 	 * Returns the element at a given index
-	 * @param index index of the element to return
+	 * 
+	 * @param index
+	 *            index of the element to return
 	 * @return the element at index <code>index</code>
-	 * @throws IndexOutOfBoundsException if the index is out of range (index < 0 || index >= size())
+	 * @throws IndexOutOfBoundsException
+	 *             if the index is out of range (index < 0 || index >= size())
 	 */
-	public T getElementAt(int index) throws IndexOutOfBoundsException;
-	
+	T getElementAt(int index) throws IndexOutOfBoundsException;
+
 	/**
-	 * Changes the order of the elements in this indexed set.
-	 * Required for skipping questions in attribute exploration.
+	 * Changes the order of the elements in this indexed set. Required for
+	 * skipping questions in attribute exploration.
 	 */
-	public void changeOrder();
+	void changeOrder();
+
 }

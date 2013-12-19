@@ -4,8 +4,6 @@
  */
 package de.tudresden.inf.tcs.fcaapi;
 
-// import java.util.Set;
-
 /*
  * FCAAPI: An API for Formal Concept Analysis tools
  * Copyright (C) 2009  Baris Sertkaya
@@ -25,75 +23,90 @@ package de.tudresden.inf.tcs.fcaapi;
  * along with FCAAPI.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-public interface FCAObject<A,I> {
+public interface FCAObject<A, I> {
 
 	/**
-	 * Returns the identifier of this object. Identifiers are unique in a context.
+	 * Returns the identifier of this object. Identifiers are unique in a
+	 * context.
+	 * 
 	 * @return the identifier of this object
 	 */
-	public I getIdentifier();
-	
+	I getIdentifier();
+
 	/**
 	 * Returns the name of this object.
+	 * 
 	 * @return name of this object
 	 */
-	public String getName();
-	
+	String getName();
+
 	/**
 	 * Returns the description of this object.
+	 * 
 	 * @return description of this object
 	 */
-	public ObjectDescription<A> getDescription();
-	
-	
+	ObjectDescription<A> getDescription();
+
 	// /**
-	//  * Adds a given attribute to this object.
-	//  * @param attribute the given attribute
-	//  * @return <code>true</code> if <code>attribute</code> is successfully added, <code>false</code>
-	//  * otherwise
-	//  * @throws IllegalAttributeException if <code>attribute</code> is not in the attributes of the
-	//  * base context
-	//  */
-	// public boolean addAttribute(A attribute) throws IllegalAttributeException;
-	
-	
+	// * Adds a given attribute to this object.
+	// * @param attribute the given attribute
+	// * @return <code>true</code> if <code>attribute</code> is successfully
+	// added, <code>false</code>
+	// * otherwise
+	// * @throws IllegalAttributeException if <code>attribute</code> is not in
+	// the attributes of the
+	// * base context
+	// */
+	// boolean addAttribute(A attribute) throws
+	// IllegalAttributeException;
+
 	// /**
-	//  * Adds the attributes in a given set of attribute to this object.
-	//  * @param attributes the given set of attribute
-	//  * @return <code>true</code> if all of the <code>attributes</code> is successfully added, 
-	//  * <code>false</code> otherwise
-	//  * @throws IllegalAttributeException if at least one of the <code>attributes</code> is not in the 
-	//  * attributes of the base context
-	//  */
-	// public boolean addAttributes(Set<A> attributes) throws IllegalAttributeException;
-	
+	// * Adds the attributes in a given set of attribute to this object.
+	// * @param attributes the given set of attribute
+	// * @return <code>true</code> if all of the <code>attributes</code> is
+	// successfully added,
+	// * <code>false</code> otherwise
+	// * @throws IllegalAttributeException if at least one of the
+	// <code>attributes</code> is not in the
+	// * attributes of the base context
+	// */
+	// boolean addAttributes(Set<A> attributes) throws
+	// IllegalAttributeException;
+
 	// /**
-	//  * Checks whether this object has a given attribute.
-	//  * @param attribute the given attribute
-	//  * @return <code>true</code> if the description of this object contains the <code>attribute</code>,
-	//  * <code>false</code> otherwise
-	//  * @throws IllegalAttributeException if <code>attribute</code> is not in the attributes of the 
-	//  * base context
-	//  */
-	// public boolean hasAttribute(A attribute) throws IllegalAttributeException;
-	
-	
+	// * Checks whether this object has a given attribute.
+	// * @param attribute the given attribute
+	// * @return <code>true</code> if the description of this object contains
+	// the <code>attribute</code>,
+	// * <code>false</code> otherwise
+	// * @throws IllegalAttributeException if <code>attribute</code> is not in
+	// the attributes of the
+	// * base context
+	// */
+	// boolean hasAttribute(A attribute) throws
+	// IllegalAttributeException;
+
 	// /**
-	//  * Checks whether this object has the given attributes.
-	//  * @param attributes the given attributes
-	//  * @return <code>true</code> if the description of this object contains all of the 
-	//  * <code>attributes</code>, <code>false</code> otherwise
-	//  * @throws IllegalAttributeException if at least one of the <code>attributes</code> is not in the 
-	//  * attributes of the base context
-	//  */
-	// public boolean hasAttributes(Set<A> attributes) throws IllegalAttributeException;
-	
+	// * Checks whether this object has the given attributes.
+	// * @param attributes the given attributes
+	// * @return <code>true</code> if the description of this object contains
+	// all of the
+	// * <code>attributes</code>, <code>false</code> otherwise
+	// * @throws IllegalAttributeException if at least one of the
+	// <code>attributes</code> is not in the
+	// * attributes of the base context
+	// */
+	// boolean hasAttributes(Set<A> attributes) throws
+	// IllegalAttributeException;
+
 	/**
 	 * Checks whether this object respects a given implication.
-	 * @param implication the given implication
-	 * @return <code>true</code> if this object respects <code>implication</code>, <code>false</code>
-	 * otherwise
+	 * 
+	 * @param implication
+	 *            the given implication
+	 * @return <code>true</code> if this object respects
+	 *         <code>implication</code>, <code>false</code> otherwise
 	 */
-	public boolean respects(FCAImplication<A> implication);
+	boolean respects(FCAImplication<A> implication);
+
 }

@@ -3,8 +3,6 @@ package de.tudresden.inf.tcs.fcaapi.action;
 import java.awt.event.ActionEvent;
 
 import de.tudresden.inf.tcs.fcaapi.Context;
-// import de.tudresden.inf.tcs.fcaapi.FCAObject;
-
 
 /*
  * FCAAPI: An API for Formal Concept Analysis tools
@@ -25,21 +23,20 @@ import de.tudresden.inf.tcs.fcaapi.Context;
  * along with FCAAPI.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 /**
  * Interface describing actions that the expert can perform.
- * @author Baris Sertkaya
- * Technische Universtaet Dresden
- * sertkaya@tcs.inf.tu-dresden.de
+ * 
+ * @author Baris Sertkaya Technische Universtaet Dresden
+ *         sertkaya@tcs.inf.tu-dresden.de
  */
 
 // public interface ExpertAction<A,I> {
 public interface ExpertAction {
 
-	public void actionPerformed(ActionEvent e);
-	
-	// public <C extends Context<A,I,FCAObject<A,I>>> C getContext();
-	// public <C extends Context<?,?,?>> C getContext();
-	public  Context<?,?,?> getContext();
+	void actionPerformed(ActionEvent e);
+
+	// <C extends Context<A,I,FCAObject<A,I>>> C getContext();
+	// <C extends Context<?,?,?>> C getContext();
+	Context<?, ?, ?> getContext();
 
 }

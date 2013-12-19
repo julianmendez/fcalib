@@ -6,7 +6,6 @@ package de.tudresden.inf.tcs.fcaapi;
 
 import java.util.Set;
 
-
 /*
  * FCAAPI: An API for Formal Concept Analysis tools
  * Copyright (C) 2009  Baris Sertkaya
@@ -26,52 +25,65 @@ import java.util.Set;
  * along with FCAAPI.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 public interface ObjectDescription<A> {
 
-	
 	/**
 	 * Checks whether this object description contains a given attribute.
-	 * @param attribute the given attribute
-	 * @return <code>true</code> if this object description has the <code>attribute</code>,
-	 * <code>false</code> otherwise
+	 * 
+	 * @param attribute
+	 *            the given attribute
+	 * @return <code>true</code> if this object description has the
+	 *         <code>attribute</code>, <code>false</code> otherwise
 	 */
-	public boolean containsAttribute(A attribute);
-	
+	boolean containsAttribute(A attribute);
+
 	/**
-	 * Checks whether this object description contains all of the attributes in a given set.
-	 * @param attrs the given attribute set to be checked
-	 * @return <code>true</code> if this object description contains all of the attributes in
-	 * <code>attrs</code>, <code>false</code> otherwise
+	 * Checks whether this object description contains all of the attributes in
+	 * a given set.
+	 * 
+	 * @param attrs
+	 *            the given attribute set to be checked
+	 * @return <code>true</code> if this object description contains all of the
+	 *         attributes in <code>attrs</code>, <code>false</code> otherwise
 	 */
-	public boolean containsAttributes(Set<A> attrs);
-	
+	boolean containsAttributes(Set<A> attrs);
+
 	/**
 	 * Adds a given attribute to this object description.
-	 * @param attribute the given attribute
-	 * @return <code>true</code> if <code>attribute</code> is successfully added, <code>false</code>
-	 * otherwise
+	 * 
+	 * @param attribute
+	 *            the given attribute
+	 * @return <code>true</code> if <code>attribute</code> is successfully
+	 *         added, <code>false</code> otherwise
 	 */
-	public boolean addAttribute(A attribute);
-	
+	boolean addAttribute(A attribute);
+
 	/**
-	 * Adds the attributes in a given set of attributes to this object description.
-	 * @param attrs set of attributes to be added
-	 * @return <code>true</code> if all attributes in <code>attrs</code> are successfully added, 
-	 * <code>false</code>  otherwise
+	 * Adds the attributes in a given set of attributes to this object
+	 * description.
+	 * 
+	 * @param attrs
+	 *            set of attributes to be added
+	 * @return <code>true</code> if all attributes in <code>attrs</code> are
+	 *         successfully added, <code>false</code> otherwise
 	 */
-	public boolean addAttributes(Set<A> attrs);
-	
+	boolean addAttributes(Set<A> attrs);
+
 	/**
 	 * Removes a specified attribute from this object description.
-	 * @param attribute the attribute to be removed
-	 * @return <code>true</code> if <code>attribute</code> is successfully removed, 
-	 * <code>false</code> otherwise
+	 * 
+	 * @param attribute
+	 *            the attribute to be removed
+	 * @return <code>true</code> if <code>attribute</code> is successfully
+	 *         removed, <code>false</code> otherwise
 	 */
-	public boolean removeAttribute(A attribute);
+	boolean removeAttribute(A attribute);
+
 	/**
 	 * Produces a deep-copy of this object description.
+	 * 
 	 * @return a deep-copy of this object description
 	 */
-	public Object clone() throws CloneNotSupportedException;
+	Object clone() throws CloneNotSupportedException;
+
 }

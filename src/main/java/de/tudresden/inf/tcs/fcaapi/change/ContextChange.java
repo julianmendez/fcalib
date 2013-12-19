@@ -21,22 +21,25 @@ package de.tudresden.inf.tcs.fcaapi.change;
 
 public interface ContextChange<A> {
 
-	static final int OBJECT_HAS_ATTRIBUTE_MODIFICATION = 0;
-	static final int NEW_IMPLICATION_MODIFICATION = 1;
-	static final int NEW_OBJECT_MODIFICATION = 2;
-	static final int AUTOMATICALLY_ACCEPTED_IMPLICATION = 3;
-	static final int AUTOMATICALLY_REJECTED_IMPLICATION = 4;
-	
+	int OBJECT_HAS_ATTRIBUTE_MODIFICATION = 0;
+	int NEW_IMPLICATION_MODIFICATION = 1;
+	int NEW_OBJECT_MODIFICATION = 2;
+	int AUTOMATICALLY_ACCEPTED_IMPLICATION = 3;
+	int AUTOMATICALLY_REJECTED_IMPLICATION = 4;
+
 	/**
 	 * Undoes this context modification.
 	 */
-	public void undo();
-	
+	void undo();
+
 	/**
-	 * Returns the type of this context modification. Type is one of 
-	 * {@link #NEW_IMPLICATION_MODIFICATION}, {@link #OBJECT_HAS_ATTRIBUTE_MODIFICATION},
+	 * Returns the type of this context modification. Type is one of
+	 * {@link #NEW_IMPLICATION_MODIFICATION},
+	 * {@link #OBJECT_HAS_ATTRIBUTE_MODIFICATION},
 	 * {@link #NEW_OBJECT_MODIFICATION}.
+	 * 
 	 * @return the type of this context modification
 	 */
-	public int getType();
+	int getType();
+
 }

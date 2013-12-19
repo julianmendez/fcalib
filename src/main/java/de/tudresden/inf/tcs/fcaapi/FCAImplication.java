@@ -6,7 +6,6 @@ package de.tudresden.inf.tcs.fcaapi;
 
 import java.util.Set;
 
-
 /*
  * FCAAPI: An API for Formal Concept Analysis tools
  * Copyright (C) 2009  Baris Sertkaya
@@ -26,28 +25,32 @@ import java.util.Set;
  * along with FCAAPI.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 public interface FCAImplication<A> {
-	
+
 	/**
 	 * Returns the premise of this implication.
+	 * 
 	 * @return the premise
 	 */
-	public Set<A> getPremise();
-	
+	Set<A> getPremise();
+
 	/**
 	 * Returns the conclusion of this implication.
+	 * 
 	 * @return the conclusion
 	 */
-	public Set<A> getConclusion();
-	
-	/** 
+	Set<A> getConclusion();
+
+	/**
 	 * Checks if this implication is equal to a given implication.
-	 * @param imp implication to be checked for equality
-	 * @return <code>true</code> if the premise of this implication is equal to the premise of
-	 * <code>imp</code> and the conclusion of this implication is equal to the conclusion of
-	 * <code>imp</code>,  false otherwise
+	 * 
+	 * @param imp
+	 *            implication to be checked for equality
+	 * @return <code>true</code> if the premise of this implication is equal to
+	 *         the premise of <code>imp</code> and the conclusion of this
+	 *         implication is equal to the conclusion of <code>imp</code>, false
+	 *         otherwise
 	 */
-	public boolean equals(FCAImplication<A> imp);
+	boolean equals(FCAImplication<A> imp);
 
 }

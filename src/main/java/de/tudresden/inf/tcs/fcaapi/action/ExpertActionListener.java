@@ -25,42 +25,51 @@ import java.util.EventListener;
  * along with FCAAPI.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-public interface ExpertActionListener<A,I> extends EventListener {
+public interface ExpertActionListener<A, I> extends EventListener {
 
 	/**
-	 * Invoked when an expert action occurs. Should check the type of the action and react
-	 * accordingly. It should at least handle the following three action types: 
+	 * Invoked when an expert action occurs. Should check the type of the action
+	 * and react accordingly. It should at least handle the following three
+	 * action types:
 	 * {@link de.tudresden.inf.tcs.fcaapi.Expert#CONFIRMED_QUESTION},
 	 * {@link de.tudresden.inf.tcs.fcaapi.Expert#REJECTED_QUESTION}, or
-	 * {@link de.tudresden.inf.tcs.fcaapi.Expert#PROVIDED_COUNTEREXAMPLE}.
-	 * For each of these action types it should call one ofthe appropriate methods.
-	 * @param action the action performed by the expert
+	 * {@link de.tudresden.inf.tcs.fcaapi.Expert#PROVIDED_COUNTEREXAMPLE}. For
+	 * each of these action types it should call one ofthe appropriate methods.
+	 * 
+	 * @param action
+	 *            the action performed by the expert
 	 */
-	// public void expertPerformedAction(ExpertAction<A,I> action);
-	public void expertPerformedAction(ExpertAction action);
-	
+	// void expertPerformedAction(ExpertAction<A,I> action);
+	void expertPerformedAction(ExpertAction action);
+
 	// /**
-	//  * Called by {@link #expertPerformedAction(ExpertAction)} in order to take necessary actions
-	//  * when the expert confirms a question. It should for instance, add the confirmed question to the 
-	//  * implication base.
-	//  * @param question the question confirmed by the expert
-	//  */
-	// public void expertConfirmedQuestion(FCAImplication<A> question);
-	
+	// * Called by {@link #expertPerformedAction(ExpertAction)} in order to take
+	// necessary actions
+	// * when the expert confirms a question. It should for instance, add the
+	// confirmed question to the
+	// * implication base.
+	// * @param question the question confirmed by the expert
+	// */
+	// void expertConfirmedQuestion(FCAImplication<A> question);
+
 	// /**
-	//  * Called by {@link #expertPerformedAction(ExpertAction)} in order to take necessary actions
-	//  * when the expert rejects a question.
-	//  * @param question the question rejected by the expert
-	//  */
-	// public void expertRejectedQuestion(FCAImplication<A> question);
-	
+	// * Called by {@link #expertPerformedAction(ExpertAction)} in order to take
+	// necessary actions
+	// * when the expert rejects a question.
+	// * @param question the question rejected by the expert
+	// */
+	// void expertRejectedQuestion(FCAImplication<A> question);
+
 	// /**
-	//  * Called by {@link #expertPerformedAction(ExpertAction)} in order to take necessary actions
-	//  * when the expert provides a counterexample. It should for instance check the validity of the
-	//  * counterexample and add it to the context.
-	//  * @param counterExample the counterexample provided by the expert
-	//  * @param question the question rejected by the expert
-	//  */
-	// public void expertProvidedCounterExample(B counterExample, FCAImplication<A> question);
+	// * Called by {@link #expertPerformedAction(ExpertAction)} in order to take
+	// necessary actions
+	// * when the expert provides a counterexample. It should for instance check
+	// the validity of the
+	// * counterexample and add it to the context.
+	// * @param counterExample the counterexample provided by the expert
+	// * @param question the question rejected by the expert
+	// */
+	// void expertProvidedCounterExample(B counterExample,
+	// FCAImplication<A> question);
+
 }

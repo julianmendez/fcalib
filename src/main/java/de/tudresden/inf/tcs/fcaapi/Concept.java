@@ -7,7 +7,6 @@ package de.tudresden.inf.tcs.fcaapi;
 
 import java.util.Set;
 
-
 /*
  * FCAAPI: An API for Formal Concept Analysis tools
  * Copyright (C) 2009  Baris Sertkaya
@@ -27,19 +26,20 @@ import java.util.Set;
  * along with FCAAPI.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+public interface Concept<A, O> {
 
-public interface Concept<A,O> {
-	
 	/**
 	 * Returns the intent of this formal concept
+	 * 
 	 * @return the intent
 	 */
-	public Set<A> getIntent();
-	
+	Set<A> getIntent();
+
 	/**
 	 * Returns the extent of this formal concept
+	 * 
 	 * @return the extent
 	 */
-	public Set<O> getExtent();
+	Set<O> getExtent();
 
 }
