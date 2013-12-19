@@ -108,8 +108,6 @@ public interface Expert<A, I, O extends FCAObject<A, I>> {
 	 */
 	void addExpertActionListener(ExpertActionListener<A, I> listener);
 
-	// void removeExpertActionListener(ExpertActionListener<A,O>
-	// listener);
 	void removeExpertActionListeners();
 
 	/**
@@ -132,16 +130,6 @@ public interface Expert<A, I, O extends FCAObject<A, I>> {
 	 * writing a message, popping up a window etc.
 	 */
 	void explorationFinished();
-
-	// /**
-	// * Returns the description of the last counterexample that the expert has
-	// provided. Required in
-	// * cases where it is not possible to pass the counterexample together with
-	// its description to the
-	// * context being explored.
-	// * @return the desription of the last counterexample given
-	// */
-	// <D extends ObjectDescription<A>> D getCounterExampleDescription();
 
 	/**
 	 * Requests a counterexample from the expert. Called in the case where

@@ -30,7 +30,6 @@ import de.tudresden.inf.tcs.fcaapi.Context;
  *         sertkaya@tcs.inf.tu-dresden.de
  */
 
-// public interface ExpertAction<A,I> {
 public interface ExpertAction {
 
 	void actionPerformed(ActionEvent e);

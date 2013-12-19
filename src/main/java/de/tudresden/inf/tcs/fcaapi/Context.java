@@ -215,24 +215,6 @@ public interface Context<A, I, O extends FCAObject<A, I>> extends
 	 */
 	boolean objectHasAttribute(O object, A attribute);
 
-	// /**
-	// * Removes a given attribute from the attributes of the given object.
-	// * @param attribute the attribute to be removed
-	// * @param object the object from which <code>attribute</code> is to be
-	// removed
-	// * @return <code>true</code> if of the <code>attribute</code> is
-	// successfully removed,
-	// * <code>false</code> otherwise
-	// * @throws IllegalAttributeException if <code>object</code> does not have
-	// the attribute
-	// * @throws IllegalObjectException if the <code>object</code> does not
-	// exist in this
-	// * context
-	// */
-	// boolean removeAttributeFromObject(A attribute, O object) throws
-	// IllegalAttributeException,
-	// IllegalObjectException;
-
 	/**
 	 * Returns the second derivative of a given set of attributes.
 	 * 
@@ -255,31 +237,6 @@ public interface Context<A, I, O extends FCAObject<A, I>> extends
 	 * @return the Duquenne Guigues Base of this context
 	 */
 	Set<FCAImplication<A>> getDuquenneGuiguesBase();
-
-	// /**
-	// * Starts attribute exploration.
-	// * @throws IllegalExpertException if the expert has not yet been set
-	// */
-	// oid startExploration() throws IllegalExpertException;
-
-	// /**
-	// * Stops an ongoing attribute exploration. Does not destroy existing data
-	// structures. Exploration
-	// * can be resumed by calling {{@link #resumeExploration()} again.
-	// */
-	// void stopExploration();
-
-	// /**
-	// * Resumes a stopped exploration.
-	// */
-	// void resumeExploration();
-
-	// /**
-	// * Resets attribute exploration. Set of attributes, objects and
-	// implications are cleared. After a
-	// * call to this method, this context is ready for a fresh exploration.
-	// */
-	// void resetExploration();
 
 	/**
 	 * Checks whether an expert is set for this context.
@@ -304,57 +261,11 @@ public interface Context<A, I, O extends FCAObject<A, I>> extends
 	 */
 	void setExpert(Expert<A, I, O> e);
 
-	// /**
-	// * Performs necessary operations upon confirmation of a question by the
-	// expert.
-	// * @param q the question confirmed by the expert
-	// */
-	// void questionConfirmed(FCAImplication<A> q);
-
-	// /**
-	// * Performs necessary operations upon rejection of a question by the
-	// expert.
-	// * @param q the question rejected by the expert
-	// */
-	// void questionRejected(FCAImplication<A> q);
-
-	// /**
-	// * Performs necessary operations when the expert provides a
-	// counterexample.
-	// * @param counterExample the counterexample provided
-	// * @param q the question to which <code>counterexample</code> is provided
-	// */
-	// void counterExampleProvided(O counterExample, FCAImplication<A>
-	// q);
-
 	/**
 	 * Returns the current set of implications of this context.
 	 * 
 	 * @return the current set of implications
 	 */
 	Set<FCAImplication<A>> getImplications();
-
-	// /** Returns the concept lattice of this context.
-	// * @return the concept lattice
-	// */
-	// Set<Concept<A,O>> getConceptLattice();
-
-	// /**
-	// * Returns the set of intents of this context.
-	// * @return the set of intents
-	// */
-	// Set<Set<A>> getIntents();
-	//
-	// /**
-	// * Returns the set of extents of this context.
-	// * @return the set of extents
-	// */
-	// Set<Set<O>> getExtents();
-	//
-	// /**
-	// * Returns the set of formal concepts of this context.
-	// * @return the set of formal concepts
-	// */
-	// Set<Concept<A,O>> getConcepts();
 
 }

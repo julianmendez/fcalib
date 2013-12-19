@@ -39,37 +39,6 @@ public interface ExpertActionListener<A, I> extends EventListener {
 	 * @param action
 	 *            the action performed by the expert
 	 */
-	// void expertPerformedAction(ExpertAction<A,I> action);
 	void expertPerformedAction(ExpertAction action);
-
-	// /**
-	// * Called by {@link #expertPerformedAction(ExpertAction)} in order to take
-	// necessary actions
-	// * when the expert confirms a question. It should for instance, add the
-	// confirmed question to the
-	// * implication base.
-	// * @param question the question confirmed by the expert
-	// */
-	// void expertConfirmedQuestion(FCAImplication<A> question);
-
-	// /**
-	// * Called by {@link #expertPerformedAction(ExpertAction)} in order to take
-	// necessary actions
-	// * when the expert rejects a question.
-	// * @param question the question rejected by the expert
-	// */
-	// void expertRejectedQuestion(FCAImplication<A> question);
-
-	// /**
-	// * Called by {@link #expertPerformedAction(ExpertAction)} in order to take
-	// necessary actions
-	// * when the expert provides a counterexample. It should for instance check
-	// the validity of the
-	// * counterexample and add it to the context.
-	// * @param counterExample the counterexample provided by the expert
-	// * @param question the question rejected by the expert
-	// */
-	// void expertProvidedCounterExample(B counterExample,
-	// FCAImplication<A> question);
 
 }
