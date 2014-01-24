@@ -83,7 +83,8 @@
 	<!-- Retrieves dependencies with Ivy. -->
 	<target name="retrieve" depends="initialize">
 		<ivy:retrieve pattern="${ivy.settings.dir}/../jars/lib/[orgPath]/[module]/[revision]/[artifact]-[revision].[ext]" type="jar,bundle" />
-		<ivy:retrieve pattern="${ivy.settings.dir}/../jars/lib/[orgPath]/[module]/[revision]/[artifact]-[revision]-[type].[ext]" type="javadoc,source" />
+		<ivy:retrieve pattern="${ivy.settings.dir}/../jars/lib/[orgPath]/[module]/[revision]/[artifact]-[revision]-sources.[ext]" type="source" />
+		<ivy:retrieve pattern="${ivy.settings.dir}/../jars/lib/[orgPath]/[module]/[revision]/[artifact]-[revision]-[type].[ext]" type="javadoc" />
 	</target>
 
 	<!-- End of snippet for Ivy. -->
