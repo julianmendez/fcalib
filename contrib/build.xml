@@ -6,7 +6,7 @@
  * Copyright (C) 2009, 2012-2013 Julian Mendez
  *
  *
- * This file is part of fcalib ( http://github.com/julianmendez/fcalib ).
+ * This file is part of fcalib [http://github.com/julianmendez/fcalib].
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -49,6 +49,8 @@
 			<property name="project.artifactId" value="${project.artifactId}" />
 			<property name="project.version" value="${project.version}" />
 			<property name="javadocsrc" value="${javadocsrc}" />
+			<property name="_project.directory" value="${basedir}/.." />
+			<property name="_jars.subdirectory" value="../jars/lib" />
 		</subant>
 	</target>
 
