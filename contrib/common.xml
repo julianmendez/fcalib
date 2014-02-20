@@ -58,7 +58,8 @@
 	<!-- General properties. -->
 	<property name="_project.directory" value="${basedir}" />
 	<property name="project.build.directory" value="${_project.directory}/target" />
-	<property name="_src.directory" value="${_project.directory}/src" />
+	<property name="_src.subdirectory" value="src" />
+	<property name="_src.directory" value="${_project.directory}/${_src.subdirectory}" />
 	<property name="_src.javadoc.directory" value="${_src.directory}/main/javadoc" />
 	<property name="project.build.sourceDirectory" value="${_src.directory}/main/java" />
 	<property name="project.build.testSourceDirectory" value="${_src.directory}/test/java" />
@@ -122,11 +123,17 @@
 	<!-- Creates a jar with the source code. -->
 	<target name="source" depends="clean">
 		<mkdir dir="${project.build.directory}" />
-		<jar destfile="${project.build.directory}/${project.artifactId}-${project.version}-sources.jar" basedir="${_project.directory}">
+		<jar destfile="${project.build.directory}/${project.artifactId}-${project.version}-sources.jar">
 			<manifest>
 				<attribute name="Implementation-Title" value="${project.groupId}-${project.artifactId}" />
 				<attribute name="Implementation-Version" value="${project.version}" />
 			</manifest>
+			<fileset dir="${_project.directory}">
+				<include name="${_src.subdirectory}/**" />
+				<include name="*.xml" />
+				<include name="*.txt" />
+				<include name="*.md" />
+			</fileset>
 		</jar>
 	</target>
 
