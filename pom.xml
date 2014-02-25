@@ -29,7 +29,7 @@
 
 	<name>fcalib</name>
 	<inceptionYear>2009</inceptionYear>
-	<groupId>fcalib</groupId>
+	<groupId>de.tudresden.inf.tcs.fcalib</groupId>
 	<artifactId>fcalib</artifactId>
 	<version>0.11.0</version>
 	<packaging>jar</packaging>
