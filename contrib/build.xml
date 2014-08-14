@@ -50,7 +50,7 @@
 			<property name="project.version" value="${project.version}" />
 			<property name="javadocsrc" value="${javadocsrc}" />
 			<property name="_project.directory" value="${basedir}/.." />
-			<property name="_jars.subdirectory" value="../jars/lib" />
+			<property name="_jars.subdirectory" value="../target/jars/lib" />
 		</subant>
 	</target>
 
