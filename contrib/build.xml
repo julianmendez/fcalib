@@ -49,7 +49,7 @@
 			<property name="project.artifactId" value="${project.artifactId}" />
 			<property name="project.version" value="${project.version}" />
 			<property name="javadoc.sourcepath" value="${javadoc.sourcepath}" />
-			<property name="_project.directory" value="${basedir}/.." />
+			<property name="project.directory" value="${basedir}/.." />
 			<property name="jars.directory" value="../target/jars/lib" />
 		</subant>
 	</target>
