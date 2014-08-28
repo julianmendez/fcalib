@@ -34,7 +34,7 @@
 	<fail unless="project.artifactId">Error: 'project.artifactId' is undefined. This property is the artifact identifier.</fail>
 	<fail unless="project.version">Error: 'project.version' is undefined. This property is the version number in the form major.minor.patch.</fail>
 
-	<property name="javadocsrc" value="../src/main/java" />
+	<property name="javadoc.sourcepath" value="../src/main/java" />
 	<property name="project.build.directory" value="${basedir}/../target" />
 
 	<!-- Cleans compiled files. -->
@@ -48,9 +48,9 @@
 			<property name="project.groupId" value="${project.groupId}" />
 			<property name="project.artifactId" value="${project.artifactId}" />
 			<property name="project.version" value="${project.version}" />
-			<property name="javadocsrc" value="${javadocsrc}" />
+			<property name="javadoc.sourcepath" value="${javadoc.sourcepath}" />
 			<property name="_project.directory" value="${basedir}/.." />
-			<property name="_jars.subdirectory" value="../target/jars/lib" />
+			<property name="jars.directory" value="../target/jars/lib" />
 		</subant>
 	</target>
 
