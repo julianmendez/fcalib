@@ -176,8 +176,6 @@ public class PartialContext<A,I,O extends PartialObject<A,I>> extends AbstractCo
 	/** 
 	 * Adds a given object to the set of objects of this context.
 	 * @param o the object to be added
-	 * @throws IllegalObjectException if an object with the name of <code>o</code> already exists in this
-	 * context
 	 * @return <code>true</code> 
 	 */
 	@Override

@@ -49,22 +49,22 @@ public abstract class AbstractExpert<A,I,O extends FCAObject<A,I>> implements Ex
 	}
 
 	/**
-	 * Gets a counterexample, fires an expert action of type {@link #PROVIDED_COUNTEREXAMPLE}
+	 * Gets a counterexample, fires an expert action of type #PROVIDED_COUNTEREXAMPLE
 	 * @param question the given implication question
 	 */
 	public abstract void requestCounterExample(FCAImplication<A> question);
 	
 	/**
 	 * Checks whether a given implication question holds. If yes, fires an expert action of
-	 * type {@link #CONFIRMED_QUESTION}, if no an expert action of type
-	 * {@link #REJECTED_QUESTION} and notifies listeners.
+	 * type #CONFIRMED_QUESTION, if no an expert action of type
+	 * #REJECTED_QUESTION and notifies listeners.
 	 * @param question the given implication question
 	 */
 	public abstract void askQuestion(FCAImplication<A> question);
 
 	/**
 	 * Called to notify the expert that the specified counterexample is invalid due to the given
-	 * reason. The reason is one of {@link #COUNTEREXAMPLE_EXISTS} or {@link #COUNTEREXAMPLE_INVALID}.
+	 * reason. The reason is one of #COUNTEREXAMPLE_EXISTS or #COUNTEREXAMPLE_INVALID.
 	 * An implementation of this method should then perform the necessary actions. For instance, if
 	 * it is a human expert, it should display an error message with the reason. 
 	 * @param counterExample the counterexample given by the expert

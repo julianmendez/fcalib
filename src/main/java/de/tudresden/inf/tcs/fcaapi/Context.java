@@ -136,8 +136,8 @@ public interface Context<A, I, O extends FCAObject<A, I>> extends
 	 *            the given set of objects
 	 * @return <code>true</code> if all of the <code>objects</code> is
 	 *         successfully added, <code>false</code> otherwise
-	 * @throws if
-	 *             at least one of the objects in <code>objects</code> has
+	 * @throws IllegalObjectException
+	 *             if at least one of the objects in <code>objects</code> has
 	 *             already been added
 	 */
 	boolean addObjects(Set<O> objects) throws IllegalObjectException;

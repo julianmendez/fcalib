@@ -31,9 +31,9 @@ public interface ExpertActionListener<A, I> extends EventListener {
 	 * Invoked when an expert action occurs. Should check the type of the action
 	 * and react accordingly. It should at least handle the following three
 	 * action types:
-	 * {@link de.tudresden.inf.tcs.fcaapi.Expert#CONFIRMED_QUESTION},
-	 * {@link de.tudresden.inf.tcs.fcaapi.Expert#REJECTED_QUESTION}, or
-	 * {@link de.tudresden.inf.tcs.fcaapi.Expert#PROVIDED_COUNTEREXAMPLE}. For
+	 * de.tudresden.inf.tcs.fcaapi.Expert#CONFIRMED_QUESTION,
+	 * de.tudresden.inf.tcs.fcaapi.Expert#REJECTED_QUESTION, or
+	 * de.tudresden.inf.tcs.fcaapi.Expert#PROVIDED_COUNTEREXAMPLE. For
 	 * each of these action types it should call one ofthe appropriate methods.
 	 * 
 	 * @param action

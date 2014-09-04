@@ -48,7 +48,7 @@ public interface IndexedSet<T> extends Set<T> {
 	 *            index of the element to return
 	 * @return the element at index <code>index</code>
 	 * @throws IndexOutOfBoundsException
-	 *             if the index is out of range (index < 0 || index >= size())
+	 *             if the index is out of range (index &lt; 0 || index &gt;= size())
 	 */
 	T getElementAt(int index) throws IndexOutOfBoundsException;
 
