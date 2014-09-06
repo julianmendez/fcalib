@@ -29,7 +29,7 @@ public interface ObjectDescription<A> {
 
 	/**
 	 * Checks whether this object description contains a given attribute.
-	 * 
+	 *
 	 * @param attribute
 	 *            the given attribute
 	 * @return <code>true</code> if this object description has the
@@ -40,7 +40,7 @@ public interface ObjectDescription<A> {
 	/**
 	 * Checks whether this object description contains all of the attributes in
 	 * a given set.
-	 * 
+	 *
 	 * @param attrs
 	 *            the given attribute set to be checked
 	 * @return <code>true</code> if this object description contains all of the
@@ -50,7 +50,7 @@ public interface ObjectDescription<A> {
 
 	/**
 	 * Adds a given attribute to this object description.
-	 * 
+	 *
 	 * @param attribute
 	 *            the given attribute
 	 * @return <code>true</code> if <code>attribute</code> is successfully
@@ -61,7 +61,7 @@ public interface ObjectDescription<A> {
 	/**
 	 * Adds the attributes in a given set of attributes to this object
 	 * description.
-	 * 
+	 *
 	 * @param attrs
 	 *            set of attributes to be added
 	 * @return <code>true</code> if all attributes in <code>attrs</code> are
@@ -71,7 +71,7 @@ public interface ObjectDescription<A> {
 
 	/**
 	 * Removes a specified attribute from this object description.
-	 * 
+	 *
 	 * @param attribute
 	 *            the attribute to be removed
 	 * @return <code>true</code> if <code>attribute</code> is successfully
@@ -81,8 +81,10 @@ public interface ObjectDescription<A> {
 
 	/**
 	 * Produces a deep-copy of this object description.
-	 * 
+	 *
 	 * @return a deep-copy of this object description
+	 * @throws CloneNotSupportedException
+	 *             if clone is not supported
 	 */
 	Object clone() throws CloneNotSupportedException;
 

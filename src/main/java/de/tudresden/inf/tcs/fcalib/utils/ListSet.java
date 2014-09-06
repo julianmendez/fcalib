@@ -1,14 +1,13 @@
 package de.tudresden.inf.tcs.fcalib.utils;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.ArrayList;
 
 import de.tudresden.inf.tcs.fcaapi.utils.IndexedSet;
 
-
 /*
- * FCAlib: An open-source extensible library for Formal Concept Analysis 
+ * FCAlib: An open-source extensible library for Formal Concept Analysis
  *         tool developers
  * Copyright (C) 2009  Baris Sertkaya
  *
@@ -28,61 +27,75 @@ import de.tudresden.inf.tcs.fcaapi.utils.IndexedSet;
  */
 
 /**
- * A set implementation whose elements are ordered and can be accessed with indices.
- * @author Baris Sertkaya
- * Technische Universtaet Dresden
- * sertkaya@tcs.inf.tu-dresden.de
+ * A set implementation whose elements are ordered and can be accessed with
+ * indices.
+ * 
+ * @author Baris Sertkaya Technische Universtaet Dresden
+ *         sertkaya@tcs.inf.tu-dresden.de
  */
 
 public class ListSet<T> implements IndexedSet<T> {
-	
+
 	/**
 	 * Elements of this list set.
 	 */
-	private ArrayList<T> elements;
-	
+	private final ArrayList<T> elements;
+
 	/**
 	 * Creates an empty ListSet
 	 *
 	 */
 	public ListSet() {
-		elements = new ArrayList<T>();
+		this.elements = new ArrayList<T>();
 	}
-	
+
 	/**
-	 * Creates a new ListSet that contains the elements of a given collection. Duplicate elements
-	 * in the given collection are inserted once, <code>null</code> element is not allowed.
-	 * @param c the collection whose elements are to be contained in this ListSet initially
+	 * Creates a new ListSet that contains the elements of a given collection.
+	 * Duplicate elements in the given collection are inserted once,
+	 * <code>null</code> element is not allowed.
+	 * 
+	 * @param c
+	 *            the collection whose elements are to be contained in this
+	 *            ListSet initially
 	 */
 	public ListSet(Collection<? extends T> c) {
-		elements = new ArrayList<T>();
+		this.elements = new ArrayList<T>();
 		addAll(c);
 	}
-	
+
 	/**
 	 * Adds a given object to this list set. Does not allow duplicates.
-	 * @param o the object to be added
-	 * @return <code>true</code> if this list set did not already contain <code>o</code>
-	 * @throws NullPointerException if the given object is <code>null</code>
+	 * 
+	 * @param o
+	 *            the object to be added
+	 * @return <code>true</code> if this list set did not already contain
+	 *         <code>o</code>
+	 * @throws NullPointerException
+	 *             if the given object is <code>null</code>
 	 */
+	@Override
 	public boolean add(T o) {
 		if (o == null) {
 			throw new NullPointerException();
 		}
-		for (T element : elements) {
+		for (T element : this.elements) {
 			if (o.equals(element)) {
 				return false;
 			}
 		}
-		elements.add(o);
+		this.elements.add(o);
 		return true;
 	}
 
 	/**
 	 * Adds the elements in a given collection to this list set.
-	 * @param c the collection of elements to be added
-	 * @return <code>true</code> if this list set changed as a result of the call
+	 * 
+	 * @param c
+	 *            the collection of elements to be added
+	 * @return <code>true</code> if this list set changed as a result of the
+	 *         call
 	 */
+	@Override
 	public boolean addAll(Collection<? extends T> c) {
 		boolean retCode = false;
 		for (T e : c) {
@@ -94,22 +107,27 @@ public class ListSet<T> implements IndexedSet<T> {
 	/**
 	 * Removes all of the elements from this list set.
 	 */
+	@Override
 	public void clear() {
-		elements.clear();
+		this.elements.clear();
 	}
 
 	/**
 	 * Checks if a given element occurs in this list set.
-	 * @param o the element whose presence is to be tested
-	 * @return <code>true</code> if <code>o</code> occurs in this list set, <code>false</code>
-	 * otherwise
-	 * @throws NullPointerException if <code>o</code> is <code>null</code>
+	 * 
+	 * @param o
+	 *            the element whose presence is to be tested
+	 * @return <code>true</code> if <code>o</code> occurs in this list set,
+	 *         <code>false</code> otherwise
+	 * @throws NullPointerException
+	 *             if <code>o</code> is <code>null</code>
 	 */
+	@Override
 	public boolean contains(Object o) throws NullPointerException {
 		if (o == null) {
 			throw new NullPointerException();
 		}
-		for (T element : elements) {
+		for (T element : this.elements) {
 			if (o.equals(element)) {
 				return true;
 			}
@@ -118,11 +136,15 @@ public class ListSet<T> implements IndexedSet<T> {
 	}
 
 	/**
-	 * Checks if the elements of a given collection are contained in this ListSet.
-	 * @param c the given collection whose elements are checked for presence
-	 * @return <code>true</code> if all elements of <code>c</code> are contained in this ListSet,
-	 * <code>false</code> otherwise
+	 * Checks if the elements of a given collection are contained in this
+	 * ListSet.
+	 * 
+	 * @param c
+	 *            the given collection whose elements are checked for presence
+	 * @return <code>true</code> if all elements of <code>c</code> are contained
+	 *         in this ListSet, <code>false</code> otherwise
 	 */
+	@Override
 	public boolean containsAll(Collection<?> c) {
 		for (Iterator<?> it = c.iterator(); it.hasNext();) {
 			if (!contains(it.next())) {
@@ -133,65 +155,79 @@ public class ListSet<T> implements IndexedSet<T> {
 	}
 
 	/**
-	 * Checks if this ListSet is equal to a given set, i.e., the given set is contained in this
-	 * ListSet and vice versa. For this, it is enough to check whether the two sets have the same
-	 * sizes and this set contains the given set.
+	 * Checks if this ListSet is equal to a given set, i.e., the given set is
+	 * contained in this ListSet and vice versa. For this, it is enough to check
+	 * whether the two sets have the same sizes and this set contains the given
+	 * set.
+	 * 
 	 * @param c
-	 * @return <code>true</code>  if this ListSet is equal to <code>c</code>
+	 *            collection
+	 * @return <code>true</code> if this ListSet is equal to <code>c</code>
 	 */
 	public boolean equals(Collection<?> c) {
-		return c.size() == size() && containsAll(c);
+		return (c.size() == size()) && containsAll(c);
 	}
-	
+
 	/**
 	 * Checks if this ListSet is empty.
-	 * @return <code>true</code> if this ListSet does not contain any elements, <code>false</code>
-	 * otherwise
+	 * 
+	 * @return <code>true</code> if this ListSet does not contain any elements,
+	 *         <code>false</code> otherwise
 	 */
+	@Override
 	public boolean isEmpty() {
-		return elements.isEmpty();
+		return this.elements.isEmpty();
 	}
 
 	/**
 	 * Iterator class for ListSet
+	 * 
 	 * @author Baris Sertkaya
 	 *
 	 */
 	public class ListSetIterator implements Iterator<T> {
 		int currentIndex = 0;
-		
+
+		@Override
 		public boolean hasNext() {
-			return currentIndex < elements.size();
+			return this.currentIndex < ListSet.this.elements.size();
 		}
-		
+
+		@Override
 		public T next() {
-			return getElementAt(currentIndex++);
+			return getElementAt(this.currentIndex++);
 		}
-		
+
+		@Override
 		public void remove() {
 		}
 	}
-	
+
 	/**
 	 * Returns an iterator for this ListSet
 	 */
+	@Override
 	public Iterator<T> iterator() {
 		return new ListSetIterator();
 	}
 
 	/**
 	 * Removes a given element from this ListSet.
-	 * @param o the element to be removed
-	 * @return <code>true</code> if this ListSet contained the given element, <code>false</code>
-	 * otherwise
-	 * @throws NullPointerException if <code>o</code> is <code>null</code>
+	 * 
+	 * @param o
+	 *            the element to be removed
+	 * @return <code>true</code> if this ListSet contained the given element,
+	 *         <code>false</code> otherwise
+	 * @throws NullPointerException
+	 *             if <code>o</code> is <code>null</code>
 	 */
+	@Override
 	public boolean remove(Object o) throws NullPointerException {
 		if (o == null) {
 			throw new NullPointerException();
 		}
 		if (contains(o)) {
-			elements.remove(o);
+			this.elements.remove(o);
 			return true;
 		}
 		return false;
@@ -199,10 +235,13 @@ public class ListSet<T> implements IndexedSet<T> {
 
 	/**
 	 * Removes the elements of a given collection from this ListSet.
-	 * @param c the collection whose elements are to be removed
-	 * @return <code>true</code> if this ListSet changed as a result of the call, <code>false</code>
-	 * otherwise
+	 * 
+	 * @param c
+	 *            the collection whose elements are to be removed
+	 * @return <code>true</code> if this ListSet changed as a result of the
+	 *         call, <code>false</code> otherwise
 	 */
+	@Override
 	public boolean removeAll(Collection<?> c) {
 		boolean retCode = false;
 		for (Iterator<?> it = c.iterator(); it.hasNext();) {
@@ -212,10 +251,14 @@ public class ListSet<T> implements IndexedSet<T> {
 	}
 
 	/**
-	 * Removes elements of this ListSet that are not contained in a given collection.
-	 * @param c the collection that defines which elements are going to remain
+	 * Removes elements of this ListSet that are not contained in a given
+	 * collection.
+	 * 
+	 * @param c
+	 *            the collection that defines which elements are going to remain
 	 * @return <code>true</code> if this set changed as a result of the call
 	 */
+	@Override
 	public boolean retainAll(Collection<?> c) {
 		boolean retCode = false;
 		for (T element : this) {
@@ -228,34 +271,46 @@ public class ListSet<T> implements IndexedSet<T> {
 
 	/**
 	 * Returns the number of elements of this ListSet.
+	 * 
 	 * @return the size of this ListSet
 	 */
+	@Override
 	public int size() {
-		return elements.size();
+		return this.elements.size();
 	}
 
 	/**
 	 * Returns an array containing the elements of this ListSet.
-	 * @return an array containing the elements of this ListSet 
+	 * 
+	 * @return an array containing the elements of this ListSet
 	 */
+	@Override
 	public Object[] toArray() {
-		return  elements.toArray();
+		return this.elements.toArray();
 	}
-	
+
 	/**
-	 * Returns an array containing the elements of this ListSet. 
-	 * @param a the array, into which the elements of this ListSet is to be stored
-	 * @return an array containing the elements of this ListSet 
+	 * Returns an array containing the elements of this ListSet.
+	 * 
+	 * @param a
+	 *            the array, into which the elements of this ListSet is to be
+	 *            stored
+	 * @return an array containing the elements of this ListSet
 	 */
+	@Override
 	public <E> E[] toArray(E[] a) {
-		return elements.toArray(a);
+		return this.elements.toArray(a);
 	}
 
 	/**
 	 * Returns the index of a given element.
-	 * @param e the element whose index is requested
-	 * @return the index of <code>e</code>, <code>-1</code> if <code>e</code> is not found
+	 * 
+	 * @param e
+	 *            the element whose index is requested
+	 * @return the index of <code>e</code>, <code>-1</code> if <code>e</code> is
+	 *         not found
 	 */
+	@Override
 	public int getIndexOf(T e) {
 		for (int i = 0; i < size(); ++i) {
 			if (e == getElementAt(i)) {
@@ -264,33 +319,40 @@ public class ListSet<T> implements IndexedSet<T> {
 		}
 		return -1;
 	}
-	
+
 	/**
 	 * Returns the element at a specified index.
-	 * @param i the index of the requested element
+	 * 
+	 * @param i
+	 *            the index of the requested element
 	 * @return the element at index <code>i</code>
-	 * @throws IndexOutOfBoundsException if the specified index is out of bounds
+	 * @throws IndexOutOfBoundsException
+	 *             if the specified index is out of bounds
 	 */
+	@Override
 	public T getElementAt(int i) throws IndexOutOfBoundsException {
-		return elements.get(i);
-	}
-	
-	/**
-	 * Changes the order of elements by shifting them right.
-	 */
-	public void changeOrder() {
-		T tmp = getElementAt(0);
-		
-		for (int i = 0; i < size() - 1; ++i) {
-			elements.set(i,getElementAt(i+1));
-		}
-		elements.set(size()-1,tmp);
+		return this.elements.get(i);
 	}
 
 	/**
-	 *  Returns a string representation of this ordered set.
+	 * Changes the order of elements by shifting them right.
+	 */
+	@Override
+	public void changeOrder() {
+		T tmp = getElementAt(0);
+
+		for (int i = 0; i < (size() - 1); ++i) {
+			this.elements.set(i, getElementAt(i + 1));
+		}
+		this.elements.set(size() - 1, tmp);
+	}
+
+	/**
+	 * Returns a string representation of this ordered set.
+	 * 
 	 * @return string representation
 	 */
+	@Override
 	public String toString() {
 		if (isEmpty()) {
 			return "{ }\n";

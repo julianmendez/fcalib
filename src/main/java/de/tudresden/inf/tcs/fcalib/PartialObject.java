@@ -4,17 +4,15 @@
  */
 package de.tudresden.inf.tcs.fcalib;
 
-import java.util.Set;
 import java.util.HashSet;
+import java.util.Set;
 
 // import org.apache.log4j.Logger;
-
-import de.tudresden.inf.tcs.fcaapi.FCAObject;
 import de.tudresden.inf.tcs.fcaapi.FCAImplication;
-
+import de.tudresden.inf.tcs.fcaapi.FCAObject;
 
 /*
- * FCAlib: An open-source extensible library for Formal Concept Analysis 
+ * FCAlib: An open-source extensible library for Formal Concept Analysis
  *         tool developers
  * Copyright (C) 2009  Baris Sertkaya
  *
@@ -33,116 +31,140 @@ import de.tudresden.inf.tcs.fcaapi.FCAImplication;
  * along with FCAlib.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class PartialObject<A,I> implements FCAObject<A,I> {
+public class PartialObject<A, I> implements FCAObject<A, I> {
 
 	/**
 	 * The identifier of this object.
 	 */
-	private I identifier;
-	
+	private final I identifier;
+
 	/**
 	 * Name of this partial object.
 	 */
 	private String name;
-	
+
 	/**
 	 * Description of this partial object.
 	 */
-	private PartialObjectDescription<A> description;
-	
+	private final PartialObjectDescription<A> description;
+
 	/**
 	 * The logger.
 	 */
-	// private static final Logger logger = Logger.getLogger(PartialObject.class);
-	
+	// private static final Logger logger =
+	// Logger.getLogger(PartialObject.class);
+
 	/**
 	 * Creates a new partial object with empty name and description.
+	 *
+	 * @param id
+	 *            identifier
 	 */
 	public PartialObject(I id) {
-		identifier = id;
-		name = "";
-		description = new PartialObjectDescription<A>();
+		this.identifier = id;
+		this.name = "";
+		this.description = new PartialObjectDescription<A>();
 	}
-	
+
 	/**
-	 * Creates a new partial object with a given name and a given set of attributes
-	 * @param id the name
-	 * @param attrs the initial set of positive attributes
+	 * Creates a new partial object with a given name and a given set of
+	 * attributes
+	 *
+	 * @param id
+	 *            the name
+	 * @param attrs
+	 *            the initial set of positive attributes
 	 */
 	public PartialObject(I id, Set<A> attrs) {
-		identifier = id;
-		name = "";
-		description = new PartialObjectDescription<A>(attrs);
+		this.identifier = id;
+		this.name = "";
+		this.description = new PartialObjectDescription<A>(attrs);
 	}
-	
+
 	/**
-	 * Creates a new partial object with a given name and a given set of attributes, and a given
-	 * set of negated attributes
-	 * @param id the name
-	 * @param attrs the initial set of attributes
-	 * @param negatedAttrs the initial set of negated attributes
+	 * Creates a new partial object with a given name and a given set of
+	 * attributes, and a given set of negated attributes
+	 *
+	 * @param id
+	 *            the name
+	 * @param attrs
+	 *            the initial set of attributes
+	 * @param negatedAttrs
+	 *            the initial set of negated attributes
 	 */
 	public PartialObject(I id, Set<A> attrs, Set<A> negatedAttrs) {
-		identifier = id;
-		name = "";
-		description = new PartialObjectDescription<A>(attrs,negatedAttrs);
+		this.identifier = id;
+		this.name = "";
+		this.description = new PartialObjectDescription<A>(attrs, negatedAttrs);
 	}
-	
+
 	// public boolean addNegatedAttribute(A attr) {
-	// 	return description.addNegatedAttribute(attr);
+	// return description.addNegatedAttribute(attr);
 	// }
-	
+
 	// public Set<A> getNegatedAttributes() {
-	// 	return description.getNegatedAttributes();
+	// return description.getNegatedAttributes();
 	// }
-	
+
 	// public Set<A> getAttributes() {
-	// 	return description.getAttributes();
+	// return description.getAttributes();
 	// }
-	
+
+	@Override
 	public boolean respects(FCAImplication<A> imp) {
 		Set<A> tmp = new HashSet<A>(imp.getConclusion());
 		tmp.retainAll(getDescription().getNegatedAttributes());
-		// return description.containsAttributes(imp.getPremise()) && tmp.isEmpty();
-		return !getDescription().containsAttributes(imp.getPremise()) || tmp.isEmpty();
+		// return description.containsAttributes(imp.getPremise()) &&
+		// tmp.isEmpty();
+		return !getDescription().containsAttributes(imp.getPremise())
+				|| tmp.isEmpty();
 	}
-	
+
 	public boolean refutes(FCAImplication<A> imp) {
 		return !respects(imp);
 	}
-	
+
 	// /**
-	//  * Checks if the description of this partial object contains the negation of a given 
-	//  * attribute.
-	//  * @param attr the given attribute
-	//  * @return <code>true</code> if this partial object has the negation of <code>attr</code>
-	//  */
+	// * Checks if the description of this partial object contains the negation
+	// of a given
+	// * attribute.
+	// * @param attr the given attribute
+	// * @return <code>true</code> if this partial object has the negation of
+	// <code>attr</code>
+	// */
 	// public boolean hasNegatedAttribute(A attr) {
-	// 	return description.containsNegatedAttribute(attr);
+	// return description.containsNegatedAttribute(attr);
 	// }
-	
+
+	@Override
 	public PartialObjectDescription<A> getDescription() {
-		return description;
+		return this.description;
 	}
 
 	public void setName(String n) {
-		name = n;
-	}
-	
-	public String getName() {
-		return name;
-	}
-	
-	/**
-	 * Returns the identifier of this object.
-	 * @return identifier of this object
-	 */
-	public I getIdentifier() {
-		return identifier;
+		this.name = n;
 	}
 
+	@Override
+	public String getName() {
+		return this.name;
+	}
+
+	/**
+	 * Returns the identifier of this object.
+	 *
+	 * @return identifier of this object
+	 */
+	@Override
+	public I getIdentifier() {
+		return this.identifier;
+	}
+
+	@Override
 	public String toString() {
-		// return "{name: " + getName() + " plus: " + description.getAttributes() + " minus: " + description.getNegatedAttributes() + "}";
+		// return "{name: " + getName() + " plus: " +
+		// description.getAttributes() + " minus: " +
+		// description.getNegatedAttributes() + "}";
 		return "{id=" + getIdentifier() + " " + getDescription() + "}";
 	}
 }

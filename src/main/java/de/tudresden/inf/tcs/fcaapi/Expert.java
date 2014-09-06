@@ -85,9 +85,9 @@ public interface Expert<A, I, O extends FCAObject<A, I>> {
 
 	/**
 	 * Checks whether a given implication question holds. If yes, fires an
-	 * expert action of type  #CONFIRMED_QUESTION, if no an expert action
-	 * of type #REJECTED_QUESTION and notifies listeners.
-	 * 
+	 * expert action of type #CONFIRMED_QUESTION, if no an expert action of type
+	 * #REJECTED_QUESTION and notifies listeners.
+	 *
 	 * @param question
 	 *            the given implication question
 	 */
@@ -96,7 +96,7 @@ public interface Expert<A, I, O extends FCAObject<A, I>> {
 	/**
 	 * Gets a counterexample, fires an expert action of type
 	 * #PROVIDED_COUNTEREXAMPLE
-	 * 
+	 *
 	 * @param question
 	 *            the given implication question
 	 */
@@ -105,6 +105,9 @@ public interface Expert<A, I, O extends FCAObject<A, I>> {
 	/**
 	 * Adds a given ExperActionListener to the list of action listeners of this
 	 * expert.
+	 * 
+	 * @param listener
+	 *            expert action listener
 	 */
 	void addExpertActionListener(ExpertActionListener<A, I> listener);
 
@@ -112,14 +115,15 @@ public interface Expert<A, I, O extends FCAObject<A, I>> {
 
 	/**
 	 * Called to notify the expert that the specified counterexample is invalid
-	 * due to the given reason. The reason is one of
-	 * #COUNTEREXAMPLE_EXISTS or #COUNTEREXAMPLE_INVALID. An
-	 * implementation of this method should then perform the necessary actions.
-	 * For instance, if it is a human expert, it should display an error message
-	 * with the reason.
-	 * 
+	 * due to the given reason. The reason is one of #COUNTEREXAMPLE_EXISTS or
+	 * #COUNTEREXAMPLE_INVALID. An implementation of this method should then
+	 * perform the necessary actions. For instance, if it is a human expert, it
+	 * should display an error message with the reason.
+	 *
 	 * @param counterExample
+	 *            counterexample
 	 * @param reasonCode
+	 *            reason identifier
 	 */
 	void counterExampleInvalid(O counterExample, int reasonCode);
 
@@ -139,13 +143,16 @@ public interface Expert<A, I, O extends FCAObject<A, I>> {
 	 * directly using this method. Note that this can for instance occur while
 	 * exploring DL ontologies due to anonymous ABox individuals. In a usual
 	 * formal/partial context exploration, this case can not occur.
+	 * 
+	 * @param implication
+	 *            implication
 	 */
 	void forceToCounterExample(FCAImplication<A> implication);
 
 	/**
 	 * Called to notify the expert that the implication follows from the
 	 * background knowledge
-	 * 
+	 *
 	 * @param implication
 	 *            the implication that follows from the background knowledge
 	 */
