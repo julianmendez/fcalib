@@ -57,6 +57,8 @@
 	</properties>
 
 	<scm>
+		<url>https://github.com/julianmendez/fcalib.git</url>
+		<connection>scm:git:https://github.com/julianmendez/fcalib.git</connection>
 		<developerConnection>scm:git:https://github.com/julianmendez/fcalib.git</developerConnection>
 	</scm>
 
@@ -128,7 +130,7 @@
 							<id>package-sources</id>
 							<phase>package</phase>
 							<goals>
-								<goal>jar</goal>
+								<goal>jar-no-fork</goal>
 							</goals>
 						</execution>
 					</executions>
