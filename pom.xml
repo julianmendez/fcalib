@@ -44,8 +44,9 @@
 			<email>baris.sertkaya@sap.com</email>
 		</developer>
 		<developer>
+			<id>julianmendez</id>
 			<name>Julian Mendez</name>
-			<email>julian.mendez@tu-dresden.de</email>
+			<email>mendez@tcs.inf.tu-dresden.de</email>
 		</developer>
 	</developers>
 
@@ -190,3 +191,4 @@
 	</build>
 
 </project>
+
