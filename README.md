@@ -1,4 +1,5 @@
-# fcalib — A library for algorithms in Formal Concept Analysis
+# fcalib
+*A library for algorithms in Formal Concept Analysis*
 
 
 ## Overview
