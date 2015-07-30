@@ -1,54 +1,40 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en-us">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>fcalib by julianmendez</title>
-
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-light.css">
-    <script src="javascripts/scale.fix.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <meta charset="UTF-8">
+    <title>FCAlib by julianmendez</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
   <body>
-    <div class="wrapper">
-      <header>
-        <h1 class="header">fcalib</h1>
-        <p class="header">FCA library</p>
+    <section class="page-header">
+      <h1 class="project-name">FCAlib</h1>
+      <h2 class="project-tagline">FCA library</h2>
+      <a href="https://github.com/julianmendez/fcalib" class="btn">View on GitHub</a>
+      <a href="https://github.com/julianmendez/fcalib/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/julianmendez/fcalib/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-        <ul>
-          <li class="download"><a class="buttons" href="https://github.com/julianmendez/fcalib/zipball/master">Download ZIP</a></li>
-          <li class="download"><a class="buttons" href="https://github.com/julianmendez/fcalib/tarball/master">Download TAR</a></li>
-          <li><a class="buttons github" href="https://github.com/julianmendez/fcalib">View On GitHub</a></li>
-        </ul>
-
-        <p class="header">This project is maintained by <a class="header name" href="https://github.com/julianmendez">julianmendez</a></p>
-
-
-      </header>
-      <section>
-        <h1>
-<a id="fcalib" class="anchor" href="#fcalib" aria-hidden="true"><span class="octicon octicon-link"></span></a>fcalib</h1>
+    <section class="main-content">
+      <h1>
+<a id="fcalib" class="anchor" href="#fcalib" aria-hidden="true"><span class="octicon octicon-link"></span></a>FCAlib</h1>
 
 <p><em>A library for algorithms in Formal Concept Analysis</em></p>
 
 <h2>
 <a id="overview" class="anchor" href="#overview" aria-hidden="true"><span class="octicon octicon-link"></span></a>Overview</h2>
 
-<p>FCAlib is an open-source, extensible library for Formal Concept Analysis (FCA)
-tool developers that implements the FCAAPI. It provides basic functionalities
-that are needed for building an FCA tool. It supports incomplete contexts and
+<p><strong>FCAlib</strong> is an open-source, extensible library for Formal Concept Analysis (FCA)
+tool developers that includes the <a href="http://julianmendez.github.io/fcaapi-old/">FCAAPI</a>. It provides basic functionalities that are needed for building an FCA tool. It supports incomplete contexts and
 includes efficient implementations of basic FCA algorithms like implicational
 closure, next-closed set, etc. It implements the attribute exploration
 algorithm in such a way that it can be used together with a custom implemented
-expert that supports FCAAPI.  Javadoc for FCAlib can be found here. FCAlib is
-extended by OntoComPlib for using attribute exploration together with OWL
-ontologies. The following code segment shows how to create a formal context,
-add attributes to it, create an expert for this context, and start attribute
-exploration:</p>
+expert that supports FCAAPI. </p>
+
+<p>FCAlib is extended by <a href="http://julianmendez.github.io/ontocomplib/">OntoComPlib</a> for using attribute exploration together with OWL ontologies. The following code segment shows how to create a formal context, add attributes to it, create an expert for this context, and start attribute exploration:</p>
 
 <div class="highlight highlight-java"><pre>  <span class="pl-c">// Create a formal context whose attributes are of type String, and whose objects have</span>
   <span class="pl-c">// identifiers of type String</span>
@@ -96,21 +82,26 @@ above context, add implications to it, and compute next-closure:</p>
   mySet <span class="pl-k">=</span> implications<span class="pl-k">.</span>nextClosure(mySet);</pre></div>
 
 <h2>
-<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>LICENSE</h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
 
-<p>See <a href="http://www.gnu.org/licenses/gpl-3.0.txt">LICENSE</a></p>
+<p><a href="http://www.gnu.org/licenses/gpl-3.0.txt">GNU GPL v3</a></p>
 
 <h2>
 <a id="developers" class="anchor" href="#developers" aria-hidden="true"><span class="octicon octicon-link"></span></a>Developers</h2>
 
-<p>Original Developer: Barış Sertkaya<br>
-Additional Developers: <a href="http://github.com/julianmendez">Julian Mendez</a>, <a href="http://github.com/francesco-kriegel">Francesco Kriegel</a>, <a href="http://github.com/exot">Daniel Borchmann</a></p>
-      </section>
-      <footer>
-        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+<p>Original Developer: <a href="https://sites.google.com/site/sertkayabaris/">Barış Sertkaya</a></p>
+
+<p>Additional Developers: <a href="http://github.com/julianmendez">Julian Mendez</a>, <a href="http://github.com/francesco-kriegel">Francesco Kriegel</a>, <a href="http://github.com/exot">Daniel Borchmann</a></p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/julianmendez/fcalib">FCAlib</a> is maintained by <a href="https://github.com/julianmendez">julianmendez</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
-    </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-		
+
+    </section>
+
+  
   </body>
 </html>
+
