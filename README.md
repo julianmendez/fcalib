@@ -1,6 +1,8 @@
 # FCAlib
 *A library for algorithms in Formal Concept Analysis*
 
+[![Build Status](https://travis-ci.org/julianmendez/fcalib.png?branch=master)](https://travis-ci.org/julianmendez/fcalib)
+
 
 ## Overview
 
