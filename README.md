@@ -1,8 +1,7 @@
-fcalib — A library for algorithms in Formal Concept Analysis
-============================================================
+# fcalib — A library for algorithms in Formal Concept Analysis
 
-Overview
---------
+
+## Overview
 
 FCAlib is an open-source, extensible library for Formal Concept Analysis (FCA)
 tool developers that implements the FCAAPI. It provides basic functionalities
@@ -65,13 +64,13 @@ above context, add implications to it, and compute next-closure:
   mySet = implications.nextClosure(mySet);
 ```
 
-LICENSE
--------
 
-See [LICENSE](LICENSE)
+## LICENSE
 
-Developers
-----------
+See [LICENSE](http://www.gnu.org/licenses/gpl-3.0.txt)
+
+
+## Developers
 
 Original Developer: Barış Sertkaya  
 Additional Developers: [Julian Mendez](http://github.com/julianmendez), [Francesco Kriegel](http://github.com/francesco-kriegel), [Daniel Borchmann](http://github.com/exot)
