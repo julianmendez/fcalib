@@ -1,20 +1,17 @@
-# fcalib
+# FCAlib
 *A library for algorithms in Formal Concept Analysis*
 
 
 ## Overview
 
-FCAlib is an open-source, extensible library for Formal Concept Analysis (FCA)
-tool developers that implements the FCAAPI. It provides basic functionalities
-that are needed for building an FCA tool. It supports incomplete contexts and
+**FCAlib** is an open-source, extensible library for Formal Concept Analysis (FCA)
+tool developers that includes the [FCAAPI](http://julianmendez.github.io/fcaapi-old/). It provides basic functionalities that are needed for building an FCA tool. It supports incomplete contexts and
 includes efficient implementations of basic FCA algorithms like implicational
 closure, next-closed set, etc. It implements the attribute exploration
 algorithm in such a way that it can be used together with a custom implemented
-expert that supports FCAAPI.  Javadoc for FCAlib can be found here. FCAlib is
-extended by OntoComPlib for using attribute exploration together with OWL
-ontologies. The following code segment shows how to create a formal context,
-add attributes to it, create an expert for this context, and start attribute
-exploration:
+expert that supports FCAAPI. 
+
+FCAlib is extended by [OntoComPlib](http://julianmendez.github.io/ontocomplib/) for using attribute exploration together with OWL ontologies. The following code segment shows how to create a formal context, add attributes to it, create an expert for this context, and start attribute exploration:
 
 ```java
   // Create a formal context whose attributes are of type String, and whose objects have
@@ -66,14 +63,15 @@ above context, add implications to it, and compute next-closure:
 ```
 
 
-## LICENSE
+## License
 
-See [LICENSE](http://www.gnu.org/licenses/gpl-3.0.txt)
+[GNU GPL v3](http://www.gnu.org/licenses/gpl-3.0.txt)
 
 
 ## Developers
 
-Original Developer: Barış Sertkaya  
+Original Developer: [Barış Sertkaya](https://sites.google.com/site/sertkayabaris/)
+
 Additional Developers: [Julian Mendez](http://github.com/julianmendez), [Francesco Kriegel](http://github.com/francesco-kriegel), [Daniel Borchmann](http://github.com/exot)
 
 
