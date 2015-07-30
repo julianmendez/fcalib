@@ -4,12 +4,7 @@
 
 ## Overview
 
-**FCAlib** is an open-source, extensible library for Formal Concept Analysis (FCA)
-tool developers that includes the [FCAAPI](http://julianmendez.github.io/fcaapi-old/). It provides basic functionalities that are needed for building an FCA tool. It supports incomplete contexts and
-includes efficient implementations of basic FCA algorithms like implicational
-closure, next-closed set, etc. It implements the attribute exploration
-algorithm in such a way that it can be used together with a custom implemented
-expert that supports FCAAPI. 
+**FCAlib** is an open-source, extensible library for Formal Concept Analysis (FCA) tool developers that includes the FCAAPI. It provides basic functionalities that are needed for building an FCA tool. It supports incomplete contexts and includes efficient implementations of basic FCA algorithms like implicational closure, next-closed set, etc. It implements the attribute exploration algorithm in such a way that it can be used together with a custom implemented expert that supports FCAAPI. 
 
 FCAlib is extended by [OntoComPlib](http://julianmendez.github.io/ontocomplib/) for using attribute exploration together with OWL ontologies. The following code segment shows how to create a formal context, add attributes to it, create an expert for this context, and start attribute exploration:
 
