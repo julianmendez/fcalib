@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ivy-module version="2.0">
 
-	<info organisation="de.tudresden.inf.tcs.fcalib" module="fcalib" />
+	<info organisation="de.tu-dresden.inf.tcs.fcalib" module="fcalib" />
 
 	<configurations defaultconfmapping="compile->default">
 		<conf name="compile" />
