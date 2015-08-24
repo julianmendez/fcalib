@@ -26,56 +26,10 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<name>fcalib</name>
-	<inceptionYear>2009</inceptionYear>
 	<groupId>de.tu-dresden.inf.lat.fcalib</groupId>
 	<artifactId>fcalib</artifactId>
 	<version>0.11.0</version>
 	<packaging>jar</packaging>
-
-	<organization>
-		<name>TU Dresden, Chair of Automata Theory</name>
-		<url>http://lat.inf.tu-dresden.de</url>
-	</organization>
-
-	<developers>
-		<developer>
-			<id>barissertkaya</id>
-			<name>Baris Sertkaya</name>
-			<email>baris.sertkaya@mailbox.org</email>
-		</developer>
-		<developer>
-			<id>julianmendez</id>
-			<name>Julian Mendez</name>
-			<email>julian.mendez@tu-dresden.de</email>
-		</developer>
-	</developers>
-
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-		<maven.compiler.source>1.7</maven.compiler.source>
-		<maven.compiler.target>1.7</maven.compiler.target>
-	</properties>
-
-	<scm>
-		<url>https://github.com/julianmendez/fcalib.git</url>
-		<connection>scm:git:https://github.com/julianmendez/fcalib.git</connection>
-		<developerConnection>scm:git:https://github.com/julianmendez/fcalib.git</developerConnection>
-	</scm>
-
-	<distributionManagement>
-		<repository>
-			<id>goedel.artifactory.libs-release-local</id>
-			<name>libs-release-local</name>
-			<url>https://lat.inf.tu-dresden.de/artifactory/libs-release-local</url>
-		</repository>
-		<snapshotRepository>
-			<id>goedel.artifactory.libs-snapshot-local</id>
-			<name>libs-snapshot-local</name>
-			<url>https://lat.inf.tu-dresden.de/artifactory/libs-snapshot-local</url>
-		</snapshotRepository>
-	</distributionManagement>
 
 	<dependencies>
 		<dependency>
@@ -90,6 +44,13 @@
 			<version>1.2.16</version>
 		</dependency>
 	</dependencies>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
+	</properties>
 
 	<build>
 		<pluginManagement>
@@ -190,6 +151,47 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<name>fcalib</name>
+
+	<inceptionYear>2009</inceptionYear>
+
+	<organization>
+		<name>TU Dresden, Chair of Automata Theory</name>
+		<url>http://lat.inf.tu-dresden.de</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<id>barissertkaya</id>
+			<name>Baris Sertkaya</name>
+			<email>baris.sertkaya@mailbox.org</email>
+		</developer>
+		<developer>
+			<id>julianmendez</id>
+			<name>Julian Mendez</name>
+			<email>julian.mendez@tu-dresden.de</email>
+		</developer>
+	</developers>
+
+	<scm>
+		<url>https://github.com/julianmendez/fcalib.git</url>
+		<connection>scm:git:https://github.com/julianmendez/fcalib.git</connection>
+		<developerConnection>scm:git:https://github.com/julianmendez/fcalib.git</developerConnection>
+	</scm>
+
+	<distributionManagement>
+		<repository>
+			<id>goedel.artifactory.libs-release-local</id>
+			<name>libs-release-local</name>
+			<url>https://lat.inf.tu-dresden.de/artifactory/libs-release-local</url>
+		</repository>
+		<snapshotRepository>
+			<id>goedel.artifactory.libs-snapshot-local</id>
+			<name>libs-snapshot-local</name>
+			<url>https://lat.inf.tu-dresden.de/artifactory/libs-snapshot-local</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 	<profiles>
 
