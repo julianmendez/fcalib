@@ -28,7 +28,7 @@
 
 	<name>fcalib</name>
 	<inceptionYear>2009</inceptionYear>
-	<groupId>de.tudresden.inf.tcs.fcalib</groupId>
+	<groupId>de.tu-dresden.inf.lat.fcalib</groupId>
 	<artifactId>fcalib</artifactId>
 	<version>0.11.0</version>
 	<packaging>jar</packaging>
