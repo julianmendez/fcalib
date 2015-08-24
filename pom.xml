@@ -154,7 +154,18 @@
 
 	<name>fcalib</name>
 
+	<description>Library for algorithms in Formal Concept Analysis.</description>
+
+	<url>https://github.com/julianmendez/fcalib</url>
+
 	<inceptionYear>2009</inceptionYear>
+
+	<licenses>
+		<license>
+			<name>GNU Lesser General Public License version 3</name>
+			<url>http://www.gnu.org/licenses/lgpl-3.0.txt</url>
+		</license>
+	<licenses>
 
 	<organization>
 		<name>TU Dresden, Chair of Automata Theory</name>
