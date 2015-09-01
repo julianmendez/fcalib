@@ -3,6 +3,17 @@
 *Library for Formal Concept Analysis*
 
 [![Build Status](https://travis-ci.org/julianmendez/fcalib.png?branch=master)](https://travis-ci.org/julianmendez/fcalib)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.tu-dresden.inf.lat.fcalib/fcalib/badge.svg)](http://search.maven.org/#search|ga|1|g%3A%22de.tu-dresden.inf.lat.fcalib%22)
+
+
+## Dependency:
+```xml
+<dependency>
+  <groupId>de.tu-dresden.inf.lat.fcalib</groupId>
+  <artifactId>fcalib</artifactId>
+  <version>0.11.0</version>
+</dependency>
+```
 
 
 ## Overview
