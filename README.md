@@ -68,7 +68,7 @@ above context, add implications to it, and compute next-closure:
 
 ## Developers
 
-Original Developer: [Barış Sertkaya](https://sites.google.com/site/sertkayabaris/)
+Original Developer: [Barış Sertkaya](https://www.frankfurt-university.de/~sertkaya/)
 
 Additional Developers: [Julian Mendez](http://github.com/julianmendez), [Francesco Kriegel](http://github.com/francesco-kriegel), [Daniel Borchmann](http://github.com/exot)
 
