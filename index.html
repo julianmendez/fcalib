@@ -89,10 +89,41 @@ above context, add implications to it, and compute next-closure:</p>
   <span class="pl-c">// Compute the next-closed set after mySet, and update mySet</span>
   mySet <span class="pl-k">=</span> implications<span class="pl-k">.</span>nextClosure(mySet);</pre></div>
 
+<h3>
+<a id="source-code" class="anchor" href="#source-code" aria-hidden="true"><span class="octicon octicon-link"></span></a>Source code</h3>
+
+<p>To checkout and compile the project, use:</p>
+
+<pre><code>$ git clone https://github.com/julianmendez/fcalib.git
+$ cd fcalib
+$ mvn clean install
+</code></pre>
+
+<p>To compile the project offline, first download the dependencies:</p>
+
+<pre><code>$ mvn dependency:go-offline
+</code></pre>
+
+<p>and once offline, use:</p>
+
+<pre><code>$ mvn --offline clean install
+</code></pre>
+
+<p>The bundles uploaded to <a href="https://oss.sonatype.org/">Sonatype</a> are created with:</p>
+
+<pre><code>$ mvn clean install -DperformRelease=true
+</code></pre>
+
+<p>and then:</p>
+
+<pre><code>$ cd target
+$ jar -cf bundle.jar fcalib-*
+</code></pre>
+
 <h2>
 <a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
 
-<p><a href="http://www.gnu.org/licenses/gpl-3.0.txt">GNU GPL v3</a></p>
+<p><a href="http://www.gnu.org/licenses/gpl-3.0.txt">GNU General Public License version 3.0</a></p>
 
 <h2>
 <a id="developers" class="anchor" href="#developers" aria-hidden="true"><span class="octicon octicon-link"></span></a>Developers</h2>
