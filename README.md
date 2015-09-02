@@ -72,6 +72,36 @@ above context, add implications to it, and compute next-closure:
 ```
 
 
+### Source code
+
+To checkout and compile the project, use:
+
+```
+$ git clone https://github.com/julianmendez/fcalib.git
+$ cd fcalib
+$ mvn clean install
+```
+
+To compile the project offline, first download the dependencies:
+```
+$ mvn dependency:go-offline
+```
+and once offline, use:
+```
+$ mvn --offline clean install
+```
+
+The bundles uploaded to [Sonatype](https://oss.sonatype.org/) are created with:
+```
+$ mvn clean install -DperformRelease=true
+```
+and then:
+```
+$ cd target
+$ jar -cf bundle.jar fcalib-*
+```
+
+
 ## License
 
 [GNU GPL v3](http://www.gnu.org/licenses/gpl-3.0.txt)
