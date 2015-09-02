@@ -162,8 +162,8 @@
 
 	<licenses>
 		<license>
-			<name>GNU Lesser General Public License version 3</name>
-			<url>http://www.gnu.org/licenses/lgpl-3.0.txt</url>
+			<name>GNU General Public License version 3</name>
+			<url>http://www.gnu.org/licenses/gpl-3.0.txt</url>
 		</license>
 	</licenses>
 
