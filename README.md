@@ -104,7 +104,7 @@ $ jar -cf bundle.jar fcalib-*
 
 ## License
 
-[GNU GPL v3](http://www.gnu.org/licenses/gpl-3.0.txt)
+[GNU General Public License version 3.0](http://www.gnu.org/licenses/gpl-3.0.txt)
 
 
 ## Developers
