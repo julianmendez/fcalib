@@ -6,7 +6,7 @@
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.tu-dresden.inf.lat.fcalib/fcalib/badge.svg)](http://search.maven.org/#search|ga|1|g%3A%22de.tu-dresden.inf.lat.fcalib%22)
 
 
-## Dependency:
+## Dependency
 ```xml
 <dependency>
   <groupId>de.tu-dresden.inf.lat.fcalib</groupId>
