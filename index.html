@@ -29,9 +29,15 @@
 <a href="http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22de.tu-dresden.inf.lat.fcalib%22"><img src="https://maven-badges.herokuapp.com/maven-central/de.tu-dresden.inf.lat.fcalib/fcalib/badge.svg" alt="Maven Central"></a></p>
 
 <h2>
-<a id="dependency" class="anchor" href="#dependency" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dependency:</h2>
+<a id="download" class="anchor" href="#download" aria-hidden="true"><span class="octicon octicon-link"></span></a>Download</h2>
 
-<div class="highlight highlight-xml"><pre>&lt;<span class="pl-ent">dependency</span>&gt;
+<ul>
+<li><a href="https://sourceforge.net/projects/latitude/files/fcalib/0.11.0/fcalib-0.11.0.jar/download">library JAR file</a></li>
+<li><a href="https://repo1.maven.org/maven2/de/tu-dresden/inf/lat/fcalib/">The Central Repository</a></li>
+<li>as dependency:</li>
+</ul>
+
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">dependency</span>&gt;
   &lt;<span class="pl-ent">groupId</span>&gt;de.tu-dresden.inf.lat.fcalib&lt;/<span class="pl-ent">groupId</span>&gt;
   &lt;<span class="pl-ent">artifactId</span>&gt;fcalib&lt;/<span class="pl-ent">artifactId</span>&gt;
   &lt;<span class="pl-ent">version</span>&gt;0.11.0&lt;/<span class="pl-ent">version</span>&gt;
@@ -44,7 +50,7 @@
 
 <p>FCAlib is extended by <a href="http://julianmendez.github.io/ontocomplib/">OntoComPlib</a> for using attribute exploration together with OWL ontologies. The following code segment shows how to create a formal context, add attributes to it, create an expert for this context, and start attribute exploration:</p>
 
-<div class="highlight highlight-java"><pre>  <span class="pl-c">// Create a formal context whose attributes are of type String, and whose objects have</span>
+<div class="highlight highlight-source-java"><pre>  <span class="pl-c">// Create a formal context whose attributes are of type String, and whose objects have</span>
   <span class="pl-c">// identifiers of type String</span>
   <span class="pl-k">FormalContext&lt;<span class="pl-smi">String</span>,<span class="pl-smi">String</span>&gt;</span> context <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-k">FormalContext&lt;<span class="pl-smi">String</span>,<span class="pl-smi">String</span>&gt;</span>();
 
@@ -71,7 +77,7 @@
 <p>The following code segment shows how to create a set of implications for the
 above context, add implications to it, and compute next-closure:</p>
 
-<div class="highlight highlight-java"><pre>  <span class="pl-c">// Create a set of implications for the above context. Attributes are of type String</span>
+<div class="highlight highlight-source-java"><pre>  <span class="pl-c">// Create a set of implications for the above context. Attributes are of type String</span>
   <span class="pl-k">ImplicationSet&lt;<span class="pl-smi">String</span>&gt;</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-k">ImplicationSet&lt;<span class="pl-smi">String</span>&gt;</span>(context);
 
   <span class="pl-c">// Create a new implication with empty premise and conclusion</span>
