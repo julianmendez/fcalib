@@ -7,7 +7,7 @@
 
 
 ## Download
-* [library JAR file](http://sourceforge.net/projects/latitude/files/fcalib/0.11.0/fcalib-0.11.0.jar/download)
+* [library JAR file](https://sourceforge.net/projects/latitude/files/fcalib/0.11.0/fcalib-0.11.0.jar/download)
 * [The Central Repository](https://repo1.maven.org/maven2/de/tu-dresden/inf/lat/fcalib/)
 * as dependency:
 ```xml
