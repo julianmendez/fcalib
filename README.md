@@ -7,9 +7,11 @@
 
 
 ## Download
+
 * [library JAR file](https://sourceforge.net/projects/latitude/files/fcalib/0.11.0/fcalib-0.11.0.jar/download)
 * [The Central Repository](https://repo1.maven.org/maven2/de/tu-dresden/inf/lat/fcalib/)
 * as dependency:
+
 ```xml
 <dependency>
   <groupId>de.tu-dresden.inf.lat.fcalib</groupId>
@@ -78,6 +80,7 @@ above context, add implications to it, and compute next-closure:
 ### Source code
 
 To checkout and compile the project, use:
+
 ```
 $ git clone https://github.com/julianmendez/fcalib.git
 $ cd fcalib
@@ -85,28 +88,36 @@ $ mvn clean install
 ```
 
 To compile the project offline, first download the dependencies:
+
 ```
 $ mvn dependency:go-offline
 ```
+
 and once offline, use:
+
 ```
 $ mvn --offline clean install
 ```
 
 The bundles uploaded to [Sonatype](https://oss.sonatype.org/) are created with:
+
 ```
 $ mvn clean install -DperformRelease=true
 ```
+
 and then:
+
 ```
 $ cd target
 $ jar -cf bundle.jar fcalib-*
 ```
 
 The version number is updated with:
+
 ```
 $ mvn versions:set -DnewVersion=NEW_VERSION
 ```
+
 where *NEW_VERSION* is the new version.
 
 
