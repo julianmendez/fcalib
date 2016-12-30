@@ -62,9 +62,9 @@ public class ImplicationSet<A> extends LinkedHashSet<FCAImplication<A>>
 	public ImplicationSet(AbstractContext<A, ?, ?> context) {
 		super();
 		this.theContext = context;
-		this.occursInPremises = new Hashtable<A, Set<FCAImplication<A>>>();
+		this.occursInPremises = new Hashtable<>();
 		for (A attr : context.getAttributes()) {
-			this.occursInPremises.put(attr, new HashSet<FCAImplication<A>>());
+			this.occursInPremises.put(attr, new HashSet<>());
 		}
 	}
 
@@ -107,9 +107,9 @@ public class ImplicationSet<A> extends LinkedHashSet<FCAImplication<A>>
 	 */
 	@Override
 	public Set<A> closure(Set<A> x) {
-		Set<A> update = new HashSet<A>(x);
-		Set<A> newDep = new LinkedHashSet<A>(x);
-		Hashtable<FCAImplication<A>, Integer> premiseSizes = new Hashtable<FCAImplication<A>, Integer>();
+		Set<A> update = new HashSet<>(x);
+		Set<A> newDep = new LinkedHashSet<>(x);
+		Hashtable<FCAImplication<A>, Integer> premiseSizes = new Hashtable<>();
 
 		// update.addAll(x);
 		// newDep.addAll(x);
@@ -275,7 +275,7 @@ public class ImplicationSet<A> extends LinkedHashSet<FCAImplication<A>>
 	 */
 	@Override
 	public Set<Set<A>> allClosures() {
-		return closuresStartingFrom(new HashSet<A>());
+		return closuresStartingFrom(new HashSet<>());
 	}
 
 }

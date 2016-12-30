@@ -112,7 +112,7 @@ public class PartialObject<A, I> implements FCAObject<A, I> {
 
 	@Override
 	public boolean respects(FCAImplication<A> imp) {
-		Set<A> tmp = new HashSet<A>(imp.getConclusion());
+		Set<A> tmp = new HashSet<>(imp.getConclusion());
 		tmp.retainAll(getDescription().getNegatedAttributes());
 		// return description.containsAttributes(imp.getPremise()) &&
 		// tmp.isEmpty();

@@ -227,7 +227,7 @@ public class FormalContext<A,I> extends AbstractContext<A,I,FullObject<A,I>> imp
 	 */
 	@Override
 	public Set<A> doublePrime(Set<A> x) {
-		Set<A> tmp = new HashSet<A>(getAttributes());
+		Set<A> tmp = new HashSet<>(getAttributes());
 		
 		for (FullObject<A,I> object : getObjects()) {
 			if (object.getDescription().containsAttributes(x)) {

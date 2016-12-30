@@ -288,7 +288,7 @@ public class PartialContext<A,I,O extends PartialObject<A,I>> extends AbstractCo
 	 */
 	@Override
 	public Set<A> doublePrime(Set<A> x) {
-		Set<A> tmp = new HashSet<A>(getAttributes());
+		Set<A> tmp = new HashSet<>(getAttributes());
 		
 		for (O object : getObjects()) {
 			if (object.getDescription().containsAttributes(x)) {

@@ -41,8 +41,8 @@ public class Implication<T> implements FCAImplication<T> {
 	 * Creates a new implication with empty premise and conclusion.
 	 */
 	public Implication() {
-		premise = new HashSet<T>();
-		conclusion = new HashSet<T>();
+		premise = new HashSet<>();
+		conclusion = new HashSet<>();
 	}
 	
 	/**

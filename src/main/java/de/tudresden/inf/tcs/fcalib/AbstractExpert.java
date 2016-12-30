@@ -45,7 +45,7 @@ public abstract class AbstractExpert<A,I,O extends FCAObject<A,I>> implements Ex
 	 *
 	 */
 	public AbstractExpert() {
-		listeners = new ArrayList<ExpertActionListener<A,I>>();
+		listeners = new ArrayList<>();
 	}
 
 	/**

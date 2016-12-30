@@ -46,7 +46,7 @@ public class ListSet<T> implements IndexedSet<T> {
 	 *
 	 */
 	public ListSet() {
-		this.elements = new ArrayList<T>();
+		this.elements = new ArrayList<>();
 	}
 
 	/**
@@ -59,7 +59,7 @@ public class ListSet<T> implements IndexedSet<T> {
 	 *            ListSet initially
 	 */
 	public ListSet(Collection<? extends T> c) {
-		this.elements = new ArrayList<T>();
+		this.elements = new ArrayList<>();
 		addAll(c);
 	}
 

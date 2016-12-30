@@ -42,31 +42,31 @@ public class TestListSet extends TestCase {
 	}
 
 	public void testListSet() {
-		ListSet<String> ls = new ListSet<String>();
+		ListSet<String> ls = new ListSet<>();
 		ls.add("a");
 		ls.add("b");
 		ls.add("c");
 		ls.add("d");
 
-		List<String> list0 = new ArrayList<String>();
+		List<String> list0 = new ArrayList<>();
 		list0.add("a");
 		list0.add("b");
 		list0.add("c");
 		list0.add("d");
 
-		List<String> list1 = new ArrayList<String>();
+		List<String> list1 = new ArrayList<>();
 		list1.add("b");
 		list1.add("c");
 		list1.add("d");
 		list1.add("a");
 
-		List<String> list2 = new ArrayList<String>();
+		List<String> list2 = new ArrayList<>();
 		list2.add("c");
 		list2.add("d");
 		list2.add("a");
 		list2.add("b");
 
-		List<String> list3 = new ArrayList<String>();
+		List<String> list3 = new ArrayList<>();
 		list3.add("d");
 		list3.add("a");
 		list3.add("b");

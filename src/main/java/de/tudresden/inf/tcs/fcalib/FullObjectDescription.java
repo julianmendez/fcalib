@@ -40,7 +40,7 @@ public class FullObjectDescription<T> implements ObjectDescription<T> {
 	 * Creates an empty description.
 	 */
 	public FullObjectDescription() {
-		attributes = new HashSet<T>();
+		attributes = new HashSet<>();
 	}
 	
 	/**
@@ -48,7 +48,7 @@ public class FullObjectDescription<T> implements ObjectDescription<T> {
 	 * @param p the set of attributes that the description will initially have
 	 */
 	public FullObjectDescription(Set<T> p) {
-		attributes = new HashSet<T>(p);
+		attributes = new HashSet<>(p);
 	}
 	
 	/**

@@ -46,7 +46,7 @@ public class PartialObjectDescription<T> extends FullObjectDescription<T> {
 	 */
 	public PartialObjectDescription() {
 		super();
-		negatedAttributes = new HashSet<T>();
+		negatedAttributes = new HashSet<>();
 	}
 	
 	/**
@@ -56,7 +56,7 @@ public class PartialObjectDescription<T> extends FullObjectDescription<T> {
 	 */
 	public PartialObjectDescription(Set<T> p) {
 		super(p);
-		negatedAttributes = new HashSet<T>();
+		negatedAttributes = new HashSet<>();
 	}
 	
 	/**
@@ -66,7 +66,7 @@ public class PartialObjectDescription<T> extends FullObjectDescription<T> {
 	 */
 	public PartialObjectDescription(Set<T> p, Set<T> m) {
 		super(p);
-		negatedAttributes = new HashSet<T>(m);
+		negatedAttributes = new HashSet<>(m);
 	}
 	
 	/**
