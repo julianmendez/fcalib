@@ -129,7 +129,7 @@ where *NEW_VERSION* is the new version.
 
 ## Developers
 
-Original Developer: [Barış Sertkaya](https://www.frankfurt-university.de/~sertkaya/)
+Original Developer: [Barış Sertkaya](https://www.informatik.fb2.frankfurt-university.de/~sertkaya/)
 
 Additional Developers: [Julian Mendez](https://julianmendez.github.io), [Francesco Kriegel](https://github.com/francesco-kriegel), [Daniel Borchmann](https://github.com/exot)
 
