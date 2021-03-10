@@ -3,7 +3,9 @@ package de.tudresden.inf.tcs.fcalib.test;
 import java.util.ArrayList;
 import java.util.List;
 
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
 import de.tudresden.inf.tcs.fcalib.utils.ListSet;
 
 /*
@@ -26,21 +28,22 @@ import de.tudresden.inf.tcs.fcalib.utils.ListSet;
  * along with FCAlib.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class TestListSet extends TestCase {
+public class TestListSet {
 
 	public TestListSet() {
 	}
 
 	private void assertEq(ListSet<String> ls, List<String> list) {
-		assertTrue(ls.equals(list));
-		assertEquals(ls.size(), list.size());
-		assertTrue(ls.containsAll(list));
-		assertTrue(list.containsAll(ls));
+		Assertions.assertTrue(ls.equals(list));
+		Assertions.assertEquals(ls.size(), list.size());
+		Assertions.assertTrue(ls.containsAll(list));
+		Assertions.assertTrue(list.containsAll(ls));
 		for (int i = 0; i < ls.size(); i++) {
-			assertTrue(ls.getElementAt(i).equals(list.get(i)));
+			Assertions.assertTrue(ls.getElementAt(i).equals(list.get(i)));
 		}
 	}
 
+	@Test
 	public void testListSet() {
 		ListSet<String> ls = new ListSet<>();
 		ls.add("a");

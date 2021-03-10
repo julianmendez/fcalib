@@ -4,7 +4,7 @@
  */
 package de.tudresden.inf.tcs.fcalib.test;
 
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
 import org.apache.log4j.BasicConfigurator;
 
@@ -35,11 +35,12 @@ import de.tudresden.inf.tcs.fcalib.action.StartExplorationAction;
  * along with FCAlib.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class TestPartialContext extends TestCase {
+public class TestPartialContext {
 
 	public TestPartialContext() {
 	}
 
+	@Test
 	public void testPartialContext() throws IllegalObjectException,
 			IllegalExpertException, IllegalContextException {
 		BasicConfigurator.configure();
