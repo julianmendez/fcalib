@@ -5,7 +5,7 @@ import java.util.Set;
 
 import java.awt.event.ActionEvent;
 
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
 
 import de.tudresden.inf.tcs.fcaapi.FCAObject;
 
@@ -41,7 +41,7 @@ public class StartExplorationAction<A,I,O extends FCAObject<A,I>> extends Abstra
 	/**
 	 * The logger.
 	 */
-	private static final Logger logger = Logger.getLogger(StartExplorationAction.class);
+	private static final Logger logger = Logger.getLogger(StartExplorationAction.class.getName());
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -53,7 +53,7 @@ public class StartExplorationAction<A,I,O extends FCAObject<A,I>> extends Abstra
 	public void actionPerformed(ActionEvent e) {
 		getContext().initializeExploration();
 		if (!getContext().isExpertSet()) {
-			logger.fatal("=== Expert illegal, first set the expert! ===");
+			logger.severe("=== Expert illegal, first set the expert! ===");
 		}
 		else {
 			logger.info("== Exploration starting ===");

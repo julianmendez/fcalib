@@ -2,7 +2,7 @@ package de.tudresden.inf.tcs.fcalib.action;
 
 import java.awt.event.ActionEvent;
 
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
 
 import de.tudresden.inf.tcs.fcaapi.FCAObject;
 import de.tudresden.inf.tcs.fcalib.action.AbstractExpertAction;
@@ -43,7 +43,7 @@ public class StopExplorationAction<A,I,O extends FCAObject<A,I>> extends Abstrac
 	/**
 	 * The logger.
 	 */
-	private static final Logger logger = Logger.getLogger(StopExplorationAction.class);
+	private static final Logger logger = Logger.getLogger(StopExplorationAction.class.getName());
 	
 	/**
 	 * Just writes an info log saying that the expert stopped exploration.

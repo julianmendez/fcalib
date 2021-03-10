@@ -2,7 +2,7 @@ package de.tudresden.inf.tcs.fcalib.action;
 
 import java.awt.event.ActionEvent;
 
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
 
 import de.tudresden.inf.tcs.fcaapi.FCAImplication;
 import de.tudresden.inf.tcs.fcaapi.FCAObject;
@@ -45,7 +45,7 @@ public class QuestionConfirmedAction<A,I,O extends FCAObject<A,I>> extends Abstr
 	/**
 	 * The logger.
 	 */
-	private static final Logger logger = Logger.getLogger(QuestionConfirmedAction.class);
+	private static final Logger logger = Logger.getLogger(QuestionConfirmedAction.class.getName());
 	
 	// public QuestionConfirmedAction(AbstractContext<A,O> c,FCAImplication<A> q) {
 	// 	// super(c);

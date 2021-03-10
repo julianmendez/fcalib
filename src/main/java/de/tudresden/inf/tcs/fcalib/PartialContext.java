@@ -4,7 +4,7 @@ package de.tudresden.inf.tcs.fcalib;
 import java.util.Set;
 import java.util.HashSet;
 
-// import org.apache.log4j.Logger;
+// import java.util.logging.Logger;
 
 import de.tudresden.inf.tcs.fcaapi.Expert;
 import de.tudresden.inf.tcs.fcaapi.FCAImplication;
@@ -57,7 +57,7 @@ public class PartialContext<A,I,O extends PartialObject<A,I>> extends AbstractCo
 	// /**
 	//  * The logger.
 	//  */
-	// private static final Logger logger = Logger.getLogger(PartialContext.class);
+	// private static final Logger logger = Logger.getLogger(PartialContext.class.getName());
 	
 	/**
 	 * Creates a partial context with empty set of objects and attributes.

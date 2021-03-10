@@ -6,8 +6,6 @@ package de.tudresden.inf.tcs.fcalib.test;
 
 import org.junit.jupiter.api.Test;
 
-import org.apache.log4j.BasicConfigurator;
-
 import de.tudresden.inf.tcs.fcaapi.exception.IllegalContextException;
 import de.tudresden.inf.tcs.fcaapi.exception.IllegalExpertException;
 import de.tudresden.inf.tcs.fcaapi.exception.IllegalObjectException;
@@ -43,7 +41,6 @@ public class TestPartialContext {
 	@Test
 	public void testPartialContext() throws IllegalObjectException,
 			IllegalExpertException, IllegalContextException {
-		BasicConfigurator.configure();
 
 		PartialContext<String, String, PartialObject<String, String>> context = new PartialContext<String, String, PartialObject<String, String>>();
 		NoExpertPartial<String> expert = new NoExpertPartial<String>(context);

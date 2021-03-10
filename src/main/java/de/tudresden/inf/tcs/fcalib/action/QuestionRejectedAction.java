@@ -2,7 +2,7 @@ package de.tudresden.inf.tcs.fcalib.action;
 
 import java.awt.event.ActionEvent;
 
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
 
 import de.tudresden.inf.tcs.fcaapi.FCAObject;
 import de.tudresden.inf.tcs.fcaapi.FCAImplication;
@@ -45,7 +45,7 @@ public class QuestionRejectedAction<A,I,O extends FCAObject<A,I>> extends Abstra
 	/**
 	 * The logger.
 	 */
-	private static final Logger logger = Logger.getLogger(QuestionRejectedAction.class);
+	private static final Logger logger = Logger.getLogger(QuestionRejectedAction.class.getName());
 	
 	/**
 	 * Logs the action, requests a counterexample from the expert

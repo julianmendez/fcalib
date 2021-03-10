@@ -2,7 +2,7 @@ package de.tudresden.inf.tcs.fcalib;
 
 import java.util.Set;
 
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
 
 import de.tudresden.inf.tcs.fcaapi.Context;
 import de.tudresden.inf.tcs.fcaapi.FCAImplication;
@@ -67,8 +67,7 @@ public abstract class AbstractContext<A, I, O extends FCAObject<A, I>>
 	/**
 	 * The logger.
 	 */
-	private static final Logger logger = Logger
-			.getLogger(AbstractContext.class);
+	private static final Logger logger = Logger.getLogger(AbstractContext.class.getName());
 
 	/**
 	 * Returns the set of attributes of this context.
@@ -582,16 +581,16 @@ public abstract class AbstractContext<A, I, O extends FCAObject<A, I>>
 		Set<A> conclusion = null;
 		Implication<A> implication = null;
 
-		logger.debug("premise: " + premise);
+		logger.fine("premise: " + premise);
 		if (premise != null) {
 			conclusion = doublePrime(premise);
-			logger.debug("conclusion: " + conclusion);
+			logger.fine("conclusion: " + conclusion);
 			if (!premise.equals(conclusion)) {
 				conclusion.removeAll(premise);
 				implication = new Implication<A>(premise, conclusion);
 				this.currentQuestion = implication;
 				if (followsFromBackgroundKnowledge(implication)) {
-					logger.debug("Follows from background knowledge: "
+					logger.fine("Follows from background knowledge: "
 							+ implication);
 					this.implications.add(implication);
 					premise = this.implications.nextClosure(premise);
@@ -613,7 +612,7 @@ public abstract class AbstractContext<A, I, O extends FCAObject<A, I>>
 			// if the premise is null
 			// stop the exploration
 			explorationFinished();
-			logger.debug("objects: " + getObjects());
+			logger.fine("objects: " + getObjects());
 		}
 	}
 

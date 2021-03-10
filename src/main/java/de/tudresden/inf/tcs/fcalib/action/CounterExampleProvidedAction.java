@@ -2,7 +2,7 @@ package de.tudresden.inf.tcs.fcalib.action;
 
 import java.awt.event.ActionEvent;
 
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
 
 import de.tudresden.inf.tcs.fcaapi.FCAImplication;
 import de.tudresden.inf.tcs.fcaapi.Expert;
@@ -50,8 +50,8 @@ public class CounterExampleProvidedAction<A,I,O extends FCAObject<A,I>> extends 
 	/**
 	 * The logger.
 	 */
-	private static final Logger logger = Logger.getLogger(CounterExampleProvidedAction.class);
-	
+	private static final Logger logger = Logger.getLogger(CounterExampleProvidedAction.class.getName());
+
 	public CounterExampleProvidedAction(AbstractContext<A,I,O> c,FCAImplication<A> q,O ce) {
 		// super(c);
 		setContext(c);

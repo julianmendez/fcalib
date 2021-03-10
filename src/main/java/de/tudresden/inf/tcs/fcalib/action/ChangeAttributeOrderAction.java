@@ -2,7 +2,7 @@ package de.tudresden.inf.tcs.fcalib.action;
 
 import java.awt.event.ActionEvent;
 
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
 
 import de.tudresden.inf.tcs.fcaapi.FCAObject;
 
@@ -37,7 +37,7 @@ public class ChangeAttributeOrderAction<A,I,O extends FCAObject<A,I>> extends Ab
 	/**
 	 * The logger.
 	 */
-	private static final Logger logger = Logger.getLogger(ChangeAttributeOrderAction.class);
+	private static final Logger logger = Logger.getLogger(ChangeAttributeOrderAction.class.getName());
 	
 	private static final long serialVersionUID = 1L;
 	

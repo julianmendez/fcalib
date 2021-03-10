@@ -7,7 +7,7 @@ package de.tudresden.inf.tcs.fcalib.test;
 
 import java.util.Iterator;
 
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
 
 import de.tudresden.inf.tcs.fcaapi.Expert;
 import de.tudresden.inf.tcs.fcaapi.action.ExpertAction;
@@ -50,7 +50,7 @@ public class NoExpertPartial<A> extends AbstractExpert<A,String,PartialObject<A,
 	/**
 	 * The logger.
 	 */
-	private static final Logger logger = Logger.getLogger(NoExpertPartial.class);
+	private static final Logger logger = Logger.getLogger(NoExpertPartial.class.getName());
 	
 	private PartialContext<A,String,PartialObject<A,String>> theContext;
 	/**
@@ -121,11 +121,11 @@ public class NoExpertPartial<A> extends AbstractExpert<A,String,PartialObject<A,
 		switch (reason) {
 		case Expert.COUNTEREXAMPLE_EXISTS:
 			// System.err.print("An object with the same name already exists\n");
-			logger.error("An object with name " + counterExample.getName() + " already exists");
+			logger.severe("An object with name " + counterExample.getName() + " already exists");
 			break;
 		case Expert.COUNTEREXAMPLE_INVALID:
 			// System.err.print("The object is not a valid counter example\n");
-			logger.error("The object " + counterExample.getName() + " is not a valid counter example");
+			logger.severe("The object " + counterExample.getName() + " is not a valid counter example");
 			break;
 		}
 	}

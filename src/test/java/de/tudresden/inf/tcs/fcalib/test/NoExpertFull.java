@@ -5,7 +5,7 @@
  */
 package de.tudresden.inf.tcs.fcalib.test;
 
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
 
 import de.tudresden.inf.tcs.fcaapi.Expert;
 import de.tudresden.inf.tcs.fcaapi.FCAImplication;
@@ -48,7 +48,7 @@ public class NoExpertFull<A> extends AbstractExpert<A,String,FullObject<A,String
 	/**
 	 * The logger.
 	 */
-	private static final Logger logger = Logger.getLogger(NoExpertFull.class);
+	private static final Logger logger = Logger.getLogger(NoExpertFull.class.getName());
 	
 	/**
 	 * Creates an instance of NoExpertFull.
@@ -109,10 +109,10 @@ public class NoExpertFull<A> extends AbstractExpert<A,String,FullObject<A,String
 	public void counterExampleInvalid(FullObject<A,String> counterExample, int reason) {
 		switch (reason) {
 		case Expert.COUNTEREXAMPLE_EXISTS:
-			logger.error("An object with name " + counterExample.getName() + " already exists");
+			logger.severe("An object with name " + counterExample.getName() + " already exists");
 			break;
 		case Expert.COUNTEREXAMPLE_INVALID:
-			logger.error("The object " + counterExample.getName() + " is not a valid counter example");
+			logger.severe("The object " + counterExample.getName() + " is not a valid counter example");
 			break;
 		}
 	}

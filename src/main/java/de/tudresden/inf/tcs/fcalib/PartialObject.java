@@ -7,7 +7,7 @@ package de.tudresden.inf.tcs.fcalib;
 import java.util.HashSet;
 import java.util.Set;
 
-// import org.apache.log4j.Logger;
+// import java.util.logging.Logger;
 import de.tudresden.inf.tcs.fcaapi.FCAImplication;
 import de.tudresden.inf.tcs.fcaapi.FCAObject;
 

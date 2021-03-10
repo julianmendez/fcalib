@@ -6,8 +6,6 @@ package de.tudresden.inf.tcs.fcalib.test;
 
 import org.junit.jupiter.api.Test;
 
-import org.apache.log4j.BasicConfigurator;
-
 import de.tudresden.inf.tcs.fcaapi.exception.IllegalContextException;
 import de.tudresden.inf.tcs.fcaapi.exception.IllegalExpertException;
 import de.tudresden.inf.tcs.fcaapi.exception.IllegalObjectException;
@@ -43,7 +41,6 @@ public class TestFormalContext {
 	@Test
 	public void testFormalContext() throws IllegalObjectException,
 			IllegalExpertException, IllegalContextException {
-		BasicConfigurator.configure();
 
 		FormalContext<String, String> context = new FormalContext<String, String>();
 		NoExpertFull<String> expert = new NoExpertFull<String>(context);
