@@ -2,7 +2,7 @@
 
 *Library for Formal Concept Analysis*
 
-[![build](https://travis-ci.org/julianmendez/fcalib.png?branch=master)](https://travis-ci.org/julianmendez/fcalib)
+[![build](https://github.com/julianmendez/fcalib/workflows/Java%20CI/badge.svg)](https://github.com/julianmendez/fcalib/actions)
 [![maven central](https://maven-badges.herokuapp.com/maven-central/de.tu-dresden.inf.lat.fcalib/fcalib/badge.svg)](https://search.maven.org/#search|ga|1|g%3A%22de.tu-dresden.inf.lat.fcalib%22)
 [![license](https://img.shields.io/badge/license-LGPL%203.0-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0.txt)
 
